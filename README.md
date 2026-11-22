@@ -4,30 +4,31 @@
 
 Aplicación web minimalista en un único archivo (`index.html`) hecha únicamente con **HTML, CSS y JavaScript puro (vanilla)** para analizar la exportación oficial de datos de Instagram sin subir nada a internet, sin pedir contraseñas y sin dependencias externas.
 
-> 🔒 **Privacidad real:** aunque la web esté alojada en GitHub Pages, **todo el análisis se ejecuta 100 % en local dentro de tu navegador**. Ningún archivo, usuario ni mensaje sale de tu dispositivo (puedes incluso desconectar internet una vez cargada la página).
+> 🔒 **Privacidad real:** aunque la web esté alojada en GitHub Pages, **todo el análisis se ejecuta 100 % en local dentro de tu navegador**. Ningún archivo, usuario ni mensaje sale de tu dispositivo (funciona incluso sin conexión a internet).
 
 ## Cómo usarla
 
-1. **Directamente online:** entra en [https://alfonsodfernandez.github.io/igf/](https://alfonsodfernandez.github.io/igf/) desde ordenador o móvil.
+1. **Directamente online:** entra en [https://alfonsodfernandez.github.io/igf/](https://alfonsodfernandez.github.io/igf/) desde ordenador o móvil. Al abrirla verás de inmediato una vista previa interactiva con datos de ejemplo.
 2. **En local (sin internet):** descarga o clona este repositorio y abre `index.html` con doble clic en cualquier navegador moderno (Chrome, Edge, Firefox o Safari).
-3. **Probar al instante sin tu cuenta:**
-   - Pulsa **«Probar ZIP de ejemplo»** para cargar y analizar el archivo real [`datos_ejemplo_instagram.zip`](./datos_ejemplo_instagram.zip) con el lector `.zip` nativo.
-   - También puedes descargar `datos_ejemplo_instagram.zip` desde la interfaz o cargar la **demo rápida en memoria**.
-4. **Analizar tu propia cuenta:**
-   - Ve al [Centro de cuentas de Meta](https://accountscenter.instagram.com/info_and_permissions/) → **Exportar tu información** → **Crear exportación** → **Exportar al dispositivo**.
+3. **Analizar tu propia cuenta:**
+   - Pulsa **«¿Cómo exportar en JSON?»** en la barra superior o ve al [Centro de cuentas de Meta](https://accountscenter.instagram.com/info_and_permissions/) → **Exportar tu información** → **Crear exportación** → **Exportar al dispositivo**.
    - Selecciona tu cuenta de Instagram, elige **Desde el principio** como intervalo de fechas y cambia el formato a **JSON** (también funciona con HTML como respaldo).
-   - Cuando recibas el `.zip`, arrástralo directamente sobre la página (también admite la carpeta descomprimida o archivos `.json` / `.html` sueltos).
+   - Cuando recibas el `.zip`, arrástralo sobre cualquier punto de la pantalla o pulsa **«Importar .zip»** (también admite carpeta descomprimida o archivos `.json` / `.html` sueltos).
 
 ## Qué incluye
 
-- **Análisis principal:** quién no te sigue de vuelta, a quién no sigues tú, seguidores mutuos, totales, ratio seguidores/seguidos y tasa de reciprocidad.
-- **Análisis adicionales:** solicitudes enviadas pendientes y recibidas, cuentas que dejaste de seguir recientemente, mejores amigos, bloqueados, restringidos, cronología por años y rango en días, cuentas con más likes y comentarios dados, chats con más mensajes, búsquedas recientes y tabla de diagnóstico de archivos leídos.
-- **Privacidad y rendimiento:** lectura nativa de `.zip` en el navegador (Central Directory + `DecompressionStream('deflate-raw')`) que ignora fotos y vídeos pesados para no saturar la memoria RAM.
-- **Compatibilidad de formatos:** soporta exportaciones JSON desde 2020 hasta 2026 (`connections.json` legado, `string_list_data`, variante `title` + `/_u/`, `label_values` + `fbid`), respaldo HTML con `DOMParser`, decodificación del mojibake UTF-8 de Meta (`Ã©` → `é`) y filtrado automático de carpetas `threads/`.
-- **Utilidades:** modo claro/oscuro, buscador, orden alfabético o por fecha, enlace directo a cada perfil, exportación a CSV compatible con Excel (UTF-8 con BOM) y diseño adaptable a móvil.
+- **Análisis principal:** quién no te sigue de vuelta, a quién no sigues tú, seguidores mutuos, totales, ratio seguidores/seguidos, tasa de reciprocidad y evolución temporal interactiva (**Por año**, **Por mes** y **curva Acumulada** en SVG).
+- **Comparador histórico entre dos exportaciones (Snapshot Diff):** carga una segunda exportación anterior desde *«Comparar con exportación anterior»* o la pestaña **Cambios (Diff)** para descubrir nuevos seguidores, **quién te dejó de seguir**, nuevos seguidos, cuentas que dejaste de seguir y **cambios de `@username`** detectados por `fbid` o fecha exacta, todo exportable a CSV.
+- **Inspector de cuenta (ficha lateral):** haz clic sobre cualquier `@usuario` para abrir un panel lateral con toda su información cruzada: estados de relación, fechas exactas y diferencia en días, likes dados, comentarios (con vista previa de los últimos textos), mensajes directos encontrados y acciones rápidas (*Abrir en Instagram*, *Copiar `@usuario`*, *Marcar como revisado*).
+- **Filtros combinados, lista de limpieza y atajos de teclado:**
+  - Filtros rápidos por antigüedad y actividad (*Todos*, *Más de 1 año*, *Sin likes ni comentarios míos*, *Con interacción*, *Revisados*).
+  - Selección múltiple persistida en `localStorage` para copiar los `@usuarios` al portapapeles o exportar solo tu selección a CSV compatible con Excel (UTF-8 con BOM).
+  - Atajos de teclado: `/` enfoca el buscador, `1`–`7` cambia de pestaña y `Esc` cierra modales o el inspector lateral.
+- **Solicitudes, gestión e interacciones:** solicitudes enviadas pendientes y recibidas, dejados de seguir recientemente, mejores amigos, bloqueados, restringidos, rankings de likes/comentarios/chats, búsquedas recientes (`profile_searches.json`) y tabla de diagnóstico de archivos leídos.
+- **Privacidad y compatibilidad:** lectura nativa de `.zip` en el navegador (Central Directory + `DecompressionStream('deflate-raw')`) que omite fotos y vídeos pesados para ahorrar RAM; soporta exportaciones JSON 2020–2026 (`connections.json`, `string_list_data`, variante `title` + `/_u/`, `label_values` + `fbid`), respaldo HTML con `DOMParser`, decodificación de mojibake UTF-8 de Meta (`Ã©` → `é`) y filtrado automático de carpetas `threads/`.
 
 ## Contenido del repositorio
 
 - `index.html` — Aplicación completa en un solo archivo.
-- `datos_ejemplo_instagram.zip` — Exportación ficticia realista para probar la carga de `.zip`.
+- `datos_ejemplo_instagram.zip` — Exportación ficticia realista para probar la carga real de `.zip`.
 - `README.md` — Esta guía rápida.

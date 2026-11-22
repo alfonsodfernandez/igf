@@ -1362,9 +1362,9 @@
       .toolbar { padding: 12px 14px; }
       .subbar { padding: 10px 14px; }
       .explorer-body { padding: 14px; }
-      .account-list { grid-template-columns: 1fr; }
-      .account-row { padding: 10px 12px; gap: 8px; }
-      .account-main { gap: 10px; }
+      .account-list { grid-template-columns: minmax(0, 1fr); }
+      .account-row { padding: 10px 11px; gap: 8px; min-width: 0; }
+      .account-main { gap: 8px; min-width: 0; }
       .avatar-neutral { width: 32px; height: 32px; font-size: 0.75rem; }
       .account-right { gap: 6px; }
       .badge { font-size: 0.68rem; padding: 2px 7px; }
@@ -1373,6 +1373,334 @@
       .toolbar .btn { width: 100%; }
       .btn, .input, .select { min-height: 40px; }
       .btn-icon { min-height: 36px; }
+    }
+    /* =========================================================================
+       SELECTOR DE GRÁFICO, SELECCIÓN, INSPECTOR LATERAL Y DIFF
+       ========================================================================= */
+    .card-head-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .seg-mini {
+      display: inline-flex;
+      padding: 2px;
+      border-radius: 8px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+    }
+
+    .seg-mini-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      font-weight: 560;
+      padding: 4px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.14s ease, color 0.14s ease;
+    }
+
+    .seg-mini-btn:hover { color: var(--text); }
+
+    .seg-mini-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    .kbd-hint {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 1px 6px;
+      border-radius: 5px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      pointer-events: none;
+    }
+
+    .search-field .input { padding-right: 34px; }
+
+    /* Checkbox y estado revisado en filas de usuario */
+    .account-row.is-clickable { cursor: pointer; }
+
+    .account-row.is-checked {
+      background: var(--surface-subtle);
+      border-color: var(--border-strong);
+    }
+
+    .row-check {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      accent-color: var(--ink-btn-bg);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Barra de selección / lista de limpieza */
+    .selection-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 20px;
+      background: var(--ink-btn-bg);
+      color: var(--ink-btn-fg);
+      font-size: 0.82rem;
+    }
+
+    .selection-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .selection-bar .btn-sel {
+      height: 30px;
+      padding: 0 11px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--ink-btn-fg);
+      font-size: 0.78rem;
+      font-weight: 560;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    [data-theme="dark"] .selection-bar .btn-sel {
+      border-color: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .selection-bar .btn-sel:hover { opacity: 0.88; }
+
+    /* Inspector lateral (Drawer) */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .drawer-panel {
+      width: min(440px, 100vw);
+      height: 100%;
+      overflow-y: auto;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      box-shadow: var(--shadow-modal);
+      padding: 22px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: drawerIn 0.2s var(--ease);
+    }
+
+    @keyframes drawerIn {
+      from { transform: translateX(24px); opacity: 0.6; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .drawer-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 680;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .drawer-handle {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 680;
+      letter-spacing: -0.02em;
+      word-break: break-word;
+    }
+
+    .drawer-sub {
+      margin: 2px 0 0;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .drawer-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .drawer-section {
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .drawer-section-title {
+      margin: 0 0 10px;
+      font-size: 0.74rem;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .drawer-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .drawer-stat {
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .drawer-stat-val {
+      font-size: 1.25rem;
+      font-weight: 680;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .drawer-stat-lbl {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .drawer-kv {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.84rem;
+    }
+
+    .drawer-kv-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .drawer-kv-key { color: var(--text-secondary); }
+    .drawer-kv-val { font-weight: 560; text-align: right; font-variant-numeric: tabular-nums; }
+
+    .comment-quote {
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    .comment-quote:last-child { margin-bottom: 0; }
+    .comment-quote-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 3px; }
+
+    .drawer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Comparador histórico (Snapshot Diff) */
+    .diff-empty-box {
+      padding: 36px 24px;
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .diff-empty-box h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .diff-empty-box p {
+      margin: 0 0 20px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .diff-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .diff-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .diff-kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.14s ease;
+    }
+
+    .diff-kpi:hover, .diff-kpi.active { border-color: var(--border-strong); }
+
+    .diff-kpi-lbl { font-size: 0.75rem; color: var(--text-secondary); font-weight: 550; }
+    .diff-kpi-val { font-size: 1.35rem; font-weight: 680; margin-top: 3px; font-variant-numeric: tabular-nums; }
+
+    @media (max-width: 640px) {
+      .diff-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px 14px; }
+      .kbd-hint { display: none; }
     }
   </style>
 </head>
@@ -1553,6 +1881,15 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Inputs ocultos para cargar la exportación anterior (Comparador Diff) -->
+  <input id="inputPrevFiles" type="file" accept=".zip,.json,.html,.htm" multiple class="hidden" />
+  <input id="inputPrevFolder" type="file" webkitdirectory directory multiple class="hidden" />
+
+  <!-- Ficha lateral: Inspector de cuenta -->
+  <div id="inspectorDrawer" class="drawer-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="inspectorHandle">
+    <div id="inspectorPanel" class="drawer-panel"></div>
   </div>
 
   <script>
@@ -2262,15 +2599,17 @@
     /**
      * Parsea archivos de comentarios (post_comments_1.json y reels_comments.json).
      */
-    function parsearComentarios(data, conteoComentarios) {
+    function parsearComentarios(data, conteoComentarios, detalleComentarios) {
       const arr = extraerArrayDeJson(data, ["comments_media_comments", "comments_reels_comments"]);
       let total = 0;
       for (const item of arr) {
         if (!item || typeof item !== "object") continue;
         let autor = "";
+        let textoComentario = "";
+        let tsComentario = null;
+
         if (item.string_map_data && typeof item.string_map_data === "object") {
           const smd = item.string_map_data;
-          // Buscar el propietario del post en inglés o español
           const candidato =
             smd["Media Owner"] ||
             smd["Author"] ||
@@ -2279,12 +2618,25 @@
           if (candidato && candidato.value) {
             autor = limpiarUsername(candidato.value);
           }
+          const campoTexto = smd["Comment"] || smd["Comentario"];
+          if (campoTexto && campoTexto.value) {
+            textoComentario = decodificarMojibake(campoTexto.value);
+          }
+          const campoHora = smd["Time"] || smd["Hora"];
+          if (campoHora && campoHora.timestamp) {
+            tsComentario = normalizarTimestamp(campoHora.timestamp);
+          }
         } else if (Array.isArray(item.label_values)) {
           const reg = parsearRegistroCuenta(item);
           if (reg) autor = reg.username;
         }
         if (autor) {
           conteoComentarios.set(autor, (conteoComentarios.get(autor) || 0) + 1);
+          if (detalleComentarios && textoComentario) {
+            const arrDet = detalleComentarios.get(autor) || [];
+            arrDet.push({ texto: textoComentario, timestamp: tsComentario });
+            detalleComentarios.set(autor, arrDet);
+          }
         }
         total += 1;
       }
@@ -2508,6 +2860,17 @@
         blocked,
         restricted,
         closeFriends,
+        followersPorUser,
+        followingPorUser,
+        pendingSet: new Set(pendingRequests.map((x) => x.username)),
+        receivedSet: new Set(receivedRequests.map((x) => x.username)),
+        recentlyUnfollowedSet: new Set(recentlyUnfollowed.map((x) => x.username)),
+        blockedSet: new Set(blocked.map((x) => x.username)),
+        restrictedSet: new Set(restricted.map((x) => x.username)),
+        closeFriendsSet: new Set(closeFriends.map((x) => x.username)),
+        likesPorUsuario: recolector.likes,
+        commentsPorUsuario: recolector.comments,
+        comentariosDetalle: recolector.commentsDetail,
         ratio,
         reciprocidad,
         rangoFollowers: calcularRangoFechas(followers),
@@ -2541,6 +2904,7 @@
         },
         likes: new Map(),
         comments: new Map(),
+        commentsDetail: new Map(),
         totalComments: 0,
         chats: new Map(),
         busquedas: [],
@@ -2598,7 +2962,7 @@
         } else if (clasificacion.tipo === "liked_posts" || clasificacion.tipo === "liked_comments") {
           registros = parsearLikes(data, recolector.likes);
         } else if (clasificacion.tipo === "comments") {
-          registros = parsearComentarios(data, recolector.comments);
+          registros = parsearComentarios(data, recolector.comments, recolector.commentsDetail);
           recolector.totalComments += registros;
         } else if (clasificacion.tipo === "messages") {
           registros = parsearMensajes(ruta, data, recolector.chats);
@@ -2660,83 +3024,89 @@
       document.getElementById("alertContainer").innerHTML = "";
     }
 
-    async function procesarSeleccionArchivos(fileList) {
-      limpiarAlertas();
+    /**
+     * Lee y analiza cualquier selección (.zip, carpeta o archivos .json/.html sueltos)
+     * y devuelve { analisis, recolector } sin tocar todavía la UI.
+     */
+    async function analizarSeleccionArchivos(fileList) {
       const archivos = Array.from(fileList || []);
-      if (!archivos.length) return;
+      if (!archivos.length) return null;
 
       const recolector = crearRecolector();
+      const zips = archivos.filter((f) => f.name.toLowerCase().endsWith(".zip"));
+      const sueltos = archivos.filter((f) => !f.name.toLowerCase().endsWith(".zip"));
 
+      for (let z = 0; z < zips.length; z++) {
+        const zipFile = zips[z];
+        actualizarProgreso(5, `Leyendo índice de ${zipFile.name}…`);
+        const entradas = await leerIndiceZip(zipFile);
+
+        const relevantes = [];
+        for (const entrada of entradas) {
+          const clas = clasificarArchivo(entrada.nombre);
+          if (!clas) continue;
+          if (clas.tipo === "ignorado_media") {
+            recolector.diagnostico.mediaOmitida++;
+          } else if (clas.tipo === "ignorado_threads") {
+            recolector.diagnostico.threadsOmitidos++;
+          } else {
+            relevantes.push({ entrada, clas });
+          }
+        }
+
+        for (let i = 0; i < relevantes.length; i++) {
+          const { entrada, clas } = relevantes[i];
+          const pct = 10 + Math.round(((i + 1) / Math.max(1, relevantes.length)) * 85);
+          actualizarProgreso(pct, `Analizando ${entrada.nombre.split("/").pop()} (${i + 1}/${relevantes.length})…`);
+          try {
+            const texto = await extraerTextoDeZip(zipFile, entrada);
+            procesarContenidoArchivo(entrada.nombre, clas, texto, recolector);
+          } catch (err) {
+            recolector.diagnostico.errores.push({
+              ruta: entrada.nombre,
+              mensaje: err.message
+            });
+          }
+        }
+      }
+
+      if (sueltos.length > 0) {
+        const relevantes = [];
+        for (const f of sueltos) {
+          const ruta = f.webkitRelativePath || f.name;
+          const clas = clasificarArchivo(ruta);
+          if (!clas) continue;
+          if (clas.tipo === "ignorado_media") {
+            recolector.diagnostico.mediaOmitida++;
+          } else if (clas.tipo === "ignorado_threads") {
+            recolector.diagnostico.threadsOmitidos++;
+          } else {
+            relevantes.push({ file: f, ruta, clas });
+          }
+        }
+
+        for (let i = 0; i < relevantes.length; i++) {
+          const { file, ruta, clas } = relevantes[i];
+          const pct = 10 + Math.round(((i + 1) / Math.max(1, relevantes.length)) * 85);
+          actualizarProgreso(pct, `Leyendo ${file.name} (${i + 1}/${relevantes.length})…`);
+          const texto = await file.text();
+          procesarContenidoArchivo(ruta, clas, texto, recolector);
+        }
+      }
+
+      actualizarProgreso(100, "Calculando resultados…");
+      const analisis = construirAnalisis(recolector);
+      ocultarProgreso();
+      return { analisis, recolector };
+    }
+
+    async function procesarSeleccionArchivos(fileList) {
+      limpiarAlertas();
       try {
-        // Si el usuario subió uno o varios .zip
-        const zips = archivos.filter((f) => f.name.toLowerCase().endsWith(".zip"));
-        const sueltos = archivos.filter((f) => !f.name.toLowerCase().endsWith(".zip"));
+        const resultado = await analizarSeleccionArchivos(fileList);
+        if (!resultado) return;
+        const { analisis, recolector } = resultado;
 
-        for (let z = 0; z < zips.length; z++) {
-          const zipFile = zips[z];
-          actualizarProgreso(5, `Leyendo índice de ${zipFile.name}…`);
-          const entradas = await leerIndiceZip(zipFile);
-
-          // Clasificar entradas antes de descomprimir nada
-          const relevantes = [];
-          for (const entrada of entradas) {
-            const clas = clasificarArchivo(entrada.nombre);
-            if (!clas) continue;
-            if (clas.tipo === "ignorado_media") {
-              recolector.diagnostico.mediaOmitida++;
-            } else if (clas.tipo === "ignorado_threads") {
-              recolector.diagnostico.threadsOmitidos++;
-            } else {
-              relevantes.push({ entrada, clas });
-            }
-          }
-
-          for (let i = 0; i < relevantes.length; i++) {
-            const { entrada, clas } = relevantes[i];
-            const pct = 10 + Math.round(((i + 1) / Math.max(1, relevantes.length)) * 85);
-            actualizarProgreso(pct, `Analizando ${entrada.nombre.split("/").pop()} (${i + 1}/${relevantes.length})…`);
-            try {
-              const texto = await extraerTextoDeZip(zipFile, entrada);
-              procesarContenidoArchivo(entrada.nombre, clas, texto, recolector);
-            } catch (err) {
-              recolector.diagnostico.errores.push({
-                ruta: entrada.nombre,
-                mensaje: err.message
-              });
-            }
-          }
-        }
-
-        // Procesar carpeta descomprimida o archivos .json/.html sueltos
-        if (sueltos.length > 0) {
-          const relevantes = [];
-          for (const f of sueltos) {
-            const ruta = f.webkitRelativePath || f.name;
-            const clas = clasificarArchivo(ruta);
-            if (!clas) continue;
-            if (clas.tipo === "ignorado_media") {
-              recolector.diagnostico.mediaOmitida++;
-            } else if (clas.tipo === "ignorado_threads") {
-              recolector.diagnostico.threadsOmitidos++;
-            } else {
-              relevantes.push({ file: f, ruta, clas });
-            }
-          }
-
-          for (let i = 0; i < relevantes.length; i++) {
-            const { file, ruta, clas } = relevantes[i];
-            const pct = 10 + Math.round(((i + 1) / Math.max(1, relevantes.length)) * 85);
-            actualizarProgreso(pct, `Leyendo ${file.name} (${i + 1}/${relevantes.length})…`);
-            const texto = await file.text();
-            procesarContenidoArchivo(ruta, clas, texto, recolector);
-          }
-        }
-
-        actualizarProgreso(100, "Calculando resultados…");
-        const analisis = construirAnalisis(recolector);
-        ocultarProgreso();
-
-        // Verificar que al menos hemos encontrado algo útil
         const hayRelaciones =
           analisis.followers.length > 0 ||
           analisis.following.length > 0 ||
@@ -2767,11 +3137,186 @@
           );
         }
 
-        cargarResultadosEnUI(analisis);
+        cargarResultadosEnUI(analisis, { esDemo: false });
       } catch (err) {
         ocultarProgreso();
         mostrarAlerta("Error al leer la exportación: " + (err && err.message ? err.message : String(err)));
       }
+    }
+
+    /**
+     * Carga una segunda exportación (anterior) para comparar cambios históricos (Snapshot Diff).
+     */
+    async function procesarExportacionAnterior(fileList) {
+      limpiarAlertas();
+      try {
+        const resultado = await analizarSeleccionArchivos(fileList);
+        if (!resultado) return;
+        const { analisis } = resultado;
+        if (analisis.followers.length === 0 && analisis.following.length === 0) {
+          mostrarAlerta("La exportación anterior no contiene listas de seguidores ni seguidos para comparar.", "warn");
+          return;
+        }
+        const etiqueta = (fileList && fileList[0] && fileList[0].name) || "Exportación anterior";
+        aplicarComparacionAnterior(analisis, etiqueta);
+      } catch (err) {
+        ocultarProgreso();
+        mostrarAlerta("Error al leer la exportación anterior: " + (err && err.message ? err.message : String(err)));
+      }
+    }
+
+    /**
+     * Calcula el diff completo entre la exportación actual y una exportación anterior:
+     * nuevos seguidores, seguidores perdidos, nuevos seguidos, dejados de seguir y cambios de @username.
+     */
+    function calcularDiffExportaciones(actual, anterior) {
+      const detectarCambiosEnLista = (listaActual, listaAnterior, origen) => {
+        const prevPorUser = new Map();
+        const prevPorFbid = new Map();
+        for (const c of listaAnterior) {
+          if (c.username) prevPorUser.set(c.username, c);
+          if (c.fbid) prevPorFbid.set(c.fbid, c);
+        }
+
+        const actPorUser = new Map();
+        const actPorFbid = new Map();
+        for (const c of listaActual) {
+          if (c.username) actPorUser.set(c.username, c);
+          if (c.fbid) actPorFbid.set(c.fbid, c);
+        }
+
+        const cambiosNombre = [];
+        const emparejadosPrev = new Set();
+        const emparejadosAct = new Set();
+
+        // 1. Coincidencia exacta por fbid con distinto @username
+        for (const cAct of listaActual) {
+          if (cAct.fbid && prevPorFbid.has(cAct.fbid)) {
+            const cPrev = prevPorFbid.get(cAct.fbid);
+            if (cPrev.username && cAct.username && cPrev.username !== cAct.username) {
+              cambiosNombre.push({
+                anterior: cPrev.username,
+                actual: cAct.username,
+                metodo: "fbid",
+                origen,
+                timestamp: cAct.timestamp || cPrev.timestamp || null
+              });
+              emparejadosPrev.add(cPrev.username);
+              emparejadosAct.add(cAct.username);
+            }
+          }
+        }
+
+        // Candidatos desaparecidos y nuevos
+        const soloPrev = listaAnterior.filter(
+          (c) => !actPorUser.has(c.username) && !emparejadosPrev.has(c.username)
+        );
+        const soloAct = listaActual.filter(
+          (c) => !prevPorUser.has(c.username) && !emparejadosAct.has(c.username)
+        );
+
+        // 2. Coincidencia única por fecha exacta (timestamp > 0) entre un desaparecido y un nuevo
+        const prevPorTs = new Map();
+        for (const c of soloPrev) {
+          if (!c.timestamp) continue;
+          const arr = prevPorTs.get(c.timestamp) || [];
+          arr.push(c);
+          prevPorTs.set(c.timestamp, arr);
+        }
+        const actPorTs = new Map();
+        for (const c of soloAct) {
+          if (!c.timestamp) continue;
+          const arr = actPorTs.get(c.timestamp) || [];
+          arr.push(c);
+          actPorTs.set(c.timestamp, arr);
+        }
+
+        for (const [ts, arrPrev] of prevPorTs.entries()) {
+          const arrAct = actPorTs.get(ts);
+          if (arrPrev.length === 1 && arrAct && arrAct.length === 1) {
+            const cPrev = arrPrev[0];
+            const cAct = arrAct[0];
+            if (cPrev.username !== cAct.username) {
+              cambiosNombre.push({
+                anterior: cPrev.username,
+                actual: cAct.username,
+                metodo: "fecha exacta",
+                origen,
+                timestamp: ts
+              });
+              emparejadosPrev.add(cPrev.username);
+              emparejadosAct.add(cAct.username);
+            }
+          }
+        }
+
+        const perdidos = soloPrev.filter((c) => !emparejadosPrev.has(c.username));
+        const nuevos = soloAct.filter((c) => !emparejadosAct.has(c.username));
+        return { nuevos, perdidos, cambiosNombre };
+      };
+
+      const diffFoll = detectarCambiosEnLista(actual.followers, anterior.followers, "Seguidores");
+      const diffFollowing = detectarCambiosEnLista(actual.following, anterior.following, "Seguidos");
+
+      // Deduplicar cambios de nombre entre ambas listas
+      const mapaCambios = new Map();
+      for (const ch of [...diffFoll.cambiosNombre, ...diffFollowing.cambiosNombre]) {
+        const clave = `${ch.anterior}->${ch.actual}`;
+        if (!mapaCambios.has(clave)) mapaCambios.set(clave, ch);
+      }
+
+      return {
+        nuevosSeguidores: diffFoll.nuevos,
+        seguidoresPerdidos: diffFoll.perdidos,
+        nuevosSeguidos: diffFollowing.nuevos,
+        dejadosDeSeguir: diffFollowing.perdidos,
+        cambiosUsername: Array.from(mapaCambios.values()),
+        totalCambios:
+          diffFoll.nuevos.length +
+          diffFoll.perdidos.length +
+          diffFollowing.nuevos.length +
+          diffFollowing.perdidos.length +
+          mapaCambios.size
+      };
+    }
+
+    /**
+     * Genera una instantánea anterior ficticia (~90 días atrás) a partir del análisis actual
+     * para probar el comparador histórico con un clic.
+     */
+    function generarDemoAnterior(actual) {
+      const recolector = crearRecolector();
+      const ahora = Math.floor(Date.now() / 1000);
+      const dia = 86400;
+
+      // Mantener la mayoría de seguidores actuales, quitando los 2 más recientes (serán "nuevos")
+      const follOrd = [...actual.followers].sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+      const baseFollowers = follOrd.slice(0, Math.max(0, follOrd.length - 2)).map((x) => ({ ...x }));
+
+      // Simular cambio de @username manteniendo fecha exacta en uno de los seguidores
+      if (baseFollowers.length > 2) {
+        baseFollowers[1] = {
+          ...baseFollowers[1],
+          username: baseFollowers[1].username + "_old"
+        };
+      }
+
+      // Añadir 2 seguidores que ya no están hoy (serán "te dejaron de seguir")
+      baseFollowers.push(
+        { username: "estudio_minimal_bcn", displayName: "Estudio Minimal", href: "https://www.instagram.com/estudio_minimal_bcn", timestamp: ahora - 420 * dia, fbid: "", possibleRename: false },
+        { username: "taller_analogico_vlc", displayName: "Taller Analógico", href: "https://www.instagram.com/taller_analogico_vlc", timestamp: ahora - 280 * dia, fbid: "", possibleRename: false }
+      );
+
+      // Seguidos anteriores: quitar el más reciente (será "nuevo seguido") y añadir 1 que dejaste de seguir
+      const followOrd = [...actual.following].sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+      const baseFollowing = followOrd.slice(0, Math.max(0, followOrd.length - 1)).map((x) => ({ ...x }));
+      baseFollowing.push(
+        { username: "ofertas_diarias_spam", displayName: "", href: "https://www.instagram.com/ofertas_diarias_spam", timestamp: ahora - 300 * dia, fbid: "", possibleRename: false }
+      );
+
+      recolector.listas.followers = baseFollowers;
+      recolector.listas.following = baseFollowing;
+      return construirAnalisis(recolector);
     }
 
     /* =========================================================================
@@ -2915,6 +3460,17 @@
         recolector.totalComments += c;
       });
 
+      recolector.commentsDetail.set("lucia_garcia", [
+        { texto: "¡Qué luz tan brutal en esa foto!", timestamp: ahora - 12 * dia },
+        { texto: "Me encanta el encuadre de esta serie", timestamp: ahora - 34 * dia }
+      ]);
+      recolector.commentsDetail.set("carlos_dev", [
+        { texto: "Muy buen proyecto, enhorabuena", timestamp: ahora - 21 * dia }
+      ]);
+      recolector.commentsDetail.set("marta_viajes", [
+        { texto: "Apuntado ese sitio para el próximo viaje", timestamp: ahora - 40 * dia }
+      ]);
+
       recolector.chats.set("lucia_garcia_1", {
         titulo: "Lucía García",
         participantes: ["Lucía García", "Álex Morales"],
@@ -2961,7 +3517,7 @@
     }
 
     /* =========================================================================
-       8. ICONOGRAFÍA SVG Y FORMATO DE FECHAS RELATIVAS
+       8. ICONOGRAFÍA SVG, FORMATO DE FECHAS Y PORTAPAPELES
        ========================================================================= */
 
     const ICONOS = {
@@ -2970,12 +3526,13 @@
       search: `<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
       download: `<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
       external: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`,
-      arrowRight: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
+      arrowRight: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
+      copy: `<svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`,
+      check: `<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+      close: `<svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
+      diff: `<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>`
     };
 
-    /**
-     * Formatea un timestamp Unix a texto relativo + fecha exacta: "hace 4 meses · 12 jul 2025".
-     */
     function formatearFechaCompleta(ts) {
       if (!ts) return "Sin fecha registrada";
       const exacta = formatearFecha(ts);
@@ -2997,9 +3554,6 @@
       return `${relativa} · ${exacta}`;
     }
 
-    /**
-     * Devuelve las iniciales limpias (1 o 2 letras) de un usuario.
-     */
     function inicialesUsuario(username) {
       const partes = String(username || "ig")
         .replace(/^@+/, "")
@@ -3009,37 +3563,128 @@
       return (partes[0] || "IG").slice(0, 2).toUpperCase();
     }
 
+    async function copiarAlPortapapeles(texto) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(texto);
+          return true;
+        }
+      } catch {
+        // Fallback clásico
+      }
+      const ta = document.createElement("textarea");
+      ta.value = texto;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch {
+        ok = false;
+      }
+      ta.remove();
+      return ok;
+    }
+
     /* =========================================================================
-       9. INTERFAZ Y RENDERIZADO DEL DASHBOARD LUMINOSO
+       9. ESTADO GLOBAL, PERSISTENCIA DE REVISADOS Y RENDERIZADO DEL DASHBOARD
        ========================================================================= */
 
     let analisisActual = null;
+    let comparacionActual = null; // { anterior, etiqueta, diff }
     let esVistaPreviaDemo = true;
     let pestanaActiva = "notFollowingBack";
     let subGestion = "pending";
+    let subDiff = "lost";
+    let modoGrafico = "anio"; // "anio" | "mes" | "acumulado"
+    let usuarioInspeccionado = null;
+    let cuentasSeleccionadas = new Set();
+
     let estadoLista = {
       busqueda: "",
       orden: "date_desc",
-      filtroRapido: "all",
+      filtroRapido: "all", // all | old1y | noInteraction | withInteraction | selected | renamed
       limite: 100
     };
 
-    /**
-     * Carga el resultado del análisis en el dashboard.
-     * Por defecto se llama con esDemo=false cuando viene de procesarSeleccionArchivos().
-     */
+    function claveStorageSeleccion() {
+      const u = analisisActual && analisisActual.perfil && analisisActual.perfil.username
+        ? analisisActual.perfil.username
+        : "local";
+      return `igf_checked_${u}`;
+    }
+
+    function cargarSeleccionGuardada() {
+      cuentasSeleccionadas = new Set();
+      try {
+        const raw = localStorage.getItem(claveStorageSeleccion());
+        if (raw) {
+          const arr = JSON.parse(raw);
+          if (Array.isArray(arr)) arr.forEach((u) => cuentasSeleccionadas.add(u));
+        }
+      } catch {
+        // Ignorar errores de almacenamiento
+      }
+    }
+
+    function guardarSeleccion() {
+      try {
+        localStorage.setItem(claveStorageSeleccion(), JSON.stringify(Array.from(cuentasSeleccionadas)));
+      } catch {
+        // Ignorar
+      }
+    }
+
+    function alternarSeleccionCuenta(username) {
+      if (!username) return;
+      if (cuentasSeleccionadas.has(username)) {
+        cuentasSeleccionadas.delete(username);
+      } else {
+        cuentasSeleccionadas.add(username);
+      }
+      guardarSeleccion();
+      renderContenidoPestana();
+      if (usuarioInspeccionado === username) {
+        abrirInspectorCuenta(username);
+      }
+    }
+
     function cargarResultadosEnUI(analisis, opciones = {}) {
       analisisActual = analisis;
       esVistaPreviaDemo = Boolean(opciones.esDemo);
+      comparacionActual = null;
       pestanaActiva = "notFollowingBack";
       subGestion = "pending";
+      subDiff = "lost";
       estadoLista = { busqueda: "", orden: "date_desc", filtroRapido: "all", limite: 100 };
+      cargarSeleccionGuardada();
+      cerrarInspectorCuenta();
 
       actualizarBarraSuperior();
       renderKPIs();
       renderVisualizaciones();
       renderPestanas();
       renderContenidoPestana();
+    }
+
+    function aplicarComparacionAnterior(anterior, etiqueta) {
+      if (!analisisActual) return;
+      const diff = calcularDiffExportaciones(analisisActual, anterior);
+      comparacionActual = { anterior, etiqueta, diff };
+      pestanaActiva = "diff";
+      subDiff = diff.seguidoresPerdidos.length > 0 ? "lost" : "gained";
+      estadoLista.busqueda = "";
+      estadoLista.filtroRapido = "all";
+      estadoLista.limite = 100;
+
+      actualizarBarraSuperior();
+      renderPestanas();
+      renderContenidoPestana();
+
+      const el = document.querySelector(".explorer-card");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function irAPestana(idPestana, hacerScroll = false) {
@@ -3067,6 +3712,8 @@
 
       if (!strip) return;
 
+      const btnCompararHtml = `<button id="btnComparePrev" class="inline-action" type="button">${ICONOS.diff} Comparar con exportación anterior</button>`;
+
       if (esVistaPreviaDemo) {
         strip.innerHTML = `
           <div class="preview-strip-left">
@@ -3076,7 +3723,8 @@
             </span>
           </div>
           <div class="preview-strip-actions">
-            <button id="btnLoadDemoZip" class="inline-action" type="button">Probar con datos_ejemplo_instagram.zip</button>
+            <button id="btnLoadDemoZip" class="inline-action" type="button">Probar datos_ejemplo_instagram.zip</button>
+            ${btnCompararHtml}
             <button id="btnPickFolder" class="inline-action inline-action-muted" type="button">Importar carpeta</button>
             <a class="inline-action inline-action-muted" href="./datos_ejemplo_instagram.zip" download="datos_ejemplo_instagram.zip">Descargar ZIP</a>
           </div>
@@ -3085,14 +3733,18 @@
         const rango = a.rangoFollowers.dias !== null
           ? `${fmtNum(a.rangoFollowers.dias)} días de historial`
           : `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos analizados`;
+        const infoDiff = comparacionActual
+          ? ` · Comparando con ${escaparHtml(comparacionActual.etiqueta)}`
+          : "";
         strip.innerHTML = `
           <div class="preview-strip-left">
             <span class="badge badge-ok">100 % local</span>
             <span>
-              Mostrando <strong>${escaparHtml(handle)}</strong> · ${escaparHtml(rango)} · Ningún dato salió de tu navegador.
+              Mostrando <strong>${escaparHtml(handle)}</strong> · ${escaparHtml(rango)}${infoDiff}
             </span>
           </div>
           <div class="preview-strip-actions">
+            ${btnCompararHtml}
             <button id="btnPickFolder" class="inline-action inline-action-muted" type="button">Importar carpeta</button>
             <button id="btnBackToDemo" class="inline-action inline-action-muted" type="button">Volver a vista previa</button>
           </div>
@@ -3101,6 +3753,15 @@
 
       const btnDemoZip = document.getElementById("btnLoadDemoZip");
       if (btnDemoZip) btnDemoZip.addEventListener("click", cargarZipDeEjemplo);
+
+      const btnComp = document.getElementById("btnComparePrev");
+      if (btnComp) {
+        btnComp.addEventListener("click", () => {
+          const inputPrev = document.getElementById("inputPrevFiles");
+          inputPrev.value = "";
+          inputPrev.click();
+        });
+      }
 
       const btnFolder = document.getElementById("btnPickFolder");
       if (btnFolder) {
@@ -3133,27 +3794,20 @@
 
       grid.innerHTML = `
         <div class="kpi-card">
-          <div class="kpi-top">
-            <span class="kpi-label">Seguidores</span>
-          </div>
+          <div class="kpi-top"><span class="kpi-label">Seguidores</span></div>
           <div class="kpi-value">${fmtNum(a.followers.length)}</div>
           <div class="kpi-sub">${a.rangoFollowers.min ? "Desde " + formatearFecha(a.rangoFollowers.min) : "Total en exportación"}</div>
         </div>
 
         <div class="kpi-card">
-          <div class="kpi-top">
-            <span class="kpi-label">Seguidos</span>
-          </div>
+          <div class="kpi-top"><span class="kpi-label">Seguidos</span></div>
           <div class="kpi-value">${fmtNum(a.following.length)}</div>
           <div class="kpi-sub">Ratio seguidores / seguidos: ${ratioTxt}</div>
         </div>
 
         <button type="button" class="kpi-card" data-jump="notFollowingBack">
           <div class="kpi-top">
-            <span class="kpi-label">
-              <span class="kpi-dot" style="background:var(--amber)"></span>
-              No te siguen de vuelta
-            </span>
+            <span class="kpi-label"><span class="kpi-dot" style="background:var(--amber)"></span>No te siguen de vuelta</span>
             <span class="kpi-arrow">${ICONOS.arrowRight}</span>
           </div>
           <div class="kpi-value">${fmtNum(a.notFollowingBack.length)}</div>
@@ -3162,10 +3816,7 @@
 
         <button type="button" class="kpi-card" data-jump="youDontFollowBack">
           <div class="kpi-top">
-            <span class="kpi-label">
-              <span class="kpi-dot" style="background:var(--blue)"></span>
-              No sigues de vuelta
-            </span>
+            <span class="kpi-label"><span class="kpi-dot" style="background:var(--blue)"></span>No sigues de vuelta</span>
             <span class="kpi-arrow">${ICONOS.arrowRight}</span>
           </div>
           <div class="kpi-value">${fmtNum(a.youDontFollowBack.length)}</div>
@@ -3179,13 +3830,12 @@
     }
 
     /**
-     * Renderiza la Fila 2: Balance de relaciones (barra apilada) y Evolución temporal (barras SVG con tooltip).
+     * Renderiza la Fila 2: Balance de relaciones + Evolución temporal (Por año / Por mes / Acumulado).
      */
     function renderVisualizaciones() {
       const a = analisisActual;
       const grid = document.getElementById("chartsGrid");
 
-      // --- 1. Balance de relaciones ---
       const mutuos = a.mutuals.length;
       const soloTu = a.notFollowingBack.length;
       const soloEllos = a.youDontFollowBack.length;
@@ -3225,8 +3875,12 @@
         })
         .join("");
 
-      // --- 2. Evolución temporal (SVG con tooltip interactivo) ---
-      const serie = construirSerieTemporal(a.followers, a.following);
+      const serie = construirSerieTemporal(a.followers, a.following, modoGrafico);
+      const svgGrafico = modoGrafico === "acumulado"
+        ? renderLineChartAcumuladoSVG(serie)
+        : renderBarChartSVG(serie);
+
+      const colorLeyenda2 = modoGrafico === "acumulado" ? "var(--blue)" : "var(--bar-secondary)";
 
       grid.innerHTML = `
         <div class="card">
@@ -3244,14 +3898,21 @@
 
         <div class="card">
           <div class="card-head">
-            <h2 class="card-title">Evolución temporal (${serie.modo === "mes" ? "por mes" : "por año"})</h2>
-            <div class="chart-legend">
-              <span><span class="kpi-dot" style="background:var(--bar-primary)"></span>Seguidores</span>
-              <span><span class="kpi-dot" style="background:var(--bar-secondary)"></span>Seguidos</span>
+            <h2 class="card-title">Evolución temporal</h2>
+            <div class="card-head-right">
+              <div class="seg-mini" role="group" aria-label="Modo de gráfico">
+                <button type="button" class="seg-mini-btn ${modoGrafico === "anio" ? "active" : ""}" data-chartmode="anio">Por año</button>
+                <button type="button" class="seg-mini-btn ${modoGrafico === "mes" ? "active" : ""}" data-chartmode="mes">Por mes</button>
+                <button type="button" class="seg-mini-btn ${modoGrafico === "acumulado" ? "active" : ""}" data-chartmode="acumulado">Acumulado</button>
+              </div>
+              <div class="chart-legend">
+                <span><span class="kpi-dot" style="background:var(--bar-primary)"></span>Seguidores</span>
+                <span><span class="kpi-dot" style="background:${colorLeyenda2}"></span>Seguidos</span>
+              </div>
             </div>
           </div>
           <div class="chart-stage" id="chartStage">
-            ${renderBarChartSVG(serie)}
+            ${svgGrafico}
             <div id="chartTooltip" class="chart-tooltip" role="tooltip"></div>
           </div>
         </div>
@@ -3261,24 +3922,18 @@
         btn.addEventListener("click", () => irAPestana(btn.dataset.jump, true));
       });
 
+      grid.querySelectorAll("[data-chartmode]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          modoGrafico = btn.dataset.chartmode;
+          renderVisualizaciones();
+        });
+      });
+
       vincularTooltipGrafico();
     }
 
-    /**
-     * Agrupa seguidores y seguidos por año (o por mes si todo ocurre en un mismo año).
-     */
-    function construirSerieTemporal(followers, following) {
-      const anios = new Set();
-      for (const x of followers) {
-        if (x.timestamp) anios.add(new Date(x.timestamp * 1000).getUTCFullYear());
-      }
-      for (const x of following) {
-        if (x.timestamp) anios.add(new Date(x.timestamp * 1000).getUTCFullYear());
-      }
-      const listaAnios = Array.from(anios).filter((y) => y >= 2010 && y <= 2035).sort((a, b) => a - b);
-      if (listaAnios.length === 0) return { modo: "anio", puntos: [] };
-
-      const usarMeses = listaAnios.length === 1;
+    function construirSerieTemporal(followers, following, modo) {
+      const usarMeses = modo === "mes" || modo === "acumulado";
       const mapa = new Map();
 
       const sumar = (lista, campo) => {
@@ -3291,7 +3946,7 @@
             ? `${y}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`
             : String(y);
           const etiqueta = usarMeses
-            ? d.toLocaleDateString("es-ES", { month: "short", timeZone: "UTC" })
+            ? `${d.toLocaleDateString("es-ES", { month: "short", timeZone: "UTC" })} ${String(y).slice(-2)}`
             : String(y);
           if (!mapa.has(clave)) {
             mapa.set(clave, { clave, etiqueta, followers: 0, following: 0 });
@@ -3303,11 +3958,33 @@
       sumar(followers, "followers");
       sumar(following, "following");
 
-      const puntos = Array.from(mapa.values())
-        .sort((a, b) => a.clave.localeCompare(b.clave))
-        .slice(-8);
+      let puntos = Array.from(mapa.values()).sort((a, b) => a.clave.localeCompare(b.clave));
+      if (!puntos.length) return { modo, puntos: [] };
 
-      return { modo: usarMeses ? "mes" : "anio", puntos };
+      if (modo === "acumulado") {
+        let accF = 0;
+        let accS = 0;
+        puntos = puntos.map((p) => {
+          accF += p.followers;
+          accS += p.following;
+          return { ...p, followers: accF, following: accS };
+        });
+        // Si hay muchos meses, muestrear hasta 14 puntos conservando el primero y el último
+        if (puntos.length > 14) {
+          const paso = (puntos.length - 1) / 13;
+          const muestreados = [];
+          for (let i = 0; i < 14; i++) {
+            muestreados.push(puntos[Math.round(i * paso)]);
+          }
+          puntos = muestreados;
+        }
+      } else if (modo === "mes") {
+        puntos = puntos.slice(-10);
+      } else {
+        puntos = puntos.slice(-8);
+      }
+
+      return { modo, puntos };
     }
 
     function renderBarChartSVG(serie) {
@@ -3337,8 +4014,8 @@
         .join("");
 
       const groupW = chartW / serie.puntos.length;
-      const barW = Math.min(20, Math.max(8, (groupW - 18) / 2));
-      const gap = 4;
+      const barW = Math.min(20, Math.max(6, (groupW - 14) / 2));
+      const gap = 3;
 
       const grupos = serie.puntos
         .map((p, idx) => {
@@ -3355,7 +4032,7 @@
               <rect x="${(cx - groupW / 2).toFixed(1)}" y="${padT}" width="${groupW.toFixed(1)}" height="${chartH}" fill="transparent"></rect>
               <rect x="${x1.toFixed(1)}" y="${yFoll.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFoll).toFixed(1)}" rx="4" fill="var(--bar-primary)"></rect>
               <rect x="${x2.toFixed(1)}" y="${yFollowing.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFollowing).toFixed(1)}" rx="4" fill="var(--bar-secondary)"></rect>
-              <text x="${cx.toFixed(1)}" y="${h - 6}" text-anchor="middle" fill="var(--text-muted)" font-size="10.5" font-weight="500">${escaparHtml(p.etiqueta)}</text>
+              <text x="${cx.toFixed(1)}" y="${h - 6}" text-anchor="middle" fill="var(--text-muted)" font-size="9.5" font-weight="500">${escaparHtml(p.etiqueta)}</text>
             </g>
           `;
         })
@@ -3365,6 +4042,73 @@
         <svg class="bar-chart-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" aria-label="Evolución temporal de seguidores y seguidos">
           ${gridLines}
           ${grupos}
+        </svg>
+      `;
+    }
+
+    /**
+     * Dibuja la curva de crecimiento acumulado de seguidores vs. seguidos en SVG puro.
+     */
+    function renderLineChartAcumuladoSVG(serie) {
+      if (!serie.puntos.length) {
+        return `<div class="bar-chart-empty">No hay fechas suficientes para la curva acumulada.</div>`;
+      }
+
+      const w = 480;
+      const h = 164;
+      const padL = 32;
+      const padR = 14;
+      const padT = 14;
+      const padB = 26;
+      const chartW = w - padL - padR;
+      const chartH = h - padT - padB;
+      const maxVal = Math.max(1, ...serie.puntos.map((p) => Math.max(p.followers, p.following)));
+
+      const gridLines = [0, 0.5, 1]
+        .map((f) => {
+          const y = (padT + chartH * (1 - f)).toFixed(1);
+          const lbl = Math.round(maxVal * f);
+          return `
+            <line x1="${padL}" y1="${y}" x2="${w - padR}" y2="${y}" stroke="var(--border)" stroke-dasharray="${f === 0 ? "" : "3 3"}" stroke-width="1"></line>
+            <text x="${padL - 7}" y="${Number(y) + 3}" text-anchor="end" fill="var(--text-muted)" font-size="10" style="font-variant-numeric:tabular-nums;">${lbl}</text>
+          `;
+        })
+        .join("");
+
+      const n = serie.puntos.length;
+      const getX = (i) => (n === 1 ? padL + chartW / 2 : padL + (i / (n - 1)) * chartW);
+      const getY = (val) => padT + chartH - (val / maxVal) * chartH;
+
+      const ptsF = serie.puntos.map((p, i) => `${getX(i).toFixed(1)},${getY(p.followers).toFixed(1)}`).join(" ");
+      const ptsS = serie.puntos.map((p, i) => `${getX(i).toFixed(1)},${getY(p.following).toFixed(1)}`).join(" ");
+
+      const areaF = `${padL},${padT + chartH} ${ptsF} ${getX(n - 1).toFixed(1)},${padT + chartH}`;
+
+      const hitCols = serie.puntos
+        .map((p, i) => {
+          const x = getX(i);
+          const yF = getY(p.followers);
+          const yS = getY(p.following);
+          const colW = n === 1 ? chartW : chartW / n;
+          const mostrarEtiqueta = i === 0 || i === n - 1 || i === Math.floor(n / 2);
+          return `
+            <g class="bar-group" data-label="${escaparHtml(p.etiqueta)} (acum.)" data-followers="${p.followers}" data-following="${p.following}">
+              <rect x="${(x - colW / 2).toFixed(1)}" y="${padT}" width="${colW.toFixed(1)}" height="${chartH}" fill="transparent"></rect>
+              <circle cx="${x.toFixed(1)}" cy="${yF.toFixed(1)}" r="3.2" fill="var(--bar-primary)"></circle>
+              <circle cx="${x.toFixed(1)}" cy="${yS.toFixed(1)}" r="3.2" fill="var(--blue)"></circle>
+              ${mostrarEtiqueta ? `<text x="${x.toFixed(1)}" y="${h - 6}" text-anchor="middle" fill="var(--text-muted)" font-size="9.5" font-weight="500">${escaparHtml(p.etiqueta)}</text>` : ""}
+            </g>
+          `;
+        })
+        .join("");
+
+      return `
+        <svg class="bar-chart-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" aria-label="Crecimiento acumulado de seguidores y seguidos">
+          ${gridLines}
+          <polygon points="${areaF}" fill="var(--bar-primary)" opacity="0.06"></polygon>
+          <polyline points="${ptsS}" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <polyline points="${ptsF}" fill="none" stroke="var(--bar-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          ${hitCols}
         </svg>
       `;
     }
@@ -3385,7 +4129,7 @@
             <strong>${escaparHtml(g.dataset.label)}</strong><br/>
             Seguidores: ${fmtNum(g.dataset.followers)} · Seguidos: ${fmtNum(g.dataset.following)}
           `;
-          tooltip.style.left = `${Math.max(70, Math.min(stageRect.width - 70, x))}px`;
+          tooltip.style.left = `${Math.max(76, Math.min(stageRect.width - 76, x))}px`;
           tooltip.style.top = `${y}px`;
           tooltip.classList.add("visible");
         };
@@ -3395,6 +4139,16 @@
         g.addEventListener("mouseleave", () => tooltip.classList.remove("visible"));
       });
     }
+
+    const ORDEN_PESTANAS = [
+      "notFollowingBack",
+      "youDontFollowBack",
+      "mutuals",
+      "management",
+      "interactions",
+      "diff",
+      "diagnostics"
+    ];
 
     function renderPestanas() {
       const a = analisisActual;
@@ -3407,6 +4161,7 @@
         a.blocked.length +
         a.restricted.length;
       const totalInteracciones = a.totalLikes + a.totalComments + a.totalMensajes;
+      const diffCount = comparacionActual ? comparacionActual.diff.totalCambios : null;
 
       const tabs = [
         { id: "notFollowingBack", label: "No te siguen", count: a.notFollowingBack.length },
@@ -3414,15 +4169,17 @@
         { id: "mutuals", label: "Mutuos", count: a.mutuals.length },
         { id: "management", label: "Solicitudes y gestión", count: totalGestion },
         { id: "interactions", label: "Interacciones", count: totalInteracciones > 0 ? fmtNum(totalInteracciones) : null },
+        { id: "diff", label: "Cambios (Diff)", count: diffCount },
         { id: "diagnostics", label: "Diagnóstico", count: a.diagnostico.archivosLeidos.length }
       ];
 
       nav.innerHTML = tabs
         .map(
-          (t) => `
+          (t, i) => `
           <button
             type="button"
             role="tab"
+            title="Atajo: tecla ${i + 1}"
             aria-selected="${pestanaActiva === t.id ? "true" : "false"}"
             class="tab-btn ${pestanaActiva === t.id ? "active" : ""}"
             data-tab="${t.id}"
@@ -3439,6 +4196,13 @@
       });
     }
 
+    function obtenerInteraccionCuenta(username) {
+      const a = analisisActual;
+      const likes = (a && a.likesPorUsuario && a.likesPorUsuario.get(username)) || 0;
+      const comments = (a && a.commentsPorUsuario && a.commentsPorUsuario.get(username)) || 0;
+      return { likes, comments, total: likes + comments };
+    }
+
     function filtrarYOrdenar(lista) {
       const q = estadoLista.busqueda.trim().toLowerCase();
       let res = q
@@ -3449,7 +4213,17 @@
           )
         : [...lista];
 
-      if (estadoLista.filtroRapido === "renamed") {
+      const haceUnAnio = Math.floor(Date.now() / 1000) - 365 * 86400;
+
+      if (estadoLista.filtroRapido === "old1y") {
+        res = res.filter((c) => c.timestamp && c.timestamp < haceUnAnio);
+      } else if (estadoLista.filtroRapido === "noInteraction") {
+        res = res.filter((c) => obtenerInteraccionCuenta(c.username).total === 0);
+      } else if (estadoLista.filtroRapido === "withInteraction") {
+        res = res.filter((c) => obtenerInteraccionCuenta(c.username).total > 0);
+      } else if (estadoLista.filtroRapido === "selected") {
+        res = res.filter((c) => cuentasSeleccionadas.has(c.username));
+      } else if (estadoLista.filtroRapido === "renamed") {
         res = res.filter((c) => Boolean(c.possibleRename));
       }
 
@@ -3471,6 +4245,21 @@
       return res;
     }
 
+    function renderBarraSeleccion() {
+      const n = cuentasSeleccionadas.size;
+      if (n === 0) return "";
+      return `
+        <div class="selection-bar" id="selectionBar">
+          <span><strong>${fmtNum(n)}</strong> ${n === 1 ? "cuenta marcada" : "cuentas marcadas"} para revisar</span>
+          <div class="selection-bar-actions">
+            <button type="button" class="btn-sel" id="btnCopySelected">${ICONOS.copy} Copiar @usuarios</button>
+            <button type="button" class="btn-sel" id="btnExportSelected">${ICONOS.download} Exportar selección (CSV)</button>
+            <button type="button" class="btn-sel" id="btnClearSelected">Limpiar</button>
+          </div>
+        </div>
+      `;
+    }
+
     function renderVistaLista(contenedor, opciones) {
       const {
         descripcion,
@@ -3479,14 +4268,36 @@
         etiquetaFecha,
         badgeTexto,
         badgeClase,
-        subPillsHtml = ""
+        subPillsHtml = "",
+        prefijoHtml = ""
       } = opciones;
 
       const filtrada = filtrarYOrdenar(lista);
       const visibles = filtrada.slice(0, estadoLista.limite);
       const tieneCambios = lista.some((c) => c.possibleRename);
 
+      const filtrosRapidos = [
+        { id: "all", label: "Todos" },
+        { id: "old1y", label: "Más de 1 año" },
+        { id: "noInteraction", label: "Sin likes ni comentarios míos" },
+        { id: "withInteraction", label: "Con interacción" }
+      ];
+      if (cuentasSeleccionadas.size > 0) {
+        filtrosRapidos.push({ id: "selected", label: `Revisados (${cuentasSeleccionadas.size})` });
+      }
+      if (tieneCambios) {
+        filtrosRapidos.push({ id: "renamed", label: "Posible cambio @" });
+      }
+
+      const filtrosHtml = filtrosRapidos
+        .map(
+          (f) => `<button type="button" class="pill-btn ${estadoLista.filtroRapido === f.id ? "active" : ""}" data-qfilter="${f.id}">${escaparHtml(f.label)}</button>`
+        )
+        .join("");
+
       let html = `
+        ${prefijoHtml}
+        ${renderBarraSeleccion()}
         <div class="toolbar">
           <div class="toolbar-left">
             <div class="search-field">
@@ -3498,6 +4309,7 @@
                 placeholder="Buscar @usuario o nombre…"
                 value="${escaparHtml(estadoLista.busqueda)}"
               />
+              <kbd class="kbd-hint" aria-hidden="true">/</kbd>
             </div>
             <select id="sortSelect" class="select" aria-label="Ordenar lista">
               <option value="date_desc" ${estadoLista.orden === "date_desc" ? "selected" : ""}>Más reciente primero</option>
@@ -3515,11 +4327,7 @@
           <span>${escaparHtml(descripcion)}</span>
           <div class="filter-pills">
             ${subPillsHtml}
-            ${
-              tieneCambios
-                ? `<button type="button" class="pill-btn ${estadoLista.filtroRapido === "renamed" ? "active" : ""}" data-qfilter="${estadoLista.filtroRapido === "renamed" ? "all" : "renamed"}">Posible cambio de @</button>`
-                : ""
-            }
+            ${filtrosHtml}
           </div>
         </div>
 
@@ -3532,16 +4340,24 @@
         html += `<div class="account-list">`;
         for (const c of visibles) {
           const urlPerfil = `https://instagram.com/${encodeURIComponent(c.username)}`;
+          const marcada = cuentasSeleccionadas.has(c.username);
+          const inter = obtenerInteraccionCuenta(c.username);
+          const pistaInter = inter.total > 0 ? ` · ${inter.likes} likes, ${inter.comments} com.` : "";
           html += `
-            <div class="account-row">
+            <div class="account-row is-clickable ${marcada ? "is-checked" : ""}" data-inspect="${escaparHtml(c.username)}">
               <div class="account-main">
+                <input
+                  type="checkbox"
+                  class="row-check"
+                  data-check="${escaparHtml(c.username)}"
+                  aria-label="Marcar @${escaparHtml(c.username)} para revisar"
+                  ${marcada ? "checked" : ""}
+                />
                 <div class="avatar-neutral">${escaparHtml(inicialesUsuario(c.username))}</div>
                 <div class="account-info">
-                  <a class="account-handle" href="${urlPerfil}" target="_blank" rel="noopener noreferrer">
-                    @${escaparHtml(c.username)}
-                  </a>
+                  <span class="account-handle">@${escaparHtml(c.username)}</span>
                   ${c.displayName ? `<div class="account-name">${escaparHtml(c.displayName)}</div>` : ""}
-                  <div class="account-date" title="${escaparHtml(etiquetaFecha)}">${escaparHtml(formatearFechaCompleta(c.timestamp))}</div>
+                  <div class="account-date" title="${escaparHtml(etiquetaFecha)}">${escaparHtml(formatearFechaCompleta(c.timestamp))}${escaparHtml(pistaInter)}</div>
                 </div>
               </div>
               <div class="account-right">
@@ -3571,6 +4387,61 @@
       html += `</div>`;
       contenedor.innerHTML = html;
 
+      // Eventos de selección (checkbox) e inspector lateral (clic en fila)
+      contenedor.querySelectorAll(".row-check").forEach((chk) => {
+        chk.addEventListener("click", (e) => e.stopPropagation());
+        chk.addEventListener("change", (e) => {
+          alternarSeleccionCuenta(e.target.dataset.check);
+        });
+      });
+
+      contenedor.querySelectorAll(".ext-link").forEach((a) => {
+        a.addEventListener("click", (e) => e.stopPropagation());
+      });
+
+      contenedor.querySelectorAll(".account-row[data-inspect]").forEach((row) => {
+        row.addEventListener("click", () => abrirInspectorCuenta(row.dataset.inspect));
+      });
+
+      // Barra de selección
+      const btnCopySel = contenedor.querySelector("#btnCopySelected");
+      if (btnCopySel) {
+        btnCopySel.addEventListener("click", async () => {
+          const texto = Array.from(cuentasSeleccionadas).map((u) => "@" + u).join("\n");
+          await copiarAlPortapapeles(texto);
+          btnCopySel.innerHTML = `${ICONOS.check} Copiados`;
+          setTimeout(() => {
+            if (btnCopySel) btnCopySel.innerHTML = `${ICONOS.copy} Copiar @usuarios`;
+          }, 1600);
+        });
+      }
+
+      const btnExportSel = contenedor.querySelector("#btnExportSelected");
+      if (btnExportSel) {
+        btnExportSel.addEventListener("click", () => {
+          const filasSel = Array.from(cuentasSeleccionadas).map((u) => {
+            const inter = obtenerInteraccionCuenta(u);
+            return [u, `https://instagram.com/${u}`, inter.likes, inter.comments];
+          });
+          descargarCSV(
+            "instagram_cuentas_seleccionadas.csv",
+            ["Usuario", "Enlace", "Likes dados", "Comentarios dados"],
+            filasSel
+          );
+        });
+      }
+
+      const btnClearSel = contenedor.querySelector("#btnClearSelected");
+      if (btnClearSel) {
+        btnClearSel.addEventListener("click", () => {
+          cuentasSeleccionadas.clear();
+          guardarSeleccion();
+          if (estadoLista.filtroRapido === "selected") estadoLista.filtroRapido = "all";
+          renderContenidoPestana();
+        });
+      }
+
+      // Buscador, orden, filtros rápidos y CSV
       const searchBox = contenedor.querySelector("#searchBox");
       if (searchBox) {
         searchBox.addEventListener("input", (e) => {
@@ -3606,15 +4477,20 @@
         btnCsv.addEventListener("click", () => {
           descargarCSV(
             nombreCsv,
-            ["Usuario", "Nombre", "Estado", "Enlace", etiquetaFecha, "Timestamp Unix"],
-            filtrada.map((c) => [
-              c.username,
-              c.displayName || "",
-              badgeTexto,
-              `https://instagram.com/${c.username}`,
-              formatearFechaISO(c.timestamp),
-              c.timestamp || ""
-            ])
+            ["Usuario", "Nombre", "Estado", "Enlace", etiquetaFecha, "Likes dados", "Comentarios", "Timestamp Unix"],
+            filtrada.map((c) => {
+              const inter = obtenerInteraccionCuenta(c.username);
+              return [
+                c.username,
+                c.displayName || "",
+                badgeTexto,
+                `https://instagram.com/${c.username}`,
+                formatearFechaISO(c.timestamp),
+                inter.likes,
+                inter.comments,
+                c.timestamp || ""
+              ];
+            })
           );
         });
       }
@@ -3756,9 +4632,365 @@
         return;
       }
 
+      if (pestanaActiva === "diff") {
+        renderPestanaDiff(panel);
+        return;
+      }
+
       if (pestanaActiva === "diagnostics") {
         renderPestanaDiagnostico(panel);
       }
+    }
+
+    /**
+     * Renderiza la pestaña dedicada de Comparador Histórico (Snapshot Diff).
+     */
+    function renderPestanaDiff(panel) {
+      if (!comparacionActual) {
+        panel.innerHTML = `
+          <div class="diff-empty-box">
+            <h3>Comparador histórico entre dos exportaciones</h3>
+            <p>
+              Instagram no guarda quién te dejó de seguir en un solo archivo, pero comparando tu exportación actual
+              con una exportación anterior puedes ver exactamente <strong>quién te dejó de seguir</strong>,
+              <strong>nuevos seguidores</strong> y <strong>cambios de @username</strong>.
+            </p>
+            <div class="diff-actions">
+              <button type="button" class="btn btn-ink" id="btnDiffPickZip">Cargar exportación anterior (.zip / .json)</button>
+              <button type="button" class="btn" id="btnDiffPickFolder">Carpeta anterior</button>
+              <button type="button" class="btn btn-ghost" id="btnDiffDemo">Simular comparación de ejemplo</button>
+            </div>
+          </div>
+        `;
+
+        panel.querySelector("#btnDiffPickZip").addEventListener("click", () => {
+          const inp = document.getElementById("inputPrevFiles");
+          inp.value = "";
+          inp.click();
+        });
+        panel.querySelector("#btnDiffPickFolder").addEventListener("click", () => {
+          const inp = document.getElementById("inputPrevFolder");
+          inp.value = "";
+          inp.click();
+        });
+        panel.querySelector("#btnDiffDemo").addEventListener("click", () => {
+          const anteriorDemo = generarDemoAnterior(analisisActual);
+          aplicarComparacionAnterior(anteriorDemo, "Instantánea anterior (demo · -90 días)");
+        });
+        return;
+      }
+
+      const d = comparacionActual.diff;
+      const diffKpisHtml = `
+        <div class="diff-kpis">
+          <button type="button" class="diff-kpi ${subDiff === "lost" ? "active" : ""}" data-subdiff="lost">
+            <div class="diff-kpi-lbl">Te dejaron de seguir</div>
+            <div class="diff-kpi-val" style="color:var(--amber);">-${fmtNum(d.seguidoresPerdidos.length)}</div>
+          </button>
+          <button type="button" class="diff-kpi ${subDiff === "gained" ? "active" : ""}" data-subdiff="gained">
+            <div class="diff-kpi-lbl">Nuevos seguidores</div>
+            <div class="diff-kpi-val" style="color:var(--ok);">+${fmtNum(d.nuevosSeguidores.length)}</div>
+          </button>
+          <button type="button" class="diff-kpi ${subDiff === "unfollowed" ? "active" : ""}" data-subdiff="unfollowed">
+            <div class="diff-kpi-lbl">Dejaste de seguir</div>
+            <div class="diff-kpi-val">-${fmtNum(d.dejadosDeSeguir.length)}</div>
+          </button>
+          <button type="button" class="diff-kpi ${subDiff === "newFollowing" ? "active" : ""}" data-subdiff="newFollowing">
+            <div class="diff-kpi-lbl">Nuevos seguidos</div>
+            <div class="diff-kpi-val" style="color:var(--blue);">+${fmtNum(d.nuevosSeguidos.length)}</div>
+          </button>
+        </div>
+      `;
+
+      const subPills = `
+        <button type="button" class="pill-btn ${subDiff === "renames" ? "active" : ""}" data-subdiff="renames">
+          Cambios de @ (${fmtNum(d.cambiosUsername.length)})
+        </button>
+        <button type="button" class="pill-btn" id="btnReloadDiff">Cambiar exportación anterior</button>
+      `;
+
+      if (subDiff === "renames") {
+        const filasRenames = d.cambiosUsername
+          .map(
+            (r) => `
+            <div class="account-row is-clickable" data-inspect="${escaparHtml(r.actual)}">
+              <div class="account-main">
+                <div class="avatar-neutral">${escaparHtml(inicialesUsuario(r.actual))}</div>
+                <div class="account-info">
+                  <span class="account-handle">@${escaparHtml(r.anterior)} → @${escaparHtml(r.actual)}</span>
+                  <div class="account-date">Detectado por ${escaparHtml(r.metodo)} (${escaparHtml(r.origen)}) · ${escaparHtml(formatearFecha(r.timestamp))}</div>
+                </div>
+              </div>
+              <div class="account-right">
+                <span class="badge badge-blue">Cambio de @</span>
+                <a class="ext-link" href="https://instagram.com/${encodeURIComponent(r.actual)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir @${escaparHtml(r.actual)}">
+                  ${ICONOS.external}
+                </a>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+
+        panel.innerHTML = `
+          ${diffKpisHtml}
+          <div class="subbar">
+            <span>Comparando con <strong>${escaparHtml(comparacionActual.etiqueta)}</strong> · Cuentas que cambiaron su @username.</span>
+            <div class="filter-pills">
+              ${subPills}
+              <button type="button" class="btn btn-sm" id="btnExportRenames" ${d.cambiosUsername.length === 0 ? "disabled" : ""}>
+                ${ICONOS.download} CSV (${fmtNum(d.cambiosUsername.length)})
+              </button>
+            </div>
+          </div>
+          <div class="explorer-body">
+            ${d.cambiosUsername.length ? `<div class="account-list">${filasRenames}</div>` : `<div class="empty-state">No se detectaron cambios de @username entre ambas exportaciones.</div>`}
+          </div>
+        `;
+
+        panel.querySelectorAll(".account-row[data-inspect]").forEach((row) => {
+          row.addEventListener("click", () => abrirInspectorCuenta(row.dataset.inspect));
+        });
+        panel.querySelectorAll(".ext-link").forEach((a) => a.addEventListener("click", (e) => e.stopPropagation()));
+
+        const btnExpRen = panel.querySelector("#btnExportRenames");
+        if (btnExpRen) {
+          btnExpRen.addEventListener("click", () => {
+            descargarCSV(
+              "instagram_diff_cambios_username.csv",
+              ["Usuario anterior", "Usuario actual", "Método detección", "Lista", "Fecha"],
+              d.cambiosUsername.map((r) => [r.anterior, r.actual, r.metodo, r.origen, formatearFechaISO(r.timestamp)])
+            );
+          });
+        }
+      } else {
+        const mapas = {
+          lost: {
+            descripcion: `Cuentas que te seguían en "${comparacionActual.etiqueta}" y ya no están en tus seguidores.`,
+            lista: d.seguidoresPerdidos,
+            nombreCsv: "instagram_diff_te_dejaron_de_seguir.csv",
+            etiquetaFecha: "Te seguía desde",
+            badgeTexto: "Te dejó de seguir",
+            badgeClase: "badge-amber"
+          },
+          gained: {
+            descripcion: `Nuevos seguidores ganados respecto a "${comparacionActual.etiqueta}".`,
+            lista: d.nuevosSeguidores,
+            nombreCsv: "instagram_diff_nuevos_seguidores.csv",
+            etiquetaFecha: "Te sigue desde",
+            badgeTexto: "Nuevo seguidor",
+            badgeClase: "badge-ok"
+          },
+          unfollowed: {
+            descripcion: `Cuentas a las que dejaste de seguir respecto a "${comparacionActual.etiqueta}".`,
+            lista: d.dejadosDeSeguir,
+            nombreCsv: "instagram_diff_dejaste_de_seguir.csv",
+            etiquetaFecha: "Seguías desde",
+            badgeTexto: "Dejaste de seguir",
+            badgeClase: "badge-neutral"
+          },
+          newFollowing: {
+            descripcion: `Cuentas nuevas que empezaste a seguir respecto a "${comparacionActual.etiqueta}".`,
+            lista: d.nuevosSeguidos,
+            nombreCsv: "instagram_diff_nuevos_seguidos.csv",
+            etiquetaFecha: "Sigues desde",
+            badgeTexto: "Nuevo seguido",
+            badgeClase: "badge-blue"
+          }
+        };
+
+        renderVistaLista(panel, {
+          ...(mapas[subDiff] || mapas.lost),
+          prefijoHtml: diffKpisHtml,
+          subPillsHtml: subPills
+        });
+      }
+
+      panel.querySelectorAll("[data-subdiff]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          subDiff = btn.dataset.subdiff;
+          estadoLista.busqueda = "";
+          estadoLista.filtroRapido = "all";
+          estadoLista.limite = 100;
+          renderContenidoPestana();
+        });
+      });
+
+      const btnReloadDiff = panel.querySelector("#btnReloadDiff");
+      if (btnReloadDiff) {
+        btnReloadDiff.addEventListener("click", () => {
+          const inp = document.getElementById("inputPrevFiles");
+          inp.value = "";
+          inp.click();
+        });
+      }
+    }
+
+    /* =========================================================================
+       10. FICHA LATERAL (INSPECTOR DE CUENTA)
+       ========================================================================= */
+
+    function abrirInspectorCuenta(username) {
+      if (!analisisActual || !username) return;
+      usuarioInspeccionado = username;
+      const a = analisisActual;
+
+      const regFollower = a.followersPorUser ? a.followersPorUser.get(username) : null;
+      const regFollowing = a.followingPorUser ? a.followingPorUser.get(username) : null;
+      const displayName =
+        (regFollower && regFollower.displayName) ||
+        (regFollowing && regFollowing.displayName) ||
+        "";
+
+      // Construir etiquetas de estado cruzadas
+      const estados = [];
+      if (regFollower && regFollowing) estados.push({ txt: "Mutuo", cls: "badge-ok" });
+      else if (regFollowing && !regFollower) estados.push({ txt: "No te sigue", cls: "badge-amber" });
+      else if (regFollower && !regFollowing) estados.push({ txt: "Fan (no sigues)", cls: "badge-blue" });
+
+      if (a.closeFriendsSet && a.closeFriendsSet.has(username)) estados.push({ txt: "Mejores amigos", cls: "badge-ok" });
+      if (a.pendingSet && a.pendingSet.has(username)) estados.push({ txt: "Solicitud pendiente", cls: "badge-amber" });
+      if (a.receivedSet && a.receivedSet.has(username)) estados.push({ txt: "Solicitud recibida", cls: "badge-blue" });
+      if (a.blockedSet && a.blockedSet.has(username)) estados.push({ txt: "Bloqueado", cls: "badge-amber" });
+      if (a.restrictedSet && a.restrictedSet.has(username)) estados.push({ txt: "Restringido", cls: "badge-neutral" });
+      if (a.recentlyUnfollowedSet && a.recentlyUnfollowedSet.has(username)) estados.push({ txt: "Dejado de seguir", cls: "badge-neutral" });
+
+      // Diferencia en días entre fechas de seguimiento
+      let textoDiferencia = "—";
+      if (regFollower && regFollower.timestamp && regFollowing && regFollowing.timestamp) {
+        const diffDias = Math.round((regFollower.timestamp - regFollowing.timestamp) / 86400);
+        if (diffDias === 0) textoDiferencia = "El mismo día";
+        else if (diffDias > 0) textoDiferencia = `Te siguió ${fmtNum(diffDias)} días después`;
+        else textoDiferencia = `Le seguiste ${fmtNum(Math.abs(diffDias))} días después`;
+      }
+
+      // Likes, comentarios y vista previa
+      const likes = (a.likesPorUsuario && a.likesPorUsuario.get(username)) || 0;
+      const comments = (a.commentsPorUsuario && a.commentsPorUsuario.get(username)) || 0;
+      const detalleCom = (a.comentariosDetalle && a.comentariosDetalle.get(username)) || [];
+
+      // Coincidencia de mensajes directos (por username o displayName en título/participantes)
+      const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const needleUser = norm(username).replace(/[._]/g, " ");
+      const needleName = norm(displayName);
+      const chatMatch = (a.topChats || []).find((ch) => {
+        const hay = norm([ch.titulo, ...(ch.participantes || [])].join(" "));
+        return (needleName && needleName.length >= 3 && hay.includes(needleName)) ||
+          hay.includes(norm(username)) ||
+          (needleUser.length >= 4 && hay.includes(needleUser));
+      });
+
+      const marcada = cuentasSeleccionadas.has(username);
+      const urlPerfil = `https://instagram.com/${encodeURIComponent(username)}`;
+
+      const comentariosHtml = detalleCom.length > 0
+        ? detalleCom
+            .slice(0, 5)
+            .map(
+              (c) => `
+              <div class="comment-quote">
+                <div>«${escaparHtml(c.texto)}»</div>
+                <div class="comment-quote-date">${escaparHtml(formatearFecha(c.timestamp))}</div>
+              </div>
+            `
+            )
+            .join("")
+        : `<p style="margin:0;font-size:0.82rem;color:var(--text-muted);">No hay textos de comentarios registrados para esta cuenta.</p>`;
+
+      const panel = document.getElementById("inspectorPanel");
+      panel.innerHTML = `
+        <div class="drawer-head">
+          <div class="drawer-identity">
+            <div class="drawer-avatar">${escaparHtml(inicialesUsuario(username))}</div>
+            <div>
+              <h2 id="inspectorHandle" class="drawer-handle">@${escaparHtml(username)}</h2>
+              ${displayName ? `<p class="drawer-sub">${escaparHtml(displayName)}</p>` : ""}
+            </div>
+          </div>
+          <button id="btnCloseInspector" class="btn btn-ghost btn-icon" type="button" aria-label="Cerrar inspector">
+            ${ICONOS.close}
+          </button>
+        </div>
+
+        <div class="drawer-badges">
+          ${estados.map((e) => `<span class="badge ${e.cls}">${escaparHtml(e.txt)}</span>`).join("") || `<span class="badge badge-neutral">Sin relación activa</span>`}
+        </div>
+
+        <div class="drawer-stats">
+          <div class="drawer-stat">
+            <div class="drawer-stat-val">${fmtNum(likes)}</div>
+            <div class="drawer-stat-lbl">Likes dados</div>
+          </div>
+          <div class="drawer-stat">
+            <div class="drawer-stat-val">${fmtNum(comments)}</div>
+            <div class="drawer-stat-lbl">Comentarios</div>
+          </div>
+          <div class="drawer-stat">
+            <div class="drawer-stat-val">${chatMatch ? fmtNum(chatMatch.totalMensajes) : "0"}</div>
+            <div class="drawer-stat-lbl">Mensajes DM</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <h3 class="drawer-section-title">Cronología de relación</h3>
+          <div class="drawer-kv">
+            <div class="drawer-kv-row">
+              <span class="drawer-kv-key">Te sigue desde</span>
+              <span class="drawer-kv-val">${regFollower ? escaparHtml(formatearFechaCompleta(regFollower.timestamp)) : "No te sigue"}</span>
+            </div>
+            <div class="drawer-kv-row">
+              <span class="drawer-kv-key">Le sigues desde</span>
+              <span class="drawer-kv-val">${regFollowing ? escaparHtml(formatearFechaCompleta(regFollowing.timestamp)) : "No le sigues"}</span>
+            </div>
+            <div class="drawer-kv-row">
+              <span class="drawer-kv-key">Diferencia</span>
+              <span class="drawer-kv-val">${escaparHtml(textoDiferencia)}</span>
+            </div>
+            ${
+              chatMatch
+                ? `<div class="drawer-kv-row">
+                    <span class="drawer-kv-key">Último mensaje (${escaparHtml(chatMatch.titulo)})</span>
+                    <span class="drawer-kv-val">${escaparHtml(formatearFecha(chatMatch.ultimoTimestamp))}</span>
+                  </div>`
+                : ""
+            }
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <h3 class="drawer-section-title">Últimos comentarios dejados</h3>
+          ${comentariosHtml}
+        </div>
+
+        <div class="drawer-actions">
+          <a class="btn btn-ink btn-sm" href="${urlPerfil}" target="_blank" rel="noopener noreferrer">
+            Abrir en Instagram ${ICONOS.external}
+          </a>
+          <button id="btnInspectorCopy" class="btn btn-sm" type="button">
+            ${ICONOS.copy} Copiar @usuario
+          </button>
+          <button id="btnInspectorCheck" class="btn btn-sm" type="button">
+            ${ICONOS.check} ${marcada ? "Quitar de revisados" : "Marcar como revisado"}
+          </button>
+        </div>
+      `;
+
+      document.getElementById("inspectorDrawer").classList.remove("hidden");
+
+      panel.querySelector("#btnCloseInspector").addEventListener("click", cerrarInspectorCuenta);
+      panel.querySelector("#btnInspectorCopy").addEventListener("click", async (e) => {
+        await copiarAlPortapapeles("@" + username);
+        e.currentTarget.innerHTML = `${ICONOS.check} Copiado`;
+      });
+      panel.querySelector("#btnInspectorCheck").addEventListener("click", () => {
+        alternarSeleccionCuenta(username);
+      });
+    }
+
+    function cerrarInspectorCuenta() {
+      usuarioInspeccionado = null;
+      const drawer = document.getElementById("inspectorDrawer");
+      if (drawer) drawer.classList.add("hidden");
     }
 
     function renderRankingFino(items, etiquetaValor, esUsuarioInstagram, barraAzul = false) {
@@ -3831,7 +5063,7 @@
               </div>
               ${
                 a.busquedas.length === 0
-                  ? `<div class="empty-state" style="padding:20px 8px;">No se encontraron archivos de búsquedas.</div>`
+                  ? `<div class="empty-state" style="padding:20px 8px;">No se encontró profile_searches.json en esta exportación.</div>`
                   : a.busquedas
                       .slice(0, 10)
                       .map(
@@ -3915,7 +5147,7 @@
     }
 
     /* =========================================================================
-       10. INICIALIZACIÓN, TEMA CLARO POR DEFECTO, MODAL Y DRAG & DROP GLOBAL
+       11. INICIALIZACIÓN, TEMA CLARO POR DEFECTO, ATAJOS DE TECLADO Y EVENTOS
        ========================================================================= */
 
     const THEME_STORAGE_KEY = "igf_theme_v2";
@@ -3931,7 +5163,7 @@
       try {
         localStorage.setItem(THEME_STORAGE_KEY, tema);
       } catch {
-        // Ignorar si localStorage no está disponible
+        // Ignorar
       }
     }
 
@@ -3942,13 +5174,9 @@
       } catch {
         guardado = null;
       }
-      // Siempre inicia en modo claro luminoso por defecto (clave nueva igf_theme_v2)
       aplicarTema(guardado === "dark" ? "dark" : "light");
     }
 
-    /**
-     * Descarga y procesa el archivo real datos_ejemplo_instagram.zip usando el lector ZIP nativo.
-     */
     async function cargarZipDeEjemplo() {
       limpiarAlertas();
       try {
@@ -3978,7 +5206,10 @@
 
       const inputFiles = document.getElementById("inputFiles");
       const inputFolder = document.getElementById("inputFolder");
+      const inputPrevFiles = document.getElementById("inputPrevFiles");
+      const inputPrevFolder = document.getElementById("inputPrevFolder");
       const guideModal = document.getElementById("guideModal");
+      const inspectorDrawer = document.getElementById("inspectorDrawer");
       const dropOverlay = document.getElementById("dropOverlay");
 
       const abrirSelectorZip = () => {
@@ -4004,8 +5235,10 @@
 
       inputFiles.addEventListener("change", (e) => procesarSeleccionArchivos(e.target.files));
       inputFolder.addEventListener("change", (e) => procesarSeleccionArchivos(e.target.files));
+      inputPrevFiles.addEventListener("change", (e) => procesarExportacionAnterior(e.target.files));
+      inputPrevFolder.addEventListener("change", (e) => procesarExportacionAnterior(e.target.files));
 
-      // Modal de guía de exportación
+      // Modal de guía e Inspector lateral
       document.getElementById("btnOpenGuide").addEventListener("click", () => {
         guideModal.classList.remove("hidden");
       });
@@ -4015,9 +5248,37 @@
       guideModal.addEventListener("click", (e) => {
         if (e.target === guideModal) guideModal.classList.add("hidden");
       });
+      inspectorDrawer.addEventListener("click", (e) => {
+        if (e.target === inspectorDrawer) cerrarInspectorCuenta();
+      });
+
+      // Atajos de teclado estilo Cron / Linear: "/" buscador, "1"-"7" pestañas, "Esc" cerrar paneles
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !guideModal.classList.contains("hidden")) {
-          guideModal.classList.add("hidden");
+        if (e.key === "Escape") {
+          if (!inspectorDrawer.classList.contains("hidden")) cerrarInspectorCuenta();
+          if (!guideModal.classList.contains("hidden")) guideModal.classList.add("hidden");
+          return;
+        }
+
+        const tag = (e.target && e.target.tagName) || "";
+        const escribiendo = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (e.target && e.target.isContentEditable);
+        if (escribiendo || e.metaKey || e.ctrlKey || e.altKey) return;
+
+        if (e.key === "/") {
+          const searchBox = document.getElementById("searchBox");
+          if (searchBox) {
+            e.preventDefault();
+            searchBox.focus();
+          }
+          return;
+        }
+
+        if (/^[1-7]$/.test(e.key)) {
+          const idx = Number(e.key) - 1;
+          if (ORDEN_PESTANAS[idx]) {
+            e.preventDefault();
+            irAPestana(ORDEN_PESTANAS[idx], false);
+          }
         }
       });
 
