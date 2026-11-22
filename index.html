@@ -1,83 +1,82 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Analizador de Instagram — 100 % Local y Privado</title>
-  <meta name="description" content="Analiza tu exportación oficial de Instagram (ZIP, JSON o HTML) 100 % en local en tu navegador: quién no te sigue de vuelta, mutuos, solicitudes pendientes, actividad y cronología. Sin contraseñas ni servidores." />
-  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#09090B" media="(prefers-color-scheme: dark)" />
+  <meta name="description" content="Analiza tu exportación oficial de Instagram (ZIP, JSON o HTML) 100 % en local en tu navegador: quién no te sigue de vuelta, mutuos, solicitudes pendientes, actividad y evolución temporal. Sin contraseñas ni servidores." />
+  <meta name="theme-color" content="#F7F7F5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#101012" media="(prefers-color-scheme: dark)" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Analizador IG" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Analizador de Instagram — 100 % Local y Privado" />
-  <meta property="og:description" content="Descubre quién no te sigue de vuelta, tus solicitudes pendientes, actividad y cronología desde tu exportación oficial de Instagram. Procesamiento 100 % local en tu navegador, sin subir archivos ni pedir contraseñas." />
+  <meta property="og:description" content="Descubre quién no te sigue de vuelta, tus solicitudes pendientes, interacciones y evolución temporal desde tu exportación oficial de Instagram. 100 % local en tu navegador." />
   <meta property="og:url" content="https://alfonsodfernandez.github.io/igf/" />
   <meta property="og:locale" content="es_ES" />
   <meta name="twitter:card" content="summary" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23833ab4'/%3E%3Cstop offset='55%25' stop-color='%23e1306c'/%3E%3Cstop offset='100%25' stop-color='%23f77737'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='13' fill='none' stroke='%23ffffff' stroke-width='4.5'/%3E%3Ccircle cx='46' cy='18' r='3.5' fill='%23ffffff'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111111'/%3E%3Crect x='17' y='17' width='30' height='30' rx='8' fill='none' stroke='%23ffffff' stroke-width='3.5'/%3E%3Ccircle cx='32' cy='32' r='7.5' fill='none' stroke='%23ffffff' stroke-width='3.5'/%3E%3Ccircle cx='40.5' cy='23.5' r='2' fill='%23ffffff'/%3E%3C/svg%3E" />
   <style>
     /* =========================================================================
-       SISTEMA DE DISEÑO — ESTÉTICA EDITORIAL MINIMALISTA (CLARO / OSCURO)
+       SISTEMA DE DISEÑO — ESTILO APPLE / CRON / ARC (LUMINOSO POR DEFECTO)
        ========================================================================= */
     :root {
-      --bg: #FAFAFA;
+      --bg: #F7F7F5;
       --surface: #FFFFFF;
-      --surface-subtle: #F4F4F5;
-      --surface-hover: #F4F4F5;
-      --surface-glass: rgba(255, 255, 255, 0.86);
-      --border: #E4E4E7;
-      --border-strong: #D4D4D8;
-      --text: #09090B;
-      --text-secondary: #3F3F46;
-      --text-muted: #71717A;
-      --accent: #E1306C;
-      --accent-soft: rgba(225, 48, 108, 0.08);
-      --ig-gradient: linear-gradient(135deg, #833AB4 0%, #E1306C 55%, #F77737 100%);
-      --ok: #059669;
-      --ok-soft: rgba(5, 150, 105, 0.1);
-      --danger: #E11D48;
-      --danger-soft: rgba(225, 29, 72, 0.09);
-      --warn: #D97706;
-      --warn-soft: rgba(217, 119, 6, 0.1);
-      --info: #4F46E5;
-      --info-soft: rgba(79, 70, 229, 0.09);
-      --shadow-xs: 0 1px 2px rgba(9, 9, 11, 0.04);
-      --shadow-sm: 0 2px 8px rgba(9, 9, 11, 0.04), 0 1px 2px rgba(9, 9, 11, 0.03);
-      --shadow-md: 0 12px 32px rgba(9, 9, 11, 0.07), 0 2px 6px rgba(9, 9, 11, 0.03);
+      --surface-subtle: #F2F2EE;
+      --surface-hover: #F5F5F2;
+      --surface-glass: rgba(247, 247, 245, 0.84);
+      --border: rgba(0, 0, 0, 0.07);
+      --border-strong: rgba(0, 0, 0, 0.14);
+      --text: #111111;
+      --text-secondary: #666666;
+      --text-muted: #999999;
+      --ink-btn-bg: #111111;
+      --ink-btn-fg: #FFFFFF;
+      --ok: #15803D;
+      --ok-soft: rgba(21, 128, 61, 0.09);
+      --amber: #B45309;
+      --amber-soft: rgba(180, 83, 9, 0.09);
+      --blue: #2563EB;
+      --blue-soft: rgba(37, 99, 235, 0.09);
+      --bar-primary: #111111;
+      --bar-secondary: #D4D4D0;
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03), 0 8px 24px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.04), 0 12px 28px rgba(0, 0, 0, 0.06);
+      --shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
       --radius: 16px;
       --radius-md: 12px;
       --radius-sm: 8px;
-      --font: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     [data-theme="dark"] {
-      --bg: #09090B;
-      --surface: #111113;
-      --surface-subtle: #18181B;
-      --surface-hover: #1F1F23;
-      --surface-glass: rgba(17, 17, 19, 0.86);
-      --border: #27272A;
-      --border-strong: #3F3F46;
-      --text: #FAFAFA;
-      --text-secondary: #D4D4D8;
-      --text-muted: #A1A1AA;
-      --accent: #F43F5E;
-      --accent-soft: rgba(244, 63, 94, 0.14);
-      --ok: #34D399;
-      --ok-soft: rgba(52, 211, 153, 0.12);
-      --danger: #FB7185;
-      --danger-soft: rgba(251, 113, 133, 0.14);
-      --warn: #FBBF24;
-      --warn-soft: rgba(251, 191, 36, 0.13);
-      --info: #818CF8;
-      --info-soft: rgba(129, 140, 248, 0.14);
-      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.32);
-      --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.45);
+      --bg: #101012;
+      --surface: #18181B;
+      --surface-subtle: #222226;
+      --surface-hover: #26262B;
+      --surface-glass: rgba(16, 16, 18, 0.84);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text: #F5F5F7;
+      --text-secondary: #A1A1AA;
+      --text-muted: #71717A;
+      --ink-btn-bg: #F5F5F7;
+      --ink-btn-fg: #101012;
+      --ok: #4ADE80;
+      --ok-soft: rgba(74, 222, 128, 0.12);
+      --amber: #FBBF24;
+      --amber-soft: rgba(251, 191, 36, 0.13);
+      --blue: #60A5FA;
+      --blue-soft: rgba(96, 165, 250, 0.14);
+      --bar-primary: #F5F5F7;
+      --bar-secondary: #3F3F46;
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.28);
+      --shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.35), 0 14px 32px rgba(0, 0, 0, 0.38);
+      --shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.55);
     }
 
     /* =========================================================================
@@ -96,24 +95,22 @@
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.5;
       min-height: 100vh;
-      transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+      transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
     }
 
     a { color: inherit; text-decoration: none; }
-
     button, input, select { font-family: inherit; }
 
     .tabular { font-variant-numeric: tabular-nums; }
-
     .hidden { display: none !important; }
 
     .icon {
       width: 16px;
       height: 16px;
       stroke: currentColor;
-      stroke-width: 1.75;
+      stroke-width: 1.65;
       stroke-linecap: round;
       stroke-linejoin: round;
       fill: none;
@@ -123,28 +120,33 @@
     }
 
     .icon-sm { width: 14px; height: 14px; }
-    .icon-lg { width: 22px; height: 22px; stroke-width: 1.6; }
-
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px 72px;
-    }
+    .icon-lg { width: 22px; height: 22px; stroke-width: 1.5; }
 
     /* =========================================================================
-       HEADER MINIMALISTA EN UNA SOLA LÍNEA
+       BARRA SUPERIOR FLOTANTE DE 64PX
        ========================================================================= */
+    .topbar-shell {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
     .topbar {
+      max-width: 1180px;
+      height: 64px;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 20px 0;
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--border);
     }
 
-    .brand {
+    .topbar-left {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -152,43 +154,61 @@
     }
 
     .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: var(--ig-gradient);
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--ink-btn-bg);
+      color: var(--ink-btn-fg);
       display: grid;
       place-items: center;
-      color: #FFFFFF;
       flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(225, 48, 108, 0.24);
     }
 
-    .brand-text {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
+    .brand-title {
+      font-size: 0.94rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--border-strong);
+      flex-shrink: 0;
+    }
+
+    .session-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 550;
+      color: var(--text-secondary);
+      max-width: 240px;
       min-width: 0;
     }
 
-    .brand-name {
-      font-size: 0.98rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    .brand-sep {
-      color: var(--border-strong);
-      font-weight: 300;
-    }
-
-    .brand-sub {
-      font-size: 0.84rem;
-      color: var(--text-muted);
+    .session-chip-text {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      flex-shrink: 0;
+    }
+
+    .status-dot.is-demo {
+      background: var(--amber);
     }
 
     .topbar-right {
@@ -198,50 +218,24 @@
       flex-shrink: 0;
     }
 
-    .local-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 11px;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      box-shadow: var(--shadow-xs);
-    }
-
-    .local-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--ok);
-      flex-shrink: 0;
-    }
-
-    .local-badge.is-offline .local-dot {
-      background: var(--info);
-    }
-
-    /* Botones reutilizables */
+    /* Botones minimalistas */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 10px 16px;
+      gap: 7px;
+      height: 36px;
+      padding: 0 14px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.84rem;
+      font-weight: 550;
       letter-spacing: -0.01em;
       cursor: pointer;
-      box-shadow: var(--shadow-xs);
-      transition: background-color 0.16s var(--ease), border-color 0.16s var(--ease), transform 0.12s var(--ease), box-shadow 0.16s var(--ease);
+      white-space: nowrap;
+      transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease), transform 0.1s var(--ease), opacity 0.15s ease;
     }
 
     .btn:hover:not(:disabled) {
@@ -249,43 +243,28 @@
       border-color: var(--border-strong);
     }
 
-    .btn:active:not(:disabled) { transform: translateY(1px); }
+    .btn:active:not(:disabled) { transform: scale(0.985); }
 
     .btn:disabled {
-      opacity: 0.48;
+      opacity: 0.45;
       cursor: not-allowed;
     }
 
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-      border-color: transparent;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      background: var(--text);
-      opacity: 0.9;
+    .btn-ink {
+      background: var(--ink-btn-bg);
+      color: var(--ink-btn-fg);
       border-color: transparent;
     }
 
-    .btn-accent {
-      background: var(--ig-gradient);
-      color: #FFFFFF;
-      border: none;
-      box-shadow: 0 4px 14px rgba(225, 48, 108, 0.25);
-    }
-
-    .btn-accent:hover:not(:disabled) {
-      background: var(--ig-gradient);
-      opacity: 0.94;
-      box-shadow: 0 6px 20px rgba(225, 48, 108, 0.32);
+    .btn-ink:hover:not(:disabled) {
+      background: var(--ink-btn-bg);
+      opacity: 0.88;
+      border-color: transparent;
     }
 
     .btn-ghost {
       background: transparent;
       border-color: transparent;
-      box-shadow: none;
       color: var(--text-secondary);
     }
 
@@ -295,793 +274,510 @@
       border-color: transparent;
     }
 
-    .btn-sm {
-      padding: 7px 12px;
-      font-size: 0.82rem;
+    .btn-icon {
+      width: 36px;
+      padding: 0;
     }
 
-    .btn-icon {
-      width: 34px;
-      height: 34px;
-      padding: 0;
-      border-radius: var(--radius-sm);
+    .btn-sm {
+      height: 32px;
+      padding: 0 11px;
+      font-size: 0.8rem;
+    }
+
+    /* =========================================================================
+       CONTENEDOR PRINCIPAL Y BANNER SUTIL DE VISTA PREVIA
+       ========================================================================= */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 20px 24px 72px;
+    }
+
+    .preview-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 16px;
+      padding: 11px 16px;
+      margin-bottom: 20px;
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+    }
+
+    .preview-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .preview-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--amber-soft);
+      color: var(--amber);
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    .preview-strip-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .inline-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 2px 0;
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 550;
+      cursor: pointer;
+    }
+
+    .inline-action:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .inline-action-muted {
+      color: var(--text-secondary);
+    }
+
+    .inline-action-muted:hover {
+      color: var(--text);
     }
 
     /* Alertas */
     .alert {
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       padding: 12px 16px;
+      margin-bottom: 18px;
       border-radius: var(--radius-md);
-      font-size: 0.87rem;
-      margin: 12px 0 18px;
+      font-size: 0.85rem;
       border: 1px solid var(--border);
       background: var(--surface);
     }
 
     .alert-danger {
-      background: var(--danger-soft);
-      color: var(--danger);
-      border-color: rgba(225, 29, 72, 0.22);
+      background: var(--amber-soft);
+      color: var(--amber);
+      border-color: rgba(180, 83, 9, 0.22);
     }
 
     .alert-warn {
-      background: var(--warn-soft);
-      color: var(--warn);
-      border-color: rgba(217, 119, 6, 0.24);
+      background: var(--amber-soft);
+      color: var(--amber);
+      border-color: rgba(180, 83, 9, 0.22);
     }
 
     .alert-info {
-      background: var(--info-soft);
-      color: var(--info);
-      border-color: rgba(79, 70, 229, 0.22);
+      background: var(--blue-soft);
+      color: var(--blue);
+      border-color: rgba(37, 99, 235, 0.2);
     }
 
-    /* =========================================================================
-       PANTALLA DE BIENVENIDA — HERO 2 COLUMNAS + DROPZONE PROTAGONISTA
-       ========================================================================= */
-    .welcome-wrap {
-      padding-top: 28px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-      gap: 44px;
-      align-items: center;
-      margin-bottom: 36px;
-    }
-
-    .hero-copy h1 {
-      margin: 0 0 16px;
-      font-size: clamp(1.9rem, 3.4vw, 2.75rem);
-      font-weight: 750;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-      color: var(--text);
-    }
-
-    .hero-copy p {
-      margin: 0 0 26px;
-      font-size: clamp(0.98rem, 1.25vw, 1.06rem);
-      color: var(--text-muted);
-      max-width: 48ch;
-      line-height: 1.6;
-    }
-
-    .hero-demo-box {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .hero-demo-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-    }
-
-    .hero-demo-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px 14px;
-    }
-
-    .text-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.84rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      padding: 4px 0;
-      cursor: pointer;
-      transition: color 0.15s ease;
-    }
-
-    .text-link:hover {
-      color: var(--text);
-    }
-
-    /* Dropzone protagonista */
-    .dropzone {
-      position: relative;
+    /* Toast de progreso flotante */
+    .progress-toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 60;
+      width: min(340px, calc(100vw - 32px));
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
       background: var(--surface);
-      border: 1.5px dashed var(--border-strong);
-      border-radius: var(--radius);
-      padding: 38px 28px 32px;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-modal);
     }
 
-    .dropzone:hover {
-      border-color: var(--text-muted);
-      box-shadow: var(--shadow-md);
-    }
-
-    .dropzone.dragover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      transform: translateY(-2px);
-      box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow-md);
-    }
-
-    .dropzone-icon-wrap {
-      width: 52px;
-      height: 52px;
-      margin: 0 auto 18px;
-      border-radius: 14px;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      display: grid;
-      place-items: center;
+    .progress-text {
+      font-size: 0.81rem;
+      font-weight: 550;
       color: var(--text);
-      transition: transform 0.2s var(--ease), background-color 0.2s var(--ease), color 0.2s var(--ease);
-    }
-
-    .dropzone.dragover .dropzone-icon-wrap {
-      transform: scale(1.06);
-      background: var(--surface);
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .dropzone h2 {
-      margin: 0 0 6px;
-      font-size: 1.08rem;
-      font-weight: 650;
-      letter-spacing: -0.02em;
-    }
-
-    .dropzone-sub {
-      margin: 0 auto 22px;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      max-width: 34ch;
-    }
-
-    .dropzone-primary-cta {
-      width: 100%;
-      max-width: 280px;
-      padding: 11px 20px;
-    }
-
-    .dropzone-secondary {
-      margin-top: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 6px 14px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .dropzone-formats {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      font-size: 0.77rem;
-      color: var(--text-muted);
-    }
-
-    .format-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    /* Progreso */
-    .progress-wrap {
-      margin-top: 20px;
-      text-align: left;
     }
 
     .progress-bar-bg {
-      height: 6px;
-      background: var(--surface-subtle);
+      height: 4px;
+      margin-top: 8px;
       border-radius: 999px;
+      background: var(--surface-subtle);
       overflow: hidden;
-      margin-top: 7px;
     }
 
     .progress-bar-fill {
       height: 100%;
       width: 0%;
-      background: var(--ig-gradient);
+      background: var(--text);
       border-radius: 999px;
-      transition: width 0.18s var(--ease);
-    }
-
-    .progress-text {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 500;
+      transition: width 0.16s var(--ease);
     }
 
     /* =========================================================================
-       GUÍA DE EXPORTACIÓN COLAPSADA POR DEFECTO (LÍNEA DE TIEMPO NUMERADA)
+       DASHBOARD BENTO LUMINOSO
        ========================================================================= */
-    details.guide {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-xs);
-      overflow: hidden;
-    }
-
-    details.guide summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 16px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text);
-      transition: background-color 0.15s ease;
-    }
-
-    details.guide summary::-webkit-details-marker { display: none; }
-
-    details.guide summary:hover {
-      background: var(--surface-subtle);
-    }
-
-    .guide-summary-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .guide-chevron {
-      color: var(--text-muted);
-      transition: transform 0.22s var(--ease);
-    }
-
-    details.guide[open] .guide-chevron {
-      transform: rotate(180deg);
-    }
-
-    .guide-body {
-      padding: 6px 24px 24px;
-      border-top: 1px solid var(--border);
-    }
-
-    .timeline {
-      list-style: none;
-      margin: 18px 0 0;
-      padding: 0;
-      position: relative;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 13px;
-      top: 14px;
-      bottom: 14px;
-      width: 1px;
-      background: var(--border);
-    }
-
-    .timeline-step {
-      position: relative;
-      display: flex;
-      gap: 16px;
-      padding-bottom: 18px;
-    }
-
-    .timeline-step:last-child { padding-bottom: 0; }
-
-    .step-num {
-      width: 27px;
-      height: 27px;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 1px solid var(--border-strong);
-      color: var(--text);
-      font-size: 0.78rem;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      z-index: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .step-content {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      padding-top: 2px;
-    }
-
-    .step-content strong { color: var(--text); font-weight: 600; }
-
-    .step-content a {
-      color: var(--accent);
-      font-weight: 500;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .step-code {
-      display: inline-block;
-      padding: 1px 6px;
-      border-radius: 5px;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      font-family: var(--mono);
-      font-size: 0.8em;
-      color: var(--text);
-    }
-
-    /* =========================================================================
-       DASHBOARD DE RESULTADOS — BARRA DE SESIÓN + BENTO GRID + GRÁFICOS SVG
-       ========================================================================= */
-    .dashboard-wrap {
-      padding-top: 16px;
-      animation: fadeUp 0.3s var(--ease);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Barra superior de sesión */
-    .session-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 20px;
-      margin-bottom: 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-xs);
-    }
-
-    .session-identity {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .session-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      font-size: 1rem;
-      flex-shrink: 0;
-      letter-spacing: -0.02em;
-    }
-
-    .session-meta {
-      min-width: 0;
-    }
-
-    .session-title-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .session-title {
-      margin: 0;
-      font-size: 1.06rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .session-sub {
-      margin: 2px 0 0;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 52ch;
-    }
-
-    .session-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: var(--surface-subtle);
-      font-size: 0.77rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* Bento Grid — Fila 1: KPIs */
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 14px;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .kpi-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px 20px;
-      box-shadow: var(--shadow-xs);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-card);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       text-align: left;
       width: 100%;
-      transition: border-color 0.16s var(--ease), transform 0.16s var(--ease), box-shadow 0.16s var(--ease);
+      transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), border-color 0.18s var(--ease);
     }
 
-    button.kpi-card {
-      cursor: pointer;
-    }
+    button.kpi-card { cursor: pointer; }
 
     button.kpi-card:hover {
-      border-color: var(--border-strong);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-strong);
     }
 
-    .kpi-head {
+    .kpi-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .kpi-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: -0.01em;
+      font-size: 0.79rem;
+      font-weight: 550;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    .kpi-action-hint {
-      color: var(--text-muted);
-      opacity: 0.65;
-      transition: transform 0.16s var(--ease), opacity 0.16s ease;
+    .kpi-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
     }
 
-    button.kpi-card:hover .kpi-action-hint {
-      opacity: 1;
+    .kpi-arrow {
+      color: var(--text-muted);
+      transition: transform 0.16s var(--ease), color 0.16s ease;
+    }
+
+    button.kpi-card:hover .kpi-arrow {
       transform: translateX(2px);
-    }
-
-    .kpi-number {
-      font-size: clamp(1.65rem, 2.3vw, 2.1rem);
-      font-weight: 750;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      font-variant-numeric: tabular-nums;
       color: var(--text);
     }
 
-    .kpi-card.kpi-danger .kpi-number { color: var(--danger); }
-    .kpi-card.kpi-info .kpi-number { color: var(--info); }
+    .kpi-value {
+      font-size: clamp(1.75rem, 2.5vw, 2.2rem);
+      font-weight: 680;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
 
-    .kpi-foot {
+    .kpi-sub {
       margin-top: 8px;
       font-size: 0.79rem;
       color: var(--text-muted);
       font-variant-numeric: tabular-nums;
     }
 
-    /* Bento Grid — Fila 2: Visualizaciones SVG */
+    /* Fila 2: Visualizaciones */
     .charts-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
-      gap: 14px;
-      margin-bottom: 22px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+      gap: 16px;
+      margin-bottom: 20px;
     }
 
-    .bento-card {
+    .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px 22px;
-      box-shadow: var(--shadow-xs);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-card);
     }
 
-    .bento-header {
+    .card-head {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 18px;
     }
 
-    .bento-title {
+    .card-title {
       margin: 0;
       font-size: 0.92rem;
-      font-weight: 650;
+      font-weight: 620;
       letter-spacing: -0.015em;
+      color: var(--text);
     }
 
-    .bento-subtitle {
+    .card-meta {
       font-size: 0.78rem;
       color: var(--text-muted);
-    }
-
-    /* Donut SVG */
-    .donut-layout {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .donut-svg-wrap {
-      position: relative;
-      width: 148px;
-      height: 148px;
-      flex-shrink: 0;
-    }
-
-    .donut-svg {
-      width: 100%;
-      height: 100%;
-      transform: rotate(-90deg);
-    }
-
-    .donut-center {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      pointer-events: none;
-    }
-
-    .donut-pct {
-      font-size: 1.35rem;
-      font-weight: 750;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
       font-variant-numeric: tabular-nums;
     }
 
-    .donut-caption {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 2px;
+    /* Balance de relaciones: barra apilada horizontal */
+    .balance-hero {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
-    .donut-legend {
-      flex: 1;
+    .balance-pct {
+      font-size: 1.9rem;
+      font-weight: 680;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .balance-caption {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .stacked-bar {
+      display: flex;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      gap: 3px;
+      background: var(--surface-subtle);
+      margin-bottom: 18px;
+    }
+
+    .stacked-seg {
+      height: 100%;
+      border-radius: 999px;
+      transition: opacity 0.15s ease;
+    }
+
+    .balance-rows {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      min-width: 0;
+      gap: 4px;
     }
 
-    .legend-item {
+    .balance-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       padding: 7px 10px;
+      margin: 0 -10px;
       border-radius: var(--radius-sm);
+      border: none;
       background: transparent;
-      border: 1px solid transparent;
       cursor: pointer;
-      width: 100%;
       text-align: left;
-      transition: background-color 0.15s ease, border-color 0.15s ease;
+      transition: background-color 0.14s ease;
     }
 
-    .legend-item:hover {
-      background: var(--surface-subtle);
-      border-color: var(--border);
+    .balance-row:hover {
+      background: var(--surface-hover);
     }
 
-    .legend-left {
+    .balance-row-left {
       display: flex;
       align-items: center;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    .legend-swatch {
-      width: 9px;
-      height: 9px;
-      border-radius: 3px;
-      flex-shrink: 0;
-    }
-
-    .legend-name {
-      font-size: 0.83rem;
-      font-weight: 500;
+      gap: 9px;
+      font-size: 0.84rem;
       color: var(--text-secondary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-weight: 500;
     }
 
-    .legend-val {
-      font-size: 0.83rem;
-      font-weight: 650;
+    .balance-row-right {
+      font-size: 0.84rem;
+      font-weight: 620;
       color: var(--text);
       font-variant-numeric: tabular-nums;
-      white-space: nowrap;
     }
 
-    /* Bar Chart SVG */
-    .chart-legend-inline {
+    .balance-row-pct {
+      color: var(--text-muted);
+      font-weight: 450;
+      margin-left: 4px;
+    }
+
+    /* Gráfico de barras SVG minimalista con tooltip interactivo */
+    .chart-legend {
       display: flex;
       align-items: center;
       gap: 14px;
       font-size: 0.77rem;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
-    .chart-legend-dot {
+    .chart-legend span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
+    .chart-stage {
+      position: relative;
+    }
+
     .bar-chart-svg {
       width: 100%;
-      height: 158px;
+      height: 164px;
       display: block;
       overflow: visible;
     }
 
+    .bar-group rect {
+      transition: opacity 0.15s ease;
+      cursor: pointer;
+    }
+
+    .bar-group:hover rect {
+      opacity: 0.82;
+    }
+
+    .chart-tooltip {
+      position: absolute;
+      pointer-events: none;
+      z-index: 15;
+      padding: 8px 11px;
+      border-radius: var(--radius-sm);
+      background: var(--ink-btn-bg);
+      color: var(--ink-btn-fg);
+      font-size: 0.76rem;
+      line-height: 1.45;
+      box-shadow: var(--shadow-hover);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translate(-50%, -100%) translateY(-8px);
+      transition: opacity 0.12s ease;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chart-tooltip.visible { opacity: 1; }
+
     .bar-chart-empty {
-      height: 158px;
+      height: 164px;
       display: grid;
       place-items: center;
       color: var(--text-muted);
-      font-size: 0.84rem;
+      font-size: 0.83rem;
       background: var(--surface-subtle);
       border-radius: var(--radius-sm);
     }
 
     /* =========================================================================
-       EXPLORADOR DE CUENTAS — SEGMENTED TABS + STICKY TOOLBAR + FILAS
+       FILA 3: EXPLORADOR DE CUENTAS Y ACTIVIDAD
        ========================================================================= */
     .explorer-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      box-shadow: var(--shadow-xs);
+      box-shadow: var(--shadow-card);
       overflow: clip;
     }
 
-    .tabs-shell {
-      padding: 14px 18px;
+    /* Pestañas tipo subrayado fino */
+    .tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 20px;
       border-bottom: 1px solid var(--border);
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
 
-    .tabs-shell::-webkit-scrollbar { display: none; }
-
-    .segmented-tabs {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px;
-      background: var(--surface-subtle);
-      border-radius: 11px;
-      border: 1px solid var(--border);
-    }
+    .tabs-bar::-webkit-scrollbar { display: none; }
 
     .tab-btn {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 8px;
+      gap: 7px;
+      height: 48px;
+      padding: 0 12px;
       border: none;
       background: transparent;
-      color: var(--text-muted);
-      font-size: 0.81rem;
-      font-weight: 600;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      font-weight: 550;
       white-space: nowrap;
       cursor: pointer;
-      transition: background-color 0.16s var(--ease), color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+      transition: color 0.15s ease;
     }
 
-    .tab-btn:hover {
-      color: var(--text);
-    }
+    .tab-btn:hover { color: var(--text); }
 
     .tab-btn.active {
-      background: var(--surface);
       color: var(--text);
-      box-shadow: var(--shadow-xs);
+      font-weight: 620;
     }
 
-    .tab-pill {
-      padding: 1px 7px;
-      border-radius: 999px;
-      background: var(--border);
-      color: var(--text-secondary);
-      font-size: 0.72rem;
-      font-weight: 650;
+    .tab-btn.active::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 0;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .tab-count {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-weight: 550;
       font-variant-numeric: tabular-nums;
     }
 
-    .tab-btn.active .tab-pill {
-      background: var(--surface-subtle);
-      color: var(--text);
+    .tab-btn.active .tab-count {
+      color: var(--text-secondary);
     }
 
-    /* Toolbar pegajosa */
-    .sticky-toolbar {
-      position: sticky;
-      top: 0;
-      z-index: 12;
+    /* Barra de herramientas limpia */
+    .toolbar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       padding: 14px 20px;
-      background: var(--surface-glass);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
 
@@ -1098,7 +794,7 @@
       position: relative;
       flex: 1;
       min-width: 210px;
-      max-width: 340px;
+      max-width: 320px;
     }
 
     .search-field .icon {
@@ -1115,11 +811,11 @@
       padding: 0 12px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--bg);
       color: var(--text);
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
     }
 
     .search-field .input {
@@ -1128,29 +824,22 @@
     }
 
     .input:focus, .select:focus {
-      border-color: var(--text-muted);
-      box-shadow: 0 0 0 3px var(--surface-subtle);
+      background: var(--surface);
+      border-color: var(--border-strong);
     }
 
-    .toolbar-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Sub-pestañas / filtros rápidos */
+    /* Sub-barra de filtros/descripción */
     .subbar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 12px 20px;
-      background: var(--surface-subtle);
+      padding: 10px 20px;
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
-      font-size: 0.83rem;
-      color: var(--text-muted);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
     }
 
     .filter-pills {
@@ -1159,32 +848,32 @@
       gap: 6px;
     }
 
-    .filter-pill {
+    .pill-btn {
       padding: 5px 11px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      font-weight: 600;
+      color: var(--text-secondary);
+      font-size: 0.77rem;
+      font-weight: 550;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.14s ease;
     }
 
-    .filter-pill:hover {
+    .pill-btn:hover {
       color: var(--text);
       border-color: var(--border-strong);
     }
 
-    .filter-pill.active {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
+    .pill-btn.active {
+      background: var(--ink-btn-bg);
+      color: var(--ink-btn-fg);
+      border-color: transparent;
     }
 
     /* Lista de usuarios */
     .explorer-body {
-      padding: 16px 20px 22px;
+      padding: 16px 20px 24px;
     }
 
     .account-list {
@@ -1202,12 +891,12 @@
       border-radius: var(--radius-md);
       border: 1px solid var(--border);
       background: var(--surface);
-      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+      transition: background-color 0.14s ease, border-color 0.14s ease;
     }
 
     .account-row:hover {
-      border-color: var(--border-strong);
       background: var(--surface-hover);
+      border-color: var(--border-strong);
     }
 
     .account-main {
@@ -1218,34 +907,31 @@
       flex: 1;
     }
 
-    .avatar-circle {
-      width: 38px;
-      height: 38px;
+    .avatar-neutral {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 650;
       display: grid;
       place-items: center;
-      font-size: 0.85rem;
-      font-weight: 700;
       flex-shrink: 0;
       text-transform: uppercase;
       letter-spacing: -0.02em;
     }
 
-    .account-text {
+    .account-info {
       min-width: 0;
       flex: 1;
     }
 
-    .account-top-line {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      min-width: 0;
-    }
-
     .account-handle {
-      font-size: 0.9rem;
-      font-weight: 650;
+      display: block;
+      font-size: 0.89rem;
+      font-weight: 620;
       color: var(--text);
       letter-spacing: -0.01em;
       white-space: nowrap;
@@ -1258,8 +944,8 @@
       text-underline-offset: 2px;
     }
 
-    .account-fullname {
-      font-size: 0.79rem;
+    .account-name {
+      font-size: 0.78rem;
       color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
@@ -1267,49 +953,48 @@
     }
 
     .account-date {
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       font-variant-numeric: tabular-nums;
       margin-top: 1px;
     }
 
-    .account-aside {
+    .account-right {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-shrink: 0;
     }
 
-    .status-tag {
+    .badge {
       display: inline-flex;
       align-items: center;
       padding: 2px 8px;
       border-radius: 999px;
       font-size: 0.71rem;
-      font-weight: 600;
+      font-weight: 580;
       white-space: nowrap;
     }
 
-    .tag-mutual { background: var(--ok-soft); color: var(--ok); }
-    .tag-unfollow { background: var(--danger-soft); color: var(--danger); }
-    .tag-fan { background: var(--info-soft); color: var(--info); }
-    .tag-neutral { background: var(--surface-subtle); color: var(--text-muted); }
-    .tag-warn { background: var(--warn-soft); color: var(--warn); }
+    .badge-ok { background: var(--ok-soft); color: var(--ok); }
+    .badge-amber { background: var(--amber-soft); color: var(--amber); }
+    .badge-blue { background: var(--blue-soft); color: var(--blue); }
+    .badge-neutral { background: var(--surface-subtle); color: var(--text-secondary); }
 
-    .open-profile-btn {
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
+    .ext-link {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text-muted);
       display: grid;
       place-items: center;
       flex-shrink: 0;
-      transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+      transition: color 0.14s ease, border-color 0.14s ease, background-color 0.14s ease;
     }
 
-    .open-profile-btn:hover {
+    .ext-link:hover {
       color: var(--text);
       border-color: var(--border-strong);
       background: var(--surface-subtle);
@@ -1319,7 +1004,7 @@
       text-align: center;
       padding: 44px 16px;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     .load-more-wrap {
@@ -1328,7 +1013,7 @@
     }
 
     /* =========================================================================
-       ACTIVIDAD, CRONOLOGÍA Y DIAGNÓSTICO
+       INTERACCIONES Y DIAGNÓSTICO
        ========================================================================= */
     .two-col {
       display: grid;
@@ -1336,14 +1021,14 @@
       gap: 16px;
     }
 
-    .panel-box {
-      background: var(--surface-subtle);
+    .sub-card {
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: 18px 20px;
     }
 
-    .panel-head {
+    .sub-card-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1351,20 +1036,14 @@
       margin-bottom: 16px;
     }
 
-    .panel-title {
+    .sub-card-title {
       margin: 0;
-      font-size: 0.9rem;
-      font-weight: 650;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      letter-spacing: -0.01em;
+      font-size: 0.88rem;
+      font-weight: 620;
+      color: var(--text);
     }
 
-    .rank-row {
-      margin-bottom: 12px;
-    }
-
+    .rank-row { margin-bottom: 12px; }
     .rank-row:last-child { margin-bottom: 0; }
 
     .rank-top {
@@ -1372,7 +1051,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      font-size: 0.84rem;
+      font-size: 0.83rem;
       margin-bottom: 5px;
     }
 
@@ -1383,17 +1062,16 @@
       min-width: 0;
     }
 
-    .rank-pos {
-      font-size: 0.74rem;
-      font-weight: 650;
-      color: var(--text-muted);
+    .rank-num {
       width: 18px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
       font-variant-numeric: tabular-nums;
       flex-shrink: 0;
     }
 
     .rank-name {
-      font-weight: 600;
+      font-weight: 560;
       color: var(--text);
       white-space: nowrap;
       overflow: hidden;
@@ -1401,40 +1079,49 @@
     }
 
     .rank-name a:hover {
+      color: var(--blue);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
 
-    .rank-count {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .rank-val {
+      font-size: 0.79rem;
+      color: var(--text-secondary);
       font-variant-numeric: tabular-nums;
       flex-shrink: 0;
     }
 
-    .bar-track {
-      height: 6px;
+    .thin-track {
+      height: 4px;
       border-radius: 999px;
       background: var(--border);
       overflow: hidden;
     }
 
-    .bar-fill {
+    .thin-fill {
       height: 100%;
       border-radius: 999px;
-      background: var(--ig-gradient);
+      background: var(--bar-primary);
     }
 
-    .bar-fill-solid {
-      background: var(--text);
-    }
+    .thin-fill-blue { background: var(--blue); }
 
-    /* Tabla de diagnóstico */
-    .diag-summary {
+    /* Diagnóstico */
+    .diag-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 16px;
+    }
+
+    .diag-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 0.77rem;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
     }
 
     .table-wrap {
@@ -1448,8 +1135,7 @@
       width: 100%;
       min-width: 580px;
       border-collapse: collapse;
-      font-size: 0.83rem;
-      background: var(--surface);
+      font-size: 0.82rem;
     }
 
     th, td {
@@ -1461,10 +1147,10 @@
     tr:last-child td { border-bottom: none; }
 
     th {
-      background: var(--surface-subtle);
+      background: var(--bg);
       color: var(--text-muted);
-      font-weight: 650;
-      font-size: 0.74rem;
+      font-weight: 600;
+      font-size: 0.73rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       white-space: nowrap;
@@ -1472,282 +1158,401 @@
 
     .mono {
       font-family: var(--mono);
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       word-break: break-all;
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================================
+       MODAL LIMPIO ("¿CÓMO EXPORTAR EN JSON?") Y OVERLAY GLOBAL DRAG & DROP
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-panel {
+      width: min(540px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-modal);
+      padding: 24px 26px;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .modal-head h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .steps-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .steps-list::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 14px;
+      bottom: 14px;
+      width: 1px;
+      background: var(--border-strong);
+    }
+
+    .step-item {
+      position: relative;
+      display: flex;
+      gap: 14px;
+      padding-bottom: 16px;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+    }
+
+    .step-item:last-child { padding-bottom: 0; }
+
+    .step-badge {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-size: 0.75rem;
+      font-weight: 650;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      z-index: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .step-item strong { color: var(--text); font-weight: 600; }
+
+    .step-item a {
+      color: var(--blue);
+      font-weight: 550;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .code-chip {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 5px;
+      background: var(--surface-subtle);
+      font-family: var(--mono);
+      font-size: 0.8em;
+      color: var(--text);
+    }
+
+    .modal-foot {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Superposición global de Drag & Drop */
+    .drop-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: var(--surface-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      pointer-events: none;
+    }
+
+    .drop-overlay-card {
+      background: var(--surface);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: 20px;
+      padding: 40px 44px;
+      text-align: center;
+      box-shadow: var(--shadow-modal);
+      max-width: 440px;
+    }
+
+    .drop-overlay-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 16px;
+      border-radius: 14px;
+      background: var(--surface-subtle);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+
+    .drop-overlay-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .drop-overlay-card p {
+      margin: 0;
+      font-size: 0.85rem;
       color: var(--text-secondary);
     }
 
     /* Footer */
     footer {
-      margin-top: 48px;
-      padding-top: 20px;
+      margin-top: 40px;
+      padding-top: 18px;
       border-top: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      font-size: 0.79rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     /* =========================================================================
-       RESPONSIVE (TABLET Y MÓVIL 390px)
+       RESPONSIVE (TABLET Y MÓVIL 390PX)
        ========================================================================= */
     @media (max-width: 960px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-      .kpi-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .charts-grid {
-        grid-template-columns: 1fr;
-      }
-      .two-col {
-        grid-template-columns: 1fr;
-      }
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .charts-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
-      .container { padding: 0 16px 52px; }
-      .topbar { padding: 14px 0; }
-      .brand-sep, .brand-sub { display: none; }
-      .welcome-wrap { padding-top: 16px; }
-      .dropzone { padding: 28px 18px 24px; }
-      .donut-layout { flex-direction: column; align-items: stretch; gap: 18px; }
-      .donut-svg-wrap { margin: 0 auto; }
-      .account-list { grid-template-columns: 1fr; }
-      .account-row { padding: 10px 11px; gap: 8px; }
-      .account-main { gap: 10px; }
-      .avatar-circle { width: 34px; height: 34px; font-size: 0.8rem; }
-      .account-aside { gap: 6px; }
-      .status-tag { font-size: 0.68rem; padding: 2px 7px; }
-      .sticky-toolbar { padding: 12px 14px; }
-      .explorer-body { padding: 14px; }
+      .topbar { padding: 0 14px; height: 60px; gap: 8px; }
+      .brand-divider, .session-chip, .btn-guide-label { display: none; }
+      .container { padding: 14px 14px 52px; }
+      .card { padding: 18px 16px; }
+      .kpi-card { padding: 16px; }
+      .kpi-grid { gap: 10px; }
+      .tabs-bar { padding: 0 12px; }
+      .toolbar { padding: 12px 14px; }
       .subbar { padding: 10px 14px; }
-      .btn, .input, .select, .tab-btn { min-height: 42px; }
+      .explorer-body { padding: 14px; }
+      .account-list { grid-template-columns: 1fr; }
+      .account-row { padding: 10px 12px; gap: 8px; }
+      .account-main { gap: 10px; }
+      .avatar-neutral { width: 32px; height: 32px; font-size: 0.75rem; }
+      .account-right { gap: 6px; }
+      .badge { font-size: 0.68rem; padding: 2px 7px; }
       .search-field { max-width: none; width: 100%; }
-      .toolbar-right, .select { width: 100%; }
-      .toolbar-right .btn { width: 100%; }
-      .session-bar { padding: 14px 16px; }
-      .session-actions { width: 100%; justify-content: space-between; }
+      .select { width: 100%; }
+      .toolbar .btn { width: 100%; }
+      .btn, .input, .select { min-height: 40px; }
+      .btn-icon { min-height: 36px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- =====================================================================
-         HEADER MINIMALISTA EN UNA LÍNEA
-         ===================================================================== -->
-    <header class="topbar">
-      <div class="brand">
+  <!-- =======================================================================
+       BARRA SUPERIOR FLOTANTE (64PX)
+       ======================================================================= -->
+  <header class="topbar-shell">
+    <div class="topbar">
+      <div class="topbar-left">
         <div class="brand-mark" aria-hidden="true">
-          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px;stroke-width:2;">
+          <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;stroke-width:2;">
             <rect x="3" y="3" width="18" height="18" rx="5"></rect>
             <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+            <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none"></circle>
           </svg>
         </div>
-        <div class="brand-text">
-          <span class="brand-name">Analizador de Instagram</span>
-          <span class="brand-sep" aria-hidden="true">/</span>
-          <span class="brand-sub">Exportación oficial JSON y HTML</span>
-        </div>
+        <span class="brand-title">Analizador IG</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span id="sessionChip" class="session-chip" title="Cuenta cargada actualmente">
+          <span id="sessionDot" class="status-dot is-demo" aria-hidden="true"></span>
+          <span id="sessionChipText" class="session-chip-text">@alex_fotografia_demo</span>
+        </span>
       </div>
 
       <div class="topbar-right">
-        <span id="networkStatusPill" class="local-badge" title="Todo se procesa localmente en tu navegador; ningún archivo se sube a ningún servidor">
-          <span class="local-dot" aria-hidden="true"></span>
-          <span id="networkStatusText">100 % local</span>
-        </span>
-        <button id="btnTheme" class="btn btn-icon" type="button" aria-label="Cambiar tema claro u oscuro" title="Cambiar modo claro/oscuro">
-          <!-- Icono actualizado dinámicamente por JS -->
+        <button id="btnOpenGuide" class="btn btn-ghost" type="button" title="Cómo exportar tus datos en JSON">
+          <svg class="icon icon-sm" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span class="btn-guide-label">¿Cómo exportar en JSON?</span>
+        </button>
+
+        <button id="btnTheme" class="btn btn-ghost btn-icon" type="button" aria-label="Cambiar modo claro u oscuro" title="Cambiar modo claro/oscuro">
+          <!-- Icono actualizado por JS -->
+        </button>
+
+        <button id="btnImportZip" class="btn btn-ink" type="button">
+          <svg class="icon icon-sm" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          Importar .zip
         </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Mensajes de error o aviso global -->
+  <!-- Inputs ocultos para ZIP, archivos sueltos y carpeta descomprimida -->
+  <input id="inputFiles" type="file" accept=".zip,.json,.html,.htm" multiple class="hidden" />
+  <input id="inputFolder" type="file" webkitdirectory directory multiple class="hidden" />
+
+  <!-- =======================================================================
+       CONTENIDO PRINCIPAL — DASHBOARD DIRECTO DESDE EL SEGUNDO CERO
+       ======================================================================= -->
+  <main class="container">
+    <!-- Banner sutil de vista previa (se adapta tras importar una cuenta real) -->
+    <div id="previewStrip" class="preview-strip" role="status">
+      <div class="preview-strip-left">
+        <span class="preview-tag">Vista previa</span>
+        <span>
+          Estás viendo datos de ejemplo. Arrastra tu <strong>.zip</strong> de Instagram sobre cualquier punto de la pantalla para analizar tu cuenta en local.
+        </span>
+      </div>
+      <div class="preview-strip-actions">
+        <button id="btnLoadDemoZip" class="inline-action" type="button">
+          Probar con datos_ejemplo_instagram.zip
+        </button>
+        <button id="btnPickFolder" class="inline-action inline-action-muted" type="button">
+          Importar carpeta
+        </button>
+        <a class="inline-action inline-action-muted" href="./datos_ejemplo_instagram.zip" download="datos_ejemplo_instagram.zip">
+          Descargar ZIP
+        </a>
+      </div>
+    </div>
+
+    <!-- Alertas globales -->
     <div id="alertContainer"></div>
 
-    <!-- =====================================================================
-         PANTALLA DE BIENVENIDA (ESTADO VACÍO)
-         ===================================================================== -->
-    <section id="uploadSection" class="welcome-wrap">
-      <div class="hero-grid">
-        <!-- Columna izquierda: propuesta de valor + prueba rápida -->
-        <div class="hero-copy">
-          <h1>Entiende tu cuenta de Instagram sin compartir tu contraseña.</h1>
-          <p>
-            Analiza el archivo oficial de Meta directamente en tu navegador: quién no te sigue de vuelta,
-            seguidores mutuos, solicitudes pendientes, interacciones y evolución temporal.
-          </p>
+    <!-- Fila 1: 4 tarjetas KPI minimalistas -->
+    <section id="kpiGrid" class="kpi-grid" aria-label="Resumen de métricas"></section>
 
-          <div class="hero-demo-box">
-            <span class="hero-demo-label">¿Quieres probarlo primero?</span>
-            <div class="hero-demo-actions">
-              <button id="btnLoadDemoZip" class="btn btn-sm" type="button">
-                <svg class="icon icon-sm" viewBox="0 0 24 24">
-                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
-                </svg>
-                Probar con datos_ejemplo_instagram.zip
-              </button>
-              <a class="text-link" href="./datos_ejemplo_instagram.zip" download="datos_ejemplo_instagram.zip">
-                <svg class="icon icon-sm" viewBox="0 0 24 24">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                Descargar ZIP
-              </a>
-              <button id="btnLoadDemo" class="text-link" type="button">
-                Demo en memoria
-              </button>
-            </div>
-          </div>
-        </div>
+    <!-- Fila 2: Balance de relaciones + Evolución temporal -->
+    <section id="chartsGrid" class="charts-grid" aria-label="Visualizaciones"></section>
 
-        <!-- Columna derecha: Dropzone protagonista -->
-        <div id="dropzone" class="dropzone">
-          <div class="dropzone-icon-wrap" aria-hidden="true">
-            <svg class="icon icon-lg" viewBox="0 0 24 24">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="17 8 12 3 7 8"></polyline>
-              <line x1="12" y1="3" x2="12" y2="15"></line>
-            </svg>
-          </div>
-          <h2>Arrastra tu exportación de Instagram</h2>
-          <p class="dropzone-sub">
-            Sube el archivo <strong>.zip</strong> oficial. Fotos y vídeos pesados se omiten automáticamente.
-          </p>
-
-          <button id="btnPickFiles" class="btn btn-accent dropzone-primary-cta" type="button">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-            </svg>
-            Seleccionar archivo .zip
-          </button>
-
-          <div class="dropzone-secondary">
-            <button id="btnPickFolder" class="text-link" type="button">
-              <svg class="icon icon-sm" viewBox="0 0 24 24">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-              </svg>
-              Seleccionar carpeta descomprimida
-            </button>
-            <span aria-hidden="true">·</span>
-            <button id="btnPickLoose" class="text-link" type="button">
-              Archivos .json / .html sueltos
-            </button>
-          </div>
-
-          <div class="dropzone-formats">
-            <span class="format-item">
-              <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              JSON (2020–2026) y HTML
-            </span>
-            <span class="format-item">
-              <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Sin subida a servidor
-            </span>
-          </div>
-
-          <!-- Inputs ocultos -->
-          <input id="inputFiles" type="file" accept=".zip,.json,.html,.htm" multiple class="hidden" />
-          <input id="inputFolder" type="file" webkitdirectory directory multiple class="hidden" />
-
-          <!-- Barra de progreso -->
-          <div id="progressWrap" class="progress-wrap hidden">
-            <div id="progressText" class="progress-text">Preparando lectura…</div>
-            <div class="progress-bar-bg">
-              <div id="progressFill" class="progress-bar-fill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Guía paso a paso colapsada por defecto -->
-      <details class="guide">
-        <summary>
-          <span class="guide-summary-left">
-            <svg class="icon" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-            ¿Cómo descargar tu exportación de Instagram en formato JSON?
-          </span>
-          <svg class="icon guide-chevron" viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="guide-body">
-          <ol class="timeline">
-            <li class="timeline-step">
-              <span class="step-num">1</span>
-              <div class="step-content">
-                Abre el Centro de cuentas de Meta en
-                <a href="https://accountscenter.instagram.com/info_and_permissions/" target="_blank" rel="noopener noreferrer">accountscenter.instagram.com/info_and_permissions</a>
-                y entra en <strong>Exportar tu información → Crear exportación</strong>.
-              </div>
-            </li>
-            <li class="timeline-step">
-              <span class="step-num">2</span>
-              <div class="step-content">
-                Elige tu perfil de <strong>Instagram</strong> y selecciona <strong>Exportar al dispositivo</strong>.
-              </div>
-            </li>
-            <li class="timeline-step">
-              <span class="step-num">3</span>
-              <div class="step-content">
-                En <strong>Intervalo de fechas</strong> marca obligatoriamente <strong>Desde el principio</strong> (si eliges un periodo corto faltarán seguidores antiguos).
-              </div>
-            </li>
-            <li class="timeline-step">
-              <span class="step-num">4</span>
-              <div class="step-content">
-                Cambia el <strong>Formato</strong> a <span class="step-code">JSON</span> (también aceptamos HTML como respaldo). Puedes exportar toda tu cuenta o solo <strong>Seguidores y seguidos</strong>.
-              </div>
-            </li>
-            <li class="timeline-step">
-              <span class="step-num">5</span>
-              <div class="step-content">
-                Descarga el archivo <span class="step-code">.zip</span> que te enviará Meta por correo y arrástralo directamente a la zona de carga superior.
-              </div>
-            </li>
-          </ol>
-        </div>
-      </details>
+    <!-- Fila 3: Explorador de cuentas y actividad -->
+    <section class="explorer-card" aria-label="Explorador de cuentas">
+      <nav id="tabsNav" class="tabs-bar" role="tablist"></nav>
+      <div id="tabContent"></div>
     </section>
 
-    <!-- =====================================================================
-         DASHBOARD DE RESULTADOS
-         ===================================================================== -->
-    <main id="dashboardSection" class="dashboard-wrap hidden">
-      <!-- Barra superior de sesión -->
-      <div id="sessionBar" class="session-bar"></div>
-
-      <!-- Bento Grid: 4 KPIs interactivos -->
-      <div id="kpiGrid" class="kpi-grid"></div>
-
-      <!-- Bento Grid: Visualizaciones SVG (Donut + Evolución temporal) -->
-      <div id="chartsGrid" class="charts-grid"></div>
-
-      <!-- Explorador de cuentas y secciones -->
-      <section class="explorer-card">
-        <div class="tabs-shell">
-          <nav id="tabsNav" class="segmented-tabs" role="tablist"></nav>
-        </div>
-        <div id="tabContent"></div>
-      </section>
-    </main>
-
     <footer>
-      <span>Procesamiento 100 % local en tu navegador · Sin servidor ni contraseñas</span>
-      <span>Compatible con JSON (2020–2026) y HTML · Exportación CSV para Excel</span>
+      <span>100 % local en tu navegador · Ningún dato se sube a ningún servidor</span>
+      <span>Compatible con JSON (2020–2026), HTML y archivos .zip oficiales de Meta</span>
     </footer>
+  </main>
+
+  <!-- Toast flotante de progreso al leer archivos ZIP -->
+  <div id="progressWrap" class="progress-toast hidden" role="status" aria-live="polite">
+    <div id="progressText" class="progress-text">Preparando lectura…</div>
+    <div class="progress-bar-bg">
+      <div id="progressFill" class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Superposición global de Drag & Drop -->
+  <div id="dropOverlay" class="drop-overlay hidden" aria-hidden="true">
+    <div class="drop-overlay-card">
+      <div class="drop-overlay-icon">
+        <svg class="icon icon-lg" viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+      </div>
+      <h3>Suelta aquí tu exportación de Instagram (.zip)</h3>
+      <p>Procesamiento 100 % local · Fotos y vídeos pesados se omiten automáticamente</p>
+    </div>
+  </div>
+
+  <!-- Modal "¿Cómo exportar en JSON?" -->
+  <div id="guideModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="guideModalTitle">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h2 id="guideModalTitle">Cómo descargar tu exportación en JSON</h2>
+        <button id="btnCloseGuide" class="btn btn-ghost btn-icon" type="button" aria-label="Cerrar ventana">
+          <svg class="icon" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <ol class="steps-list">
+        <li class="step-item">
+          <span class="step-badge">1</span>
+          <div>
+            Abre el Centro de cuentas de Meta en
+            <a href="https://accountscenter.instagram.com/info_and_permissions/" target="_blank" rel="noopener noreferrer">accountscenter.instagram.com/info_and_permissions</a>
+            y pulsa <strong>Exportar tu información → Crear exportación</strong>.
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-badge">2</span>
+          <div>
+            Selecciona tu perfil de <strong>Instagram</strong> y elige <strong>Exportar al dispositivo</strong>.
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-badge">3</span>
+          <div>
+            En <strong>Intervalo de fechas</strong> elige obligatoriamente <strong>Desde el principio</strong> (un rango corto omitirá seguidores antiguos).
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-badge">4</span>
+          <div>
+            Cambia el formato de HTML a <span class="code-chip">JSON</span> (también admitimos HTML como respaldo). Puedes exportar todo o solo <strong>Seguidores y seguidos</strong>.
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-badge">5</span>
+          <div>
+            Descarga el archivo <span class="code-chip">.zip</span> que recibirás por correo y arrástralo sobre esta ventana o pulsa <strong>Importar .zip</strong>.
+          </div>
+        </li>
+      </ol>
+
+      <div class="modal-foot">
+        <span>Procesamiento 100 % local · Funciona incluso sin conexión</span>
+        <div style="display:flex;gap:8px;">
+          <button id="btnModalFolder" class="btn btn-sm" type="button">Carpeta descomprimida</button>
+          <button id="btnModalZip" class="btn btn-ink btn-sm" type="button">Importar .zip</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -3156,7 +2961,7 @@
     }
 
     /* =========================================================================
-       8. ICONOGRAFÍA SVG, AVATARES DETERMINISTAS Y FECHAS RELATIVAS
+       8. ICONOGRAFÍA SVG Y FORMATO DE FECHAS RELATIVAS
        ========================================================================= */
 
     const ICONOS = {
@@ -3165,38 +2970,8 @@
       search: `<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
       download: `<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
       external: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`,
-      arrowRight: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
-      upload: `<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>`,
-      heart: `<svg class="icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
-      comment: `<svg class="icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
-      mail: `<svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
-      calendar: `<svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
+      arrowRight: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
     };
-
-    const PALETA_AVATAR = [
-      { bg: "rgba(225, 29, 72, 0.12)", fg: "#BE123C", fgDark: "#FDA4AF" },
-      { bg: "rgba(217, 119, 6, 0.13)", fg: "#B45309", fgDark: "#FCD34D" },
-      { bg: "rgba(5, 150, 105, 0.12)", fg: "#047857", fgDark: "#6EE7B7" },
-      { bg: "rgba(2, 132, 199, 0.12)", fg: "#0369A1", fgDark: "#7DD3FC" },
-      { bg: "rgba(79, 70, 229, 0.12)", fg: "#4338CA", fgDark: "#A5B4FC" },
-      { bg: "rgba(147, 51, 234, 0.12)", fg: "#7E22CE", fgDark: "#D8B4FE" },
-      { bg: "rgba(219, 39, 119, 0.12)", fg: "#BE185D", fgDark: "#F9A8D4" },
-      { bg: "rgba(13, 148, 136, 0.12)", fg: "#0F766E", fgDark: "#5EEAD4" }
-    ];
-
-    /**
-     * Devuelve un par de colores determinista a partir del @username.
-     */
-    function estiloAvatar(username) {
-      const str = String(username || "ig");
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
-      }
-      const p = PALETA_AVATAR[hash % PALETA_AVATAR.length];
-      const esOscuro = document.documentElement.getAttribute("data-theme") === "dark";
-      return `background:${p.bg};color:${esOscuro ? p.fgDark : p.fg};`;
-    }
 
     /**
      * Formatea un timestamp Unix a texto relativo + fecha exacta: "hace 4 meses · 12 jul 2025".
@@ -3222,15 +2997,26 @@
       return `${relativa} · ${exacta}`;
     }
 
+    /**
+     * Devuelve las iniciales limpias (1 o 2 letras) de un usuario.
+     */
+    function inicialesUsuario(username) {
+      const partes = String(username || "ig")
+        .replace(/^@+/, "")
+        .split(/[._-]+/)
+        .filter(Boolean);
+      if (partes.length >= 2) return (partes[0][0] + partes[1][0]).toUpperCase();
+      return (partes[0] || "IG").slice(0, 2).toUpperCase();
+    }
+
     /* =========================================================================
-       9. INTERFAZ Y RENDERIZADO DEL DASHBOARD
+       9. INTERFAZ Y RENDERIZADO DEL DASHBOARD LUMINOSO
        ========================================================================= */
 
     let analisisActual = null;
-    let fechaAnalisis = null;
+    let esVistaPreviaDemo = true;
     let pestanaActiva = "notFollowingBack";
-    let subPestanaSolicitudes = "pending";
-    let subPestanaListas = "closeFriends";
+    let subGestion = "pending";
     let estadoLista = {
       busqueda: "",
       orden: "date_desc",
@@ -3238,28 +3024,22 @@
       limite: 100
     };
 
-    function cargarResultadosEnUI(analisis) {
+    /**
+     * Carga el resultado del análisis en el dashboard.
+     * Por defecto se llama con esDemo=false cuando viene de procesarSeleccionArchivos().
+     */
+    function cargarResultadosEnUI(analisis, opciones = {}) {
       analisisActual = analisis;
-      fechaAnalisis = new Date();
+      esVistaPreviaDemo = Boolean(opciones.esDemo);
       pestanaActiva = "notFollowingBack";
+      subGestion = "pending";
       estadoLista = { busqueda: "", orden: "date_desc", filtroRapido: "all", limite: 100 };
 
-      document.getElementById("uploadSection").classList.add("hidden");
-      document.getElementById("dashboardSection").classList.remove("hidden");
-
-      renderBarraSesion();
+      actualizarBarraSuperior();
       renderKPIs();
-      renderGraficosSVG();
+      renderVisualizaciones();
       renderPestanas();
       renderContenidoPestana();
-    }
-
-    function volverAlInicio() {
-      analisisActual = null;
-      limpiarAlertas();
-      document.getElementById("dashboardSection").classList.add("hidden");
-      document.getElementById("uploadSection").classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function irAPestana(idPestana, hacerScroll = false) {
@@ -3275,50 +3055,69 @@
       }
     }
 
-    function renderBarraSesion() {
+    function actualizarBarraSuperior() {
       const a = analisisActual;
-      const bar = document.getElementById("sessionBar");
+      const chipText = document.getElementById("sessionChipText");
+      const dot = document.getElementById("sessionDot");
+      const strip = document.getElementById("previewStrip");
 
-      const handle = a.perfil && a.perfil.username ? `@${a.perfil.username}` : "Exportación analizada";
-      const nombre = a.perfil && a.perfil.name ? a.perfil.name : "";
-      const bio = a.perfil && a.perfil.bio ? a.perfil.bio : "";
-      const sub = [nombre, bio].filter(Boolean).join(" · ") ||
-        `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos leídos localmente`;
-      const inicial = (a.perfil && a.perfil.username ? a.perfil.username[0] : "I").toUpperCase();
+      const handle = a && a.perfil && a.perfil.username ? `@${a.perfil.username}` : "Exportación local";
+      if (chipText) chipText.textContent = handle;
+      if (dot) dot.classList.toggle("is-demo", esVistaPreviaDemo);
 
-      const fechaTxt = (fechaAnalisis || new Date()).toLocaleDateString("es-ES", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-      });
+      if (!strip) return;
 
-      const rangoTxt = a.rangoFollowers.dias !== null
-        ? `${fmtNum(a.rangoFollowers.dias)} días de historial`
-        : `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos`;
-
-      bar.innerHTML = `
-        <div class="session-identity">
-          <div class="session-avatar" style="${estiloAvatar(a.perfil && a.perfil.username ? a.perfil.username : "ig")}">
-            ${escaparHtml(inicial)}
+      if (esVistaPreviaDemo) {
+        strip.innerHTML = `
+          <div class="preview-strip-left">
+            <span class="preview-tag">Vista previa</span>
+            <span>
+              Estás viendo datos de ejemplo. Arrastra tu <strong>.zip</strong> de Instagram sobre cualquier punto de la pantalla para analizar tu cuenta en local.
+            </span>
           </div>
-          <div class="session-meta">
-            <div class="session-title-row">
-              <h2 class="session-title">${escaparHtml(handle)}</h2>
-              <span class="meta-pill">${ICONOS.calendar} Analizado el ${escaparHtml(fechaTxt)}</span>
-            </div>
-            <p class="session-sub">${escaparHtml(sub)}</p>
+          <div class="preview-strip-actions">
+            <button id="btnLoadDemoZip" class="inline-action" type="button">Probar con datos_ejemplo_instagram.zip</button>
+            <button id="btnPickFolder" class="inline-action inline-action-muted" type="button">Importar carpeta</button>
+            <a class="inline-action inline-action-muted" href="./datos_ejemplo_instagram.zip" download="datos_ejemplo_instagram.zip">Descargar ZIP</a>
           </div>
-        </div>
-        <div class="session-actions">
-          <span class="meta-pill">${escaparHtml(rangoTxt)}</span>
-          <button id="btnResetSession" class="btn btn-sm" type="button">
-            ${ICONOS.upload} Cargar otro archivo
-          </button>
-        </div>
-      `;
+        `;
+      } else {
+        const rango = a.rangoFollowers.dias !== null
+          ? `${fmtNum(a.rangoFollowers.dias)} días de historial`
+          : `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos analizados`;
+        strip.innerHTML = `
+          <div class="preview-strip-left">
+            <span class="badge badge-ok">100 % local</span>
+            <span>
+              Mostrando <strong>${escaparHtml(handle)}</strong> · ${escaparHtml(rango)} · Ningún dato salió de tu navegador.
+            </span>
+          </div>
+          <div class="preview-strip-actions">
+            <button id="btnPickFolder" class="inline-action inline-action-muted" type="button">Importar carpeta</button>
+            <button id="btnBackToDemo" class="inline-action inline-action-muted" type="button">Volver a vista previa</button>
+          </div>
+        `;
+      }
 
-      const btnReset = document.getElementById("btnResetSession");
-      if (btnReset) btnReset.addEventListener("click", volverAlInicio);
+      const btnDemoZip = document.getElementById("btnLoadDemoZip");
+      if (btnDemoZip) btnDemoZip.addEventListener("click", cargarZipDeEjemplo);
+
+      const btnFolder = document.getElementById("btnPickFolder");
+      if (btnFolder) {
+        btnFolder.addEventListener("click", () => {
+          const inputFolder = document.getElementById("inputFolder");
+          inputFolder.value = "";
+          inputFolder.click();
+        });
+      }
+
+      const btnBack = document.getElementById("btnBackToDemo");
+      if (btnBack) {
+        btnBack.addEventListener("click", () => {
+          limpiarAlertas();
+          cargarResultadosEnUI(generarDatosDeEjemplo(), { esDemo: true });
+        });
+      }
     }
 
     function renderKPIs() {
@@ -3334,37 +3133,43 @@
 
       grid.innerHTML = `
         <div class="kpi-card">
-          <div class="kpi-head">
+          <div class="kpi-top">
             <span class="kpi-label">Seguidores</span>
           </div>
-          <div class="kpi-number">${fmtNum(a.followers.length)}</div>
-          <div class="kpi-foot">${a.rangoFollowers.min ? "Desde " + formatearFecha(a.rangoFollowers.min) : "Total detectado"}</div>
+          <div class="kpi-value">${fmtNum(a.followers.length)}</div>
+          <div class="kpi-sub">${a.rangoFollowers.min ? "Desde " + formatearFecha(a.rangoFollowers.min) : "Total en exportación"}</div>
         </div>
 
         <div class="kpi-card">
-          <div class="kpi-head">
+          <div class="kpi-top">
             <span class="kpi-label">Seguidos</span>
           </div>
-          <div class="kpi-number">${fmtNum(a.following.length)}</div>
-          <div class="kpi-foot">Ratio seguidores/seguidos: ${ratioTxt}</div>
+          <div class="kpi-value">${fmtNum(a.following.length)}</div>
+          <div class="kpi-sub">Ratio seguidores / seguidos: ${ratioTxt}</div>
         </div>
 
-        <button type="button" class="kpi-card kpi-danger" data-jump="notFollowingBack">
-          <div class="kpi-head">
-            <span class="kpi-label">No te siguen de vuelta</span>
-            <span class="kpi-action-hint">${ICONOS.arrowRight}</span>
+        <button type="button" class="kpi-card" data-jump="notFollowingBack">
+          <div class="kpi-top">
+            <span class="kpi-label">
+              <span class="kpi-dot" style="background:var(--amber)"></span>
+              No te siguen de vuelta
+            </span>
+            <span class="kpi-arrow">${ICONOS.arrowRight}</span>
           </div>
-          <div class="kpi-number">${fmtNum(a.notFollowingBack.length)}</div>
-          <div class="kpi-foot">${pctNoSiguen}</div>
+          <div class="kpi-value">${fmtNum(a.notFollowingBack.length)}</div>
+          <div class="kpi-sub">${pctNoSiguen}</div>
         </button>
 
-        <button type="button" class="kpi-card kpi-info" data-jump="youDontFollowBack">
-          <div class="kpi-head">
-            <span class="kpi-label">No sigues de vuelta</span>
-            <span class="kpi-action-hint">${ICONOS.arrowRight}</span>
+        <button type="button" class="kpi-card" data-jump="youDontFollowBack">
+          <div class="kpi-top">
+            <span class="kpi-label">
+              <span class="kpi-dot" style="background:var(--blue)"></span>
+              No sigues de vuelta
+            </span>
+            <span class="kpi-arrow">${ICONOS.arrowRight}</span>
           </div>
-          <div class="kpi-number">${fmtNum(a.youDontFollowBack.length)}</div>
-          <div class="kpi-foot">${pctFans}</div>
+          <div class="kpi-value">${fmtNum(a.youDontFollowBack.length)}</div>
+          <div class="kpi-sub">${pctFans}</div>
         </button>
       `;
 
@@ -3374,98 +3179,89 @@
     }
 
     /**
-     * Genera el gráfico Donut SVG de relaciones y el gráfico de barras SVG de evolución temporal.
+     * Renderiza la Fila 2: Balance de relaciones (barra apilada) y Evolución temporal (barras SVG con tooltip).
      */
-    function renderGraficosSVG() {
+    function renderVisualizaciones() {
       const a = analisisActual;
       const grid = document.getElementById("chartsGrid");
 
-      // --- 1. Donut SVG de distribución de relaciones ---
+      // --- 1. Balance de relaciones ---
       const mutuos = a.mutuals.length;
       const soloTu = a.notFollowingBack.length;
       const soloEllos = a.youDontFollowBack.length;
       const totalRel = mutuos + soloTu + soloEllos;
+      const recPct = a.following.length > 0 ? a.reciprocidad.toFixed(1) + " %" : "—";
 
-      const r = 56;
-      const circ = 2 * Math.PI * r;
-      const segmentos = [
-        { id: "mutuals", label: "Mutuos", val: mutuos, color: "#10B981" },
-        { id: "notFollowingBack", label: "Solo tú les sigues", val: soloTu, color: "#E11D48" },
-        { id: "youDontFollowBack", label: "Solo ellos te siguen", val: soloEllos, color: "#6366F1" }
+      const filasBalance = [
+        { id: "mutuals", label: "Seguidores mutuos", val: mutuos, color: "var(--ok)" },
+        { id: "notFollowingBack", label: "Solo tú les sigues", val: soloTu, color: "var(--amber)" },
+        { id: "youDontFollowBack", label: "Solo ellos te siguen", val: soloEllos, color: "var(--blue)" }
       ];
 
-      let offset = 0;
-      const arcosSvg = totalRel > 0
-        ? segmentos
-            .filter((s) => s.val > 0)
-            .map((s) => {
-              const frac = s.val / totalRel;
-              const len = Math.max(0, frac * circ - 2);
-              const dash = `${len.toFixed(2)} ${(circ - len).toFixed(2)}`;
-              const dashOffset = (-offset).toFixed(2);
-              offset += frac * circ;
-              return `<circle cx="74" cy="74" r="${r}" fill="none" stroke="${s.color}" stroke-width="14" stroke-dasharray="${dash}" stroke-dashoffset="${dashOffset}" stroke-linecap="butt"><title>${s.label}: ${fmtNum(s.val)}</title></circle>`;
+      const barraApilada = totalRel > 0
+        ? filasBalance
+            .filter((f) => f.val > 0)
+            .map((f) => {
+              const pct = ((f.val / totalRel) * 100).toFixed(2);
+              return `<div class="stacked-seg" style="width:${pct}%;background:${f.color};" title="${f.label}: ${fmtNum(f.val)}"></div>`;
             })
             .join("")
         : "";
 
-      const recPct = a.following.length > 0 ? a.reciprocidad.toFixed(1) + " %" : "—";
-
-      const leyendaHtml = segmentos
-        .map((s) => {
-          const pct = totalRel > 0 ? Math.round((s.val / totalRel) * 100) : 0;
+      const filasHtml = filasBalance
+        .map((f) => {
+          const pct = totalRel > 0 ? Math.round((f.val / totalRel) * 100) : 0;
           return `
-            <button type="button" class="legend-item" data-jump="${s.id}">
-              <span class="legend-left">
-                <span class="legend-swatch" style="background:${s.color}"></span>
-                <span class="legend-name">${escaparHtml(s.label)}</span>
+            <button type="button" class="balance-row" data-jump="${f.id}">
+              <span class="balance-row-left">
+                <span class="kpi-dot" style="background:${f.color}"></span>
+                ${escaparHtml(f.label)}
               </span>
-              <span class="legend-val">${fmtNum(s.val)} <span style="color:var(--text-muted);font-weight:500;">(${pct}%)</span></span>
+              <span class="balance-row-right">
+                ${fmtNum(f.val)}<span class="balance-row-pct">(${pct} %)</span>
+              </span>
             </button>
           `;
         })
         .join("");
 
-      // --- 2. Gráfico de barras SVG (evolución temporal por año o por mes) ---
-      const seriesTemp = construirSerieTemporal(a.followers, a.following);
-      const barChartHtml = renderBarChartSVG(seriesTemp);
+      // --- 2. Evolución temporal (SVG con tooltip interactivo) ---
+      const serie = construirSerieTemporal(a.followers, a.following);
 
       grid.innerHTML = `
-        <div class="bento-card">
-          <div class="bento-header">
-            <h3 class="bento-title">Distribución de relaciones</h3>
-            <span class="bento-subtitle tabular">${fmtNum(totalRel)} cuentas únicas</span>
+        <div class="card">
+          <div class="card-head">
+            <h2 class="card-title">Balance de relaciones</h2>
+            <span class="card-meta">${fmtNum(totalRel)} cuentas únicas</span>
           </div>
-          <div class="donut-layout">
-            <div class="donut-svg-wrap">
-              <svg class="donut-svg" viewBox="0 0 148 148" aria-label="Distribución de relaciones">
-                <circle cx="74" cy="74" r="${r}" fill="none" stroke="var(--surface-subtle)" stroke-width="14"></circle>
-                ${arcosSvg}
-              </svg>
-              <div class="donut-center">
-                <span class="donut-pct">${recPct}</span>
-                <span class="donut-caption">Reciprocidad</span>
-              </div>
-            </div>
-            <div class="donut-legend">${leyendaHtml}</div>
+          <div class="balance-hero">
+            <span class="balance-pct">${recPct}</span>
+            <span class="balance-caption">tasa de reciprocidad</span>
           </div>
+          <div class="stacked-bar" aria-label="Distribución proporcional de relaciones">${barraApilada}</div>
+          <div class="balance-rows">${filasHtml}</div>
         </div>
 
-        <div class="bento-card">
-          <div class="bento-header">
-            <h3 class="bento-title">Evolución temporal (${seriesTemp.modo === "mes" ? "por mes" : "por año"})</h3>
-            <div class="chart-legend-inline">
-              <span class="chart-legend-dot"><span class="legend-swatch" style="background:#10B981"></span>Seguidores</span>
-              <span class="chart-legend-dot"><span class="legend-swatch" style="background:#E1306C"></span>Seguidos</span>
+        <div class="card">
+          <div class="card-head">
+            <h2 class="card-title">Evolución temporal (${serie.modo === "mes" ? "por mes" : "por año"})</h2>
+            <div class="chart-legend">
+              <span><span class="kpi-dot" style="background:var(--bar-primary)"></span>Seguidores</span>
+              <span><span class="kpi-dot" style="background:var(--bar-secondary)"></span>Seguidos</span>
             </div>
           </div>
-          ${barChartHtml}
+          <div class="chart-stage" id="chartStage">
+            ${renderBarChartSVG(serie)}
+            <div id="chartTooltip" class="chart-tooltip" role="tooltip"></div>
+          </div>
         </div>
       `;
 
       grid.querySelectorAll("[data-jump]").forEach((btn) => {
         btn.addEventListener("click", () => irAPestana(btn.dataset.jump, true));
       });
+
+      vincularTooltipGrafico();
     }
 
     /**
@@ -3519,37 +3315,32 @@
         return `<div class="bar-chart-empty">No hay fechas suficientes para dibujar la evolución temporal.</div>`;
       }
 
-      const w = 460;
-      const h = 158;
+      const w = 480;
+      const h = 164;
       const padL = 28;
       const padR = 10;
       const padT = 14;
       const padB = 26;
       const chartW = w - padL - padR;
       const chartH = h - padT - padB;
+      const maxVal = Math.max(1, ...serie.puntos.map((p) => Math.max(p.followers, p.following)));
 
-      const maxVal = Math.max(
-        1,
-        ...serie.puntos.map((p) => Math.max(p.followers, p.following))
-      );
-
-      // Líneas horizontales de referencia (0%, 50%, 100%)
       const gridLines = [0, 0.5, 1]
         .map((f) => {
           const y = (padT + chartH * (1 - f)).toFixed(1);
           const lbl = Math.round(maxVal * f);
           return `
             <line x1="${padL}" y1="${y}" x2="${w - padR}" y2="${y}" stroke="var(--border)" stroke-dasharray="${f === 0 ? "" : "3 3"}" stroke-width="1"></line>
-            <text x="${padL - 6}" y="${Number(y) + 3}" text-anchor="end" fill="var(--text-muted)" font-size="10" style="font-variant-numeric:tabular-nums;">${lbl}</text>
+            <text x="${padL - 7}" y="${Number(y) + 3}" text-anchor="end" fill="var(--text-muted)" font-size="10" style="font-variant-numeric:tabular-nums;">${lbl}</text>
           `;
         })
         .join("");
 
       const groupW = chartW / serie.puntos.length;
-      const barW = Math.min(20, Math.max(8, (groupW - 16) / 2));
+      const barW = Math.min(20, Math.max(8, (groupW - 18) / 2));
       const gap = 4;
 
-      const barras = serie.puntos
+      const grupos = serie.puntos
         .map((p, idx) => {
           const cx = padL + idx * groupW + groupW / 2;
           const hFoll = (p.followers / maxVal) * chartH;
@@ -3560,13 +3351,10 @@
           const x2 = cx + gap / 2;
 
           return `
-            <g>
-              <rect x="${x1.toFixed(1)}" y="${yFoll.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFoll).toFixed(1)}" rx="4" fill="#10B981">
-                <title>${p.etiqueta} · Seguidores: ${fmtNum(p.followers)}</title>
-              </rect>
-              <rect x="${x2.toFixed(1)}" y="${yFollowing.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFollowing).toFixed(1)}" rx="4" fill="#E1306C">
-                <title>${p.etiqueta} · Seguidos: ${fmtNum(p.following)}</title>
-              </rect>
+            <g class="bar-group" data-label="${escaparHtml(p.etiqueta)}" data-followers="${p.followers}" data-following="${p.following}">
+              <rect x="${(cx - groupW / 2).toFixed(1)}" y="${padT}" width="${groupW.toFixed(1)}" height="${chartH}" fill="transparent"></rect>
+              <rect x="${x1.toFixed(1)}" y="${yFoll.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFoll).toFixed(1)}" rx="4" fill="var(--bar-primary)"></rect>
+              <rect x="${x2.toFixed(1)}" y="${yFollowing.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFollowing).toFixed(1)}" rx="4" fill="var(--bar-secondary)"></rect>
               <text x="${cx.toFixed(1)}" y="${h - 6}" text-anchor="middle" fill="var(--text-muted)" font-size="10.5" font-weight="500">${escaparHtml(p.etiqueta)}</text>
             </g>
           `;
@@ -3576,27 +3364,56 @@
       return `
         <svg class="bar-chart-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" aria-label="Evolución temporal de seguidores y seguidos">
           ${gridLines}
-          ${barras}
+          ${grupos}
         </svg>
       `;
+    }
+
+    function vincularTooltipGrafico() {
+      const stage = document.getElementById("chartStage");
+      const tooltip = document.getElementById("chartTooltip");
+      if (!stage || !tooltip) return;
+
+      stage.querySelectorAll(".bar-group").forEach((g) => {
+        const mostrar = (ev) => {
+          const stageRect = stage.getBoundingClientRect();
+          const gRect = g.getBoundingClientRect();
+          const x = gRect.left - stageRect.left + gRect.width / 2;
+          const y = Math.max(28, (ev ? ev.clientY - stageRect.top : gRect.top - stageRect.top));
+
+          tooltip.innerHTML = `
+            <strong>${escaparHtml(g.dataset.label)}</strong><br/>
+            Seguidores: ${fmtNum(g.dataset.followers)} · Seguidos: ${fmtNum(g.dataset.following)}
+          `;
+          tooltip.style.left = `${Math.max(70, Math.min(stageRect.width - 70, x))}px`;
+          tooltip.style.top = `${y}px`;
+          tooltip.classList.add("visible");
+        };
+
+        g.addEventListener("mouseenter", mostrar);
+        g.addEventListener("mousemove", mostrar);
+        g.addEventListener("mouseleave", () => tooltip.classList.remove("visible"));
+      });
     }
 
     function renderPestanas() {
       const a = analisisActual;
       const nav = document.getElementById("tabsNav");
-      const totalSolicitudes = a.pendingRequests.length + a.receivedRequests.length;
-      const totalListas = a.closeFriends.length + a.blocked.length + a.restricted.length;
-      const totalActividad = a.totalLikes + a.totalComments + a.totalMensajes;
+      const totalGestion =
+        a.pendingRequests.length +
+        a.receivedRequests.length +
+        a.recentlyUnfollowed.length +
+        a.closeFriends.length +
+        a.blocked.length +
+        a.restricted.length;
+      const totalInteracciones = a.totalLikes + a.totalComments + a.totalMensajes;
 
       const tabs = [
         { id: "notFollowingBack", label: "No te siguen", count: a.notFollowingBack.length },
         { id: "youDontFollowBack", label: "No sigues", count: a.youDontFollowBack.length },
         { id: "mutuals", label: "Mutuos", count: a.mutuals.length },
-        { id: "requests", label: "Solicitudes", count: totalSolicitudes },
-        { id: "recentlyUnfollowed", label: "Dejados de seguir", count: a.recentlyUnfollowed.length },
-        { id: "lists", label: "Listas", count: totalListas },
-        { id: "activity", label: "Actividad", count: totalActividad > 0 ? fmtNum(totalActividad) : null },
-        { id: "timeline", label: "Cronología", count: null },
+        { id: "management", label: "Solicitudes y gestión", count: totalGestion },
+        { id: "interactions", label: "Interacciones", count: totalInteracciones > 0 ? fmtNum(totalInteracciones) : null },
         { id: "diagnostics", label: "Diagnóstico", count: a.diagnostico.archivosLeidos.length }
       ];
 
@@ -3611,7 +3428,7 @@
             data-tab="${t.id}"
           >
             ${escaparHtml(t.label)}
-            ${t.count !== null ? `<span class="tab-pill">${escaparHtml(String(t.count))}</span>` : ""}
+            ${t.count !== null ? `<span class="tab-count">${escaparHtml(String(t.count))}</span>` : ""}
           </button>
         `
         )
@@ -3622,9 +3439,6 @@
       });
     }
 
-    /**
-     * Filtra y ordena una lista de cuentas según el buscador, filtro rápido y orden.
-     */
     function filtrarYOrdenar(lista) {
       const q = estadoLista.busqueda.trim().toLowerCase();
       let res = q
@@ -3635,9 +3449,7 @@
           )
         : [...lista];
 
-      if (estadoLista.filtroRapido === "dated") {
-        res = res.filter((c) => Boolean(c.timestamp));
-      } else if (estadoLista.filtroRapido === "renamed") {
+      if (estadoLista.filtroRapido === "renamed") {
         res = res.filter((c) => Boolean(c.possibleRename));
       }
 
@@ -3659,9 +3471,6 @@
       return res;
     }
 
-    /**
-     * Renderiza el explorador de cuentas con barra pegajosa, avatares deterministas y etiquetas de estado.
-     */
     function renderVistaLista(contenedor, opciones) {
       const {
         descripcion,
@@ -3675,10 +3484,10 @@
 
       const filtrada = filtrarYOrdenar(lista);
       const visibles = filtrada.slice(0, estadoLista.limite);
-      const tienePosiblesCambios = lista.some((c) => c.possibleRename);
+      const tieneCambios = lista.some((c) => c.possibleRename);
 
       let html = `
-        <div class="sticky-toolbar">
+        <div class="toolbar">
           <div class="toolbar-left">
             <div class="search-field">
               ${ICONOS.search}
@@ -3690,18 +3499,16 @@
                 value="${escaparHtml(estadoLista.busqueda)}"
               />
             </div>
-            <select id="sortSelect" class="select" aria-label="Ordenar cuentas">
+            <select id="sortSelect" class="select" aria-label="Ordenar lista">
               <option value="date_desc" ${estadoLista.orden === "date_desc" ? "selected" : ""}>Más reciente primero</option>
               <option value="date_asc" ${estadoLista.orden === "date_asc" ? "selected" : ""}>Más antiguo primero</option>
               <option value="az" ${estadoLista.orden === "az" ? "selected" : ""}>Alfabético (A–Z)</option>
               <option value="za" ${estadoLista.orden === "za" ? "selected" : ""}>Alfabético (Z–A)</option>
             </select>
           </div>
-          <div class="toolbar-right">
-            <button id="btnExportCsv" class="btn btn-sm" type="button" ${filtrada.length === 0 ? "disabled" : ""}>
-              ${ICONOS.download} Exportar CSV (${fmtNum(filtrada.length)})
-            </button>
-          </div>
+          <button id="btnExportCsv" class="btn btn-sm" type="button" ${filtrada.length === 0 ? "disabled" : ""}>
+            ${ICONOS.download} Exportar CSV (${fmtNum(filtrada.length)})
+          </button>
         </div>
 
         <div class="subbar">
@@ -3709,8 +3516,8 @@
           <div class="filter-pills">
             ${subPillsHtml}
             ${
-              tienePosiblesCambios
-                ? `<button type="button" class="filter-pill ${estadoLista.filtroRapido === "renamed" ? "active" : ""}" data-qfilter="${estadoLista.filtroRapido === "renamed" ? "all" : "renamed"}">Posible cambio de @</button>`
+              tieneCambios
+                ? `<button type="button" class="pill-btn ${estadoLista.filtroRapido === "renamed" ? "active" : ""}" data-qfilter="${estadoLista.filtroRapido === "renamed" ? "all" : "renamed"}">Posible cambio de @</button>`
                 : ""
             }
           </div>
@@ -3724,27 +3531,24 @@
       } else {
         html += `<div class="account-list">`;
         for (const c of visibles) {
-          const inicial = (c.username || "?")[0];
           const urlPerfil = `https://instagram.com/${encodeURIComponent(c.username)}`;
           html += `
             <div class="account-row">
               <div class="account-main">
-                <div class="avatar-circle" style="${estiloAvatar(c.username)}">${escaparHtml(inicial)}</div>
-                <div class="account-text">
-                  <div class="account-top-line">
-                    <a class="account-handle" href="${urlPerfil}" target="_blank" rel="noopener noreferrer">
-                      @${escaparHtml(c.username)}
-                    </a>
-                  </div>
-                  ${c.displayName ? `<div class="account-fullname">${escaparHtml(c.displayName)}</div>` : ""}
+                <div class="avatar-neutral">${escaparHtml(inicialesUsuario(c.username))}</div>
+                <div class="account-info">
+                  <a class="account-handle" href="${urlPerfil}" target="_blank" rel="noopener noreferrer">
+                    @${escaparHtml(c.username)}
+                  </a>
+                  ${c.displayName ? `<div class="account-name">${escaparHtml(c.displayName)}</div>` : ""}
                   <div class="account-date" title="${escaparHtml(etiquetaFecha)}">${escaparHtml(formatearFechaCompleta(c.timestamp))}</div>
                 </div>
               </div>
-              <div class="account-aside">
-                <span class="status-tag ${c.possibleRename ? "tag-warn" : badgeClase}">
+              <div class="account-right">
+                <span class="badge ${c.possibleRename ? "badge-amber" : badgeClase}">
                   ${c.possibleRename ? "Cambio @" : escaparHtml(badgeTexto)}
                 </span>
-                <a class="open-profile-btn" href="${urlPerfil}" target="_blank" rel="noopener noreferrer" title="Abrir @${escaparHtml(c.username)} en Instagram" aria-label="Abrir perfil de ${escaparHtml(c.username)} en Instagram">
+                <a class="ext-link" href="${urlPerfil}" target="_blank" rel="noopener noreferrer" title="Abrir @${escaparHtml(c.username)} en Instagram" aria-label="Abrir perfil de ${escaparHtml(c.username)} en Instagram">
                   ${ICONOS.external}
                 </a>
               </div>
@@ -3767,7 +3571,6 @@
       html += `</div>`;
       contenedor.innerHTML = html;
 
-      // Eventos
       const searchBox = contenedor.querySelector("#searchBox");
       if (searchBox) {
         searchBox.addEventListener("input", (e) => {
@@ -3836,7 +3639,7 @@
           nombreCsv: "instagram_no_te_siguen.csv",
           etiquetaFecha: "Sigues desde",
           badgeTexto: "No te sigue",
-          badgeClase: "tag-unfollow"
+          badgeClase: "badge-amber"
         });
         return;
       }
@@ -3848,7 +3651,7 @@
           nombreCsv: "instagram_no_sigues_de_vuelta.csv",
           etiquetaFecha: "Te sigue desde",
           badgeTexto: "Fan",
-          badgeClase: "tag-fan"
+          badgeClase: "badge-blue"
         });
         return;
       }
@@ -3860,97 +3663,86 @@
           nombreCsv: "instagram_mutuos.csv",
           etiquetaFecha: "Sigues desde",
           badgeTexto: "Mutuo",
-          badgeClase: "tag-mutual"
+          badgeClase: "badge-ok"
         });
         return;
       }
 
-      if (pestanaActiva === "recentlyUnfollowed") {
-        renderVistaLista(panel, {
-          descripcion: "Cuentas que tú dejaste de seguir recientemente según el archivo oficial de Meta.",
-          lista: a.recentlyUnfollowed,
-          nombreCsv: "instagram_dejados_de_seguir.csv",
-          etiquetaFecha: "Dejado de seguir",
-          badgeTexto: "Unfollow",
-          badgeClase: "tag-neutral"
-        });
-        return;
-      }
-
-      if (pestanaActiva === "requests") {
-        const subPills = `
-          <button type="button" class="filter-pill ${subPestanaSolicitudes === "pending" ? "active" : ""}" data-subreq="pending">
-            Enviadas (${fmtNum(a.pendingRequests.length)})
-          </button>
-          <button type="button" class="filter-pill ${subPestanaSolicitudes === "received" ? "active" : ""}" data-subreq="received">
-            Recibidas (${fmtNum(a.receivedRequests.length)})
-          </button>
-        `;
-        const esPendiente = subPestanaSolicitudes === "pending";
-        renderVistaLista(panel, {
-          descripcion: esPendiente
-            ? "Solicitudes que enviaste a cuentas privadas y aún siguen pendientes."
-            : "Solicitudes de seguimiento que otras personas te han enviado.",
-          lista: esPendiente ? a.pendingRequests : a.receivedRequests,
-          nombreCsv: esPendiente ? "instagram_solicitudes_pendientes.csv" : "instagram_solicitudes_recibidas.csv",
-          etiquetaFecha: esPendiente ? "Enviada el" : "Recibida el",
-          badgeTexto: esPendiente ? "Pendiente" : "Recibida",
-          badgeClase: esPendiente ? "tag-warn" : "tag-fan",
-          subPillsHtml: subPills
-        });
-        panel.querySelectorAll("[data-subreq]").forEach((b) => {
-          b.addEventListener("click", () => {
-            subPestanaSolicitudes = b.dataset.subreq;
-            estadoLista.busqueda = "";
-            estadoLista.limite = 100;
-            renderContenidoPestana();
-          });
-        });
-        return;
-      }
-
-      if (pestanaActiva === "lists") {
-        const subPills = `
-          <button type="button" class="filter-pill ${subPestanaListas === "closeFriends" ? "active" : ""}" data-sublist="closeFriends">
-            Mejores amigos (${fmtNum(a.closeFriends.length)})
-          </button>
-          <button type="button" class="filter-pill ${subPestanaListas === "blocked" ? "active" : ""}" data-sublist="blocked">
-            Bloqueados (${fmtNum(a.blocked.length)})
-          </button>
-          <button type="button" class="filter-pill ${subPestanaListas === "restricted" ? "active" : ""}" data-sublist="restricted">
-            Restringidos (${fmtNum(a.restricted.length)})
-          </button>
-        `;
-        const configs = {
-          closeFriends: {
+      if (pestanaActiva === "management") {
+        const grupos = [
+          {
+            id: "pending",
+            label: `Pendientes (${fmtNum(a.pendingRequests.length)})`,
+            descripcion: "Solicitudes enviadas a cuentas privadas que aún no han sido aceptadas.",
+            lista: a.pendingRequests,
+            nombreCsv: "instagram_solicitudes_pendientes.csv",
+            etiquetaFecha: "Enviada el",
+            badgeTexto: "Pendiente",
+            badgeClase: "badge-amber"
+          },
+          {
+            id: "received",
+            label: `Recibidas (${fmtNum(a.receivedRequests.length)})`,
+            descripcion: "Solicitudes de seguimiento que otras personas te han enviado.",
+            lista: a.receivedRequests,
+            nombreCsv: "instagram_solicitudes_recibidas.csv",
+            etiquetaFecha: "Recibida el",
+            badgeTexto: "Recibida",
+            badgeClase: "badge-blue"
+          },
+          {
+            id: "unfollowed",
+            label: `Dejados de seguir (${fmtNum(a.recentlyUnfollowed.length)})`,
+            descripcion: "Cuentas que tú dejaste de seguir recientemente según el archivo oficial de Meta.",
+            lista: a.recentlyUnfollowed,
+            nombreCsv: "instagram_dejados_de_seguir.csv",
+            etiquetaFecha: "Dejado de seguir",
+            badgeTexto: "Unfollow",
+            badgeClase: "badge-neutral"
+          },
+          {
+            id: "closeFriends",
+            label: `Mejores amigos (${fmtNum(a.closeFriends.length)})`,
             descripcion: "Tu lista de Mejores Amigos para historias.",
             lista: a.closeFriends,
             nombreCsv: "instagram_mejores_amigos.csv",
             etiquetaFecha: "Añadido el",
             badgeTexto: "Mejor amigo",
-            badgeClase: "tag-mutual"
+            badgeClase: "badge-ok"
           },
-          blocked: {
-            descripcion: "Cuentas que tienes bloqueadas.",
+          {
+            id: "blocked",
+            label: `Bloqueados (${fmtNum(a.blocked.length)})`,
+            descripcion: "Perfiles que tienes bloqueados.",
             lista: a.blocked,
             nombreCsv: "instagram_bloqueados.csv",
             etiquetaFecha: "Bloqueado el",
             badgeTexto: "Bloqueado",
-            badgeClase: "tag-unfollow"
+            badgeClase: "badge-amber"
           },
-          restricted: {
-            descripcion: "Cuentas que tienes restringidas.",
+          {
+            id: "restricted",
+            label: `Restringidos (${fmtNum(a.restricted.length)})`,
+            descripcion: "Perfiles que tienes restringidos.",
             lista: a.restricted,
             nombreCsv: "instagram_restringidos.csv",
             etiquetaFecha: "Restringido el",
             badgeTexto: "Restringido",
-            badgeClase: "tag-warn"
+            badgeClase: "badge-neutral"
           }
-        };
-        renderVistaLista(panel, { ...configs[subPestanaListas], subPillsHtml: subPills });
-        panel.querySelectorAll("[data-sublist]").forEach((b) => {
-          b.addEventListener("click", () => {
-            subPestanaListas = b.dataset.sublist;
+        ];
+
+        const activo = grupos.find((g) => g.id === subGestion) || grupos[0];
+        const subPills = grupos
+          .map(
+            (g) => `<button type="button" class="pill-btn ${g.id === activo.id ? "active" : ""}" data-submgmt="${g.id}">${escaparHtml(g.label)}</button>`
+          )
+          .join("");
+
+        renderVistaLista(panel, { ...activo, subPillsHtml: subPills });
+        panel.querySelectorAll("[data-submgmt]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            subGestion = btn.dataset.submgmt;
             estadoLista.busqueda = "";
             estadoLista.limite = 100;
             renderContenidoPestana();
@@ -3959,13 +3751,8 @@
         return;
       }
 
-      if (pestanaActiva === "activity") {
-        renderPestanaActividad(panel);
-        return;
-      }
-
-      if (pestanaActiva === "timeline") {
-        renderPestanaCronologia(panel);
+      if (pestanaActiva === "interactions") {
+        renderPestanaInteracciones(panel);
         return;
       }
 
@@ -3974,11 +3761,11 @@
       }
     }
 
-    function renderRankingBarras(items, etiquetaValor, esUsuarioInstagram) {
+    function renderRankingFino(items, etiquetaValor, esUsuarioInstagram, barraAzul = false) {
       if (!items.length) {
         return `<div class="empty-state" style="padding:20px 8px;">No se encontraron datos en esta exportación.</div>`;
       }
-      const top = items.slice(0, 12);
+      const top = items.slice(0, 10);
       const max = top[0].valor || 1;
       return top
         .map((item, idx) => {
@@ -3990,13 +3777,13 @@
             <div class="rank-row">
               <div class="rank-top">
                 <span class="rank-left">
-                  <span class="rank-pos">${idx + 1}</span>
+                  <span class="rank-num">${idx + 1}</span>
                   <span class="rank-name">${nombreHtml}</span>
                 </span>
-                <span class="rank-count">${fmtNum(item.valor)} ${escaparHtml(etiquetaValor)}</span>
+                <span class="rank-val">${fmtNum(item.valor)} ${escaparHtml(etiquetaValor)}</span>
               </div>
-              <div class="bar-track">
-                <div class="bar-fill" style="width:${pct}%"></div>
+              <div class="thin-track">
+                <div class="thin-fill ${barraAzul ? "thin-fill-blue" : ""}" style="width:${pct}%"></div>
               </div>
             </div>
           `;
@@ -4004,7 +3791,7 @@
         .join("");
     }
 
-    function renderPestanaActividad(panel) {
+    function renderPestanaInteracciones(panel) {
       const a = analisisActual;
       const likesItems = a.topLikes.map((x) => ({ nombre: x.username, valor: x.count }));
       const commentsItems = a.topComments.map((x) => ({ nombre: x.username, valor: x.count }));
@@ -4013,116 +3800,53 @@
       panel.innerHTML = `
         <div class="explorer-body">
           <div class="two-col">
-            <div class="panel-box">
-              <div class="panel-head">
-                <h3 class="panel-title">${ICONOS.heart} Cuentas con más likes dados</h3>
-                <span class="meta-pill">${fmtNum(a.totalLikes)} total</span>
+            <div class="sub-card">
+              <div class="sub-card-head">
+                <h3 class="sub-card-title">Cuentas con más likes dados</h3>
+                <span class="card-meta">${fmtNum(a.totalLikes)} total</span>
               </div>
-              ${renderRankingBarras(likesItems, "likes", true)}
+              ${renderRankingFino(likesItems, "likes", true, false)}
             </div>
 
-            <div class="panel-box">
-              <div class="panel-head">
-                <h3 class="panel-title">${ICONOS.comment} Cuentas más comentadas</h3>
-                <span class="meta-pill">${fmtNum(a.totalComments)} total</span>
+            <div class="sub-card">
+              <div class="sub-card-head">
+                <h3 class="sub-card-title">Cuentas más comentadas</h3>
+                <span class="card-meta">${fmtNum(a.totalComments)} total</span>
               </div>
-              ${renderRankingBarras(commentsItems, "coment.", true)}
+              ${renderRankingFino(commentsItems, "coment.", true, true)}
             </div>
 
-            <div class="panel-box">
-              <div class="panel-head">
-                <h3 class="panel-title">${ICONOS.mail} Chats con más mensajes</h3>
-                <span class="meta-pill">${fmtNum(a.totalMensajes)} total</span>
+            <div class="sub-card">
+              <div class="sub-card-head">
+                <h3 class="sub-card-title">Chats con más mensajes</h3>
+                <span class="card-meta">${fmtNum(a.totalMensajes)} total</span>
               </div>
-              ${renderRankingBarras(chatsItems, "msgs", false)}
+              ${renderRankingFino(chatsItems, "msgs", false, false)}
             </div>
 
-            <div class="panel-box">
-              <div class="panel-head">
-                <h3 class="panel-title">${ICONOS.search} Búsquedas recientes</h3>
-                <span class="meta-pill">${fmtNum(a.busquedas.length)} total</span>
+            <div class="sub-card">
+              <div class="sub-card-head">
+                <h3 class="sub-card-title">Búsquedas recientes</h3>
+                <span class="card-meta">${fmtNum(a.busquedas.length)} total</span>
               </div>
               ${
                 a.busquedas.length === 0
                   ? `<div class="empty-state" style="padding:20px 8px;">No se encontraron archivos de búsquedas.</div>`
                   : a.busquedas
-                      .slice(0, 12)
+                      .slice(0, 10)
                       .map(
                         (b, idx) => `
                       <div class="rank-top" style="padding:7px 0; border-bottom:1px solid var(--border);">
                         <span class="rank-left">
-                          <span class="rank-pos">${idx + 1}</span>
+                          <span class="rank-num">${idx + 1}</span>
                           <span class="rank-name">${escaparHtml(b.texto)}</span>
                         </span>
-                        <span class="rank-count">${formatearFecha(b.timestamp)}</span>
+                        <span class="rank-val">${formatearFecha(b.timestamp)}</span>
                       </div>
                     `
                       )
                       .join("")
               }
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderPestanaCronologia(panel) {
-      const a = analisisActual;
-      const renderAnios = (mapaAnios) => {
-        const entradas = Array.from(mapaAnios.entries()).sort((x, y) => y[0] - x[0]);
-        if (!entradas.length) {
-          return `<div class="empty-state" style="padding:18px;">Sin fechas registradas en los archivos.</div>`;
-        }
-        const max = Math.max(...entradas.map((e) => e[1]), 1);
-        return entradas
-          .map(([anio, count]) => {
-            const pct = Math.max(4, Math.round((count / max) * 100));
-            return `
-              <div class="rank-row">
-                <div class="rank-top">
-                  <span class="rank-name tabular">${anio}</span>
-                  <span class="rank-count">${fmtNum(count)} cuentas</span>
-                </div>
-                <div class="bar-track"><div class="bar-fill bar-fill-solid" style="width:${pct}%"></div></div>
-              </div>
-            `;
-          })
-          .join("");
-      };
-
-      const extremo = (lista, masAntiguo) => {
-        const conFecha = lista.filter((x) => x.timestamp);
-        if (!conFecha.length) return "—";
-        conFecha.sort((x, y) => (masAntiguo ? x.timestamp - y.timestamp : y.timestamp - x.timestamp));
-        const item = conFecha[0];
-        return `<a href="https://instagram.com/${encodeURIComponent(item.username)}" target="_blank" rel="noopener noreferrer" style="font-weight:600;text-decoration:underline;text-underline-offset:2px;">@${escaparHtml(item.username)}</a> <span style="color:var(--text-muted);">(${formatearFecha(item.timestamp)})</span>`;
-      };
-
-      panel.innerHTML = `
-        <div class="explorer-body">
-          <div class="two-col">
-            <div class="panel-box">
-              <div class="panel-head">
-                <h3 class="panel-title">${ICONOS.calendar} Seguidores por año</h3>
-                <span class="meta-pill">${a.rangoFollowers.dias !== null ? fmtNum(a.rangoFollowers.dias) + " días de rango" : "Sin rango"}</span>
-              </div>
-              <p style="font-size:0.83rem; color:var(--text-secondary); margin:0 0 16px; line-height:1.7;">
-                Más antiguo: ${extremo(a.followers, true)}<br/>
-                Más reciente: ${extremo(a.followers, false)}
-              </p>
-              ${renderAnios(a.rangoFollowers.porAnio)}
-            </div>
-
-            <div class="panel-box">
-              <div class="panel-head">
-                <h3 class="panel-title">${ICONOS.calendar} Seguidos por año</h3>
-                <span class="meta-pill">${a.rangoFollowing.dias !== null ? fmtNum(a.rangoFollowing.dias) + " días de rango" : "Sin rango"}</span>
-              </div>
-              <p style="font-size:0.83rem; color:var(--text-secondary); margin:0 0 16px; line-height:1.7;">
-                Más antiguo: ${extremo(a.following, true)}<br/>
-                Más reciente: ${extremo(a.following, false)}
-              </p>
-              ${renderAnios(a.rangoFollowing.porAnio)}
             </div>
           </div>
         </div>
@@ -4141,7 +3865,7 @@
             <td>${escaparHtml(f.formato)}</td>
             <td class="tabular">${fmtNum(f.registros)}</td>
             <td>
-              <span class="status-tag ${f.estado === "ok" ? "tag-mutual" : "tag-warn"}">
+              <span class="badge ${f.estado === "ok" ? "badge-ok" : "badge-amber"}">
                 ${f.estado === "ok" ? "Leído" : "Error"}
               </span>
             </td>
@@ -4164,10 +3888,10 @@
 
       panel.innerHTML = `
         <div class="explorer-body">
-          <div class="diag-summary">
-            <span class="meta-pill">Archivos analizados: ${fmtNum(d.archivosLeidos.length)}</span>
-            <span class="meta-pill">Multimedia omitida (ahorro RAM): ${fmtNum(d.mediaOmitida)}</span>
-            <span class="meta-pill">Archivos de Threads ignorados: ${fmtNum(d.threadsOmitidos)}</span>
+          <div class="diag-pills">
+            <span class="diag-pill">Archivos analizados: ${fmtNum(d.archivosLeidos.length)}</span>
+            <span class="diag-pill">Multimedia omitida (ahorro RAM): ${fmtNum(d.mediaOmitida)}</span>
+            <span class="diag-pill">Archivos de Threads ignorados: ${fmtNum(d.threadsOmitidos)}</span>
           </div>
           <div class="table-wrap">
             <table>
@@ -4191,8 +3915,10 @@
     }
 
     /* =========================================================================
-       10. INICIALIZACIÓN, TEMA CLARO POR DEFECTO Y EVENTOS
+       10. INICIALIZACIÓN, TEMA CLARO POR DEFECTO, MODAL Y DRAG & DROP GLOBAL
        ========================================================================= */
+
+    const THEME_STORAGE_KEY = "igf_theme_v2";
 
     function aplicarTema(tema) {
       document.documentElement.setAttribute("data-theme", tema);
@@ -4203,53 +3929,32 @@
         btn.setAttribute("aria-label", tema === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
       }
       try {
-        localStorage.setItem("igf_theme", tema);
+        localStorage.setItem(THEME_STORAGE_KEY, tema);
       } catch {
-        // Ignorar si localStorage está restringido
-      }
-      // Re-renderizar avatares si ya hay resultados cargados para ajustar el contraste
-      if (analisisActual) {
-        renderBarraSesion();
-        renderContenidoPestana();
+        // Ignorar si localStorage no está disponible
       }
     }
 
     function iniciarTema() {
       let guardado = null;
       try {
-        guardado = localStorage.getItem("igf_theme");
+        guardado = localStorage.getItem(THEME_STORAGE_KEY);
       } catch {
         guardado = null;
       }
-      // Modo claro por defecto, salvo que el usuario haya elegido oscuro previamente
+      // Siempre inicia en modo claro luminoso por defecto (clave nueva igf_theme_v2)
       aplicarTema(guardado === "dark" ? "dark" : "light");
     }
 
     /**
-     * Actualiza el indicador discreto de estado local / offline en el header.
-     */
-    function actualizarEstadoConexion() {
-      const pill = document.getElementById("networkStatusPill");
-      const text = document.getElementById("networkStatusText");
-      if (!pill || !text) return;
-
-      const offline = typeof navigator !== "undefined" && navigator.onLine === false;
-      pill.classList.toggle("is-offline", offline);
-      text.textContent = offline ? "Offline · 100 % local" : "100 % local";
-    }
-
-    /**
      * Descarga y procesa el archivo real datos_ejemplo_instagram.zip usando el lector ZIP nativo.
-     * Si el navegador bloquea fetch (por ejemplo al abrir con file://), usa la demo en memoria.
      */
     async function cargarZipDeEjemplo() {
       limpiarAlertas();
       try {
         actualizarProgreso(5, "Cargando datos_ejemplo_instagram.zip…");
         const respuesta = await fetch("./datos_ejemplo_instagram.zip", { cache: "no-store" });
-        if (!respuesta.ok) {
-          throw new Error(`HTTP ${respuesta.status}`);
-        }
+        if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
         const blob = await respuesta.blob();
         const archivoZip = new File([blob], "datos_ejemplo_instagram.zip", {
           type: "application/zip"
@@ -4257,9 +3962,9 @@
         await procesarSeleccionArchivos([archivoZip]);
       } catch {
         ocultarProgreso();
-        cargarResultadosEnUI(generarDatosDeEjemplo());
+        cargarResultadosEnUI(generarDatosDeEjemplo(), { esDemo: true });
         mostrarAlerta(
-          "No se pudo descargar datos_ejemplo_instagram.zip (habitual al abrir index.html desde file://). Se han cargado los datos de ejemplo en memoria.",
+          "No se pudo descargar datos_ejemplo_instagram.zip desde esta ruta (habitual en file://). Se mantienen los datos de ejemplo en memoria.",
           "info"
         );
       }
@@ -4267,59 +3972,79 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       iniciarTema();
-      actualizarEstadoConexion();
-      window.addEventListener("online", actualizarEstadoConexion);
-      window.addEventListener("offline", actualizarEstadoConexion);
+
+      // Cargar vista previa interactiva inmediatamente desde el segundo cero
+      cargarResultadosEnUI(generarDatosDeEjemplo(), { esDemo: true });
+
+      const inputFiles = document.getElementById("inputFiles");
+      const inputFolder = document.getElementById("inputFolder");
+      const guideModal = document.getElementById("guideModal");
+      const dropOverlay = document.getElementById("dropOverlay");
+
+      const abrirSelectorZip = () => {
+        guideModal.classList.add("hidden");
+        inputFiles.value = "";
+        inputFiles.click();
+      };
+
+      const abrirSelectorCarpeta = () => {
+        guideModal.classList.add("hidden");
+        inputFolder.value = "";
+        inputFolder.click();
+      };
 
       document.getElementById("btnTheme").addEventListener("click", () => {
         const actual = document.documentElement.getAttribute("data-theme");
         aplicarTema(actual === "dark" ? "light" : "dark");
       });
 
-      const inputFiles = document.getElementById("inputFiles");
-      const inputFolder = document.getElementById("inputFolder");
-      const dropzone = document.getElementById("dropzone");
-
-      const abrirSelectorArchivos = () => {
-        inputFiles.value = "";
-        inputFiles.click();
-      };
-
-      document.getElementById("btnPickFiles").addEventListener("click", abrirSelectorArchivos);
-      const btnPickLoose = document.getElementById("btnPickLoose");
-      if (btnPickLoose) btnPickLoose.addEventListener("click", abrirSelectorArchivos);
-
-      document.getElementById("btnPickFolder").addEventListener("click", () => {
-        inputFolder.value = "";
-        inputFolder.click();
-      });
-
-      document.getElementById("btnLoadDemoZip").addEventListener("click", cargarZipDeEjemplo);
-
-      document.getElementById("btnLoadDemo").addEventListener("click", () => {
-        limpiarAlertas();
-        cargarResultadosEnUI(generarDatosDeEjemplo());
-      });
+      document.getElementById("btnImportZip").addEventListener("click", abrirSelectorZip);
+      document.getElementById("btnModalZip").addEventListener("click", abrirSelectorZip);
+      document.getElementById("btnModalFolder").addEventListener("click", abrirSelectorCarpeta);
 
       inputFiles.addEventListener("change", (e) => procesarSeleccionArchivos(e.target.files));
       inputFolder.addEventListener("change", (e) => procesarSeleccionArchivos(e.target.files));
 
-      // Drag & drop
-      ["dragenter", "dragover"].forEach((ev) => {
-        dropzone.addEventListener(ev, (e) => {
-          e.preventDefault();
-          dropzone.classList.add("dragover");
-        });
+      // Modal de guía de exportación
+      document.getElementById("btnOpenGuide").addEventListener("click", () => {
+        guideModal.classList.remove("hidden");
+      });
+      document.getElementById("btnCloseGuide").addEventListener("click", () => {
+        guideModal.classList.add("hidden");
+      });
+      guideModal.addEventListener("click", (e) => {
+        if (e.target === guideModal) guideModal.classList.add("hidden");
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !guideModal.classList.contains("hidden")) {
+          guideModal.classList.add("hidden");
+        }
       });
 
-      ["dragleave", "drop"].forEach((ev) => {
-        dropzone.addEventListener(ev, (e) => {
-          e.preventDefault();
-          dropzone.classList.remove("dragover");
-        });
+      // Drag & Drop global sobre cualquier punto de la ventana
+      let dragCounter = 0;
+
+      window.addEventListener("dragenter", (e) => {
+        if (!e.dataTransfer || !Array.from(e.dataTransfer.types || []).includes("Files")) return;
+        e.preventDefault();
+        dragCounter++;
+        dropOverlay.classList.remove("hidden");
       });
 
-      dropzone.addEventListener("drop", (e) => {
+      window.addEventListener("dragover", (e) => {
+        if (!e.dataTransfer || !Array.from(e.dataTransfer.types || []).includes("Files")) return;
+        e.preventDefault();
+      });
+
+      window.addEventListener("dragleave", () => {
+        if (dragCounter > 0) dragCounter--;
+        if (dragCounter === 0) dropOverlay.classList.add("hidden");
+      });
+
+      window.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dragCounter = 0;
+        dropOverlay.classList.add("hidden");
         if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
           procesarSeleccionArchivos(e.dataTransfer.files);
         }
