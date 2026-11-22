@@ -2502,6 +2502,147 @@
     .inline-action-danger {
       color: var(--accent-amber, #B45309);
     }
+
+    /* =========================================================================
+       CABECERA MÓVIL NATIVA iOS (<= 680PX) Y SAFE-AREA-INSET-BOTTOM
+       ========================================================================= */
+    .mobile-subbar {
+      display: none;
+    }
+
+    /* Soporte env(safe-area-inset-bottom) para Safari iOS */
+    main.container {
+      padding-bottom: calc(36px + env(safe-area-inset-bottom));
+    }
+    footer {
+      padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+    .drawer-panel,
+    .modal-panel {
+      padding-bottom: calc(22px + env(safe-area-inset-bottom));
+    }
+    .wrapped-backdrop,
+    .cmd-backdrop {
+      padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+
+    @media (max-width: 680px) {
+      .topbar {
+        height: 54px;
+        padding: 0 14px;
+        gap: 8px;
+      }
+      .topbar-left {
+        flex-shrink: 0;
+        gap: 8px;
+      }
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+      .brand-title {
+        font-size: 0.9rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .brand-divider,
+      .session-chip,
+      .import-ext-label,
+      .btn-wrapped-label,
+      .btn-cmd .cmd-kbd,
+      #btnOpenGuide,
+      #btnPrivacy,
+      #btnTheme {
+        display: none;
+      }
+      .topbar-right {
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .topbar-right #btnCmdPalette,
+      .topbar-right #btnOpenWrapped {
+        width: 34px;
+        height: 34px;
+        min-height: 34px;
+        padding: 0;
+      }
+      .topbar-right #btnImportZip {
+        height: 34px;
+        min-height: 34px;
+        padding: 0 12px;
+        font-size: 0.8rem;
+        gap: 5px;
+      }
+
+      /* Segunda sub-fila discreta para cuenta actual + controles secundarios */
+      .mobile-subbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 6px 14px 8px;
+        border-top: 1px solid var(--border);
+        background: var(--surface-glass);
+      }
+      .mobile-subbar-session {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+        font-size: 0.76rem;
+        font-weight: 550;
+        color: var(--text-secondary);
+      }
+      .mobile-subbar-session span:last-child {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .mobile-subbar-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .mobile-sub-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        height: 28px;
+        padding: 0 9px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text-secondary);
+        font-size: 0.74rem;
+        font-weight: 550;
+        cursor: pointer;
+        white-space: nowrap;
+        font-family: inherit;
+      }
+      .mobile-sub-btn svg {
+        width: 13px;
+        height: 13px;
+      }
+      .mobile-sub-btn.is-active {
+        background: var(--accent-amber-soft, rgba(180, 83, 9, 0.12));
+        color: var(--accent-amber, #B45309);
+        border-color: rgba(180, 83, 9, 0.28);
+      }
+
+      main.container {
+        padding: 14px 14px calc(28px + env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (max-width: 360px) {
+      .topbar { padding: 0 10px; gap: 6px; }
+      .brand-title { font-size: 0.84rem; }
+      .topbar-right #btnImportZip { padding: 0 10px; font-size: 0.78rem; }
+      .mobile-subbar { padding: 6px 10px 8px; }
+    }
   </style>
 </head>
 <body>
@@ -2535,7 +2676,7 @@
           <kbd class="cmd-kbd">⌘K</kbd>
         </button>
 
-        <button id="btnOpenWrapped" class="btn btn-wrapped" type="button" title="Abrir Resumen visual y Story Cards descargables (W)">
+        <button id="btnOpenWrapped" class="btn btn-wrapped" type="button" title="Abrir Resumen visual y Story Cards descargables (W)" aria-label="Abrir Resumen visual">
           <svg class="icon icon-sm" viewBox="0 0 24 24">
             <rect x="3" y="3" width="18" height="18" rx="3"></rect>
             <path d="M8 15l2.5-3 2 2.5L16 10l3 5"></path>
@@ -2567,8 +2708,21 @@
             <polyline points="17 8 12 3 7 8"></polyline>
             <line x1="12" y1="3" x2="12" y2="15"></line>
           </svg>
-          Importar .zip
+          <span>Importar<span class="import-ext-label"> .zip</span></span>
         </button>
+      </div>
+    </div>
+
+    <!-- Sub-fila móvil discreta (<= 680px): cuenta actual + guía, privacidad y tema -->
+    <div class="mobile-subbar" aria-label="Controles secundarios">
+      <div class="mobile-subbar-session">
+        <span id="mobileSessionDot" class="status-dot is-demo" aria-hidden="true"></span>
+        <span id="mobileSessionText">@alex_fotografia_demo</span>
+      </div>
+      <div class="mobile-subbar-actions">
+        <button id="btnMobileGuide" class="mobile-sub-btn" type="button">Guía JSON</button>
+        <button id="btnMobilePrivacy" class="mobile-sub-btn" type="button" aria-label="Modo privacidad">Privacidad</button>
+        <button id="btnMobileTheme" class="mobile-sub-btn" type="button" aria-label="Cambiar tema">Tema</button>
       </div>
     </div>
   </header>
@@ -4788,6 +4942,11 @@
         btnW.classList.toggle("is-active", modoPrivacidad);
         btnW.textContent = modoPrivacidad ? "Privacidad: ON" : "Privacidad";
       }
+      const btnM = document.getElementById("btnMobilePrivacy");
+      if (btnM) {
+        btnM.classList.toggle("is-active", modoPrivacidad);
+        btnM.innerHTML = `${modoPrivacidad ? ICONOS.eyeOff : ICONOS.eye}<span>${modoPrivacidad ? "Oculto" : "Privacidad"}</span>`;
+      }
     }
 
     const PRIVACY_STORAGE_KEY = "igf_privacy_v1";
@@ -5083,6 +5242,10 @@
       const handle = a && a.perfil && a.perfil.username ? mostrarHandle(a.perfil.username) : "Exportación local";
       if (chipText) chipText.textContent = handle;
       if (dot) dot.classList.toggle("is-demo", esVistaPreviaDemo);
+      const mText = document.getElementById("mobileSessionText");
+      const mDot = document.getElementById("mobileSessionDot");
+      if (mText) mText.textContent = handle;
+      if (mDot) mDot.classList.toggle("is-demo", esVistaPreviaDemo);
 
       if (!strip) return;
 
@@ -7546,6 +7709,10 @@
         btn.setAttribute("title", tema === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
         btn.setAttribute("aria-label", tema === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
       }
+      const btnMobTheme = document.getElementById("btnMobileTheme");
+      if (btnMobTheme) {
+        btnMobTheme.innerHTML = `${tema === "dark" ? ICONOS.sun : ICONOS.moon}<span>${tema === "dark" ? "Claro" : "Oscuro"}</span>`;
+      }
       try {
         localStorage.setItem(THEME_STORAGE_KEY, tema);
       } catch {
@@ -7623,9 +7790,16 @@
         inputFolder.click();
       };
 
-      document.getElementById("btnTheme").addEventListener("click", () => {
+      const alternarTema = () => {
         const actual = document.documentElement.getAttribute("data-theme");
         aplicarTema(actual === "dark" ? "light" : "dark");
+      };
+
+      document.getElementById("btnTheme").addEventListener("click", alternarTema);
+      document.getElementById("btnMobileTheme").addEventListener("click", alternarTema);
+      document.getElementById("btnMobilePrivacy").addEventListener("click", alternarPrivacidad);
+      document.getElementById("btnMobileGuide").addEventListener("click", () => {
+        guideModal.classList.remove("hidden");
       });
 
       document.getElementById("btnCmdPalette").addEventListener("click", abrirPaletaComandos);
