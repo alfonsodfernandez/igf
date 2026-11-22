@@ -2301,6 +2301,207 @@
       cursor: pointer;
     }
     .wrapped-dl-btn:hover { opacity: 0.92; }
+
+    /* =========================================================================
+       PALETA DE COMANDOS (⌘K / Ctrl+K) Y RENDERIZADO PROGRESIVO
+       ========================================================================= */
+    .btn-cmd {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      gap: 6px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 520;
+    }
+    .btn-cmd:hover {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+    .cmd-kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 1px 5px;
+      border-radius: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+
+    @media (max-width: 640px) {
+      .btn-cmd .cmd-kbd { display: none; }
+    }
+
+    .cmd-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 130;
+      background: rgba(12, 12, 14, 0.56);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: min(14vh, 110px) 16px 24px;
+    }
+    .cmd-backdrop.hidden { display: none; }
+
+    .cmd-panel {
+      width: 100%;
+      max-width: 580px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      max-height: 72vh;
+    }
+
+    .cmd-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cmd-head svg { color: var(--text-muted); flex-shrink: 0; }
+    .cmd-input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.96rem;
+      font-family: inherit;
+      min-width: 0;
+    }
+    .cmd-input::placeholder { color: var(--text-muted); }
+
+    .cmd-list {
+      overflow-y: auto;
+      padding: 8px;
+      flex: 1;
+    }
+    .cmd-group-title {
+      font-size: 0.7rem;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding: 8px 10px 4px;
+    }
+    .cmd-item {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.88rem;
+      transition: background 0.1s ease;
+    }
+    .cmd-item:hover,
+    .cmd-item.is-active {
+      background: var(--surface-subtle);
+    }
+    .cmd-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+    .cmd-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 650;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    .cmd-item.is-active .cmd-avatar {
+      background: var(--surface);
+    }
+    .cmd-item-title {
+      font-weight: 560;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cmd-item-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cmd-item-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .cmd-empty {
+      padding: 28px 16px;
+      text-align: center;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+    .cmd-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 14px;
+      border-top: 1px solid var(--border);
+      background: var(--surface-subtle);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    /* Pie progresivo de listas grandes */
+    .progressive-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .progressive-count {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+    .progressive-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .inline-action-danger {
+      color: var(--accent-amber, #B45309);
+    }
   </style>
 </head>
 <body>
@@ -2326,6 +2527,14 @@
       </div>
 
       <div class="topbar-right">
+        <button id="btnCmdPalette" class="btn btn-cmd" type="button" title="Paleta de comandos y búsqueda rápida (⌘K / Ctrl+K)" aria-label="Abrir paleta de comandos">
+          <svg class="icon icon-sm" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <kbd class="cmd-kbd">⌘K</kbd>
+        </button>
+
         <button id="btnOpenWrapped" class="btn btn-wrapped" type="button" title="Abrir Resumen visual y Story Cards descargables (W)">
           <svg class="icon icon-sm" viewBox="0 0 24 24">
             <rect x="3" y="3" width="18" height="18" rx="3"></rect>
@@ -2548,6 +2757,25 @@
           </svg>
           Descargar PNG
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paleta de comandos y búsqueda global (⌘K / Ctrl+K) -->
+  <div id="cmdModal" class="cmd-backdrop hidden" role="dialog" aria-modal="true" aria-label="Paleta de comandos y búsqueda rápida">
+    <div class="cmd-panel">
+      <div class="cmd-head">
+        <svg class="icon" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input id="cmdInput" class="cmd-input" type="search" autocomplete="off" spellcheck="false" placeholder="Buscar @usuario, pestaña o acción rápida…" aria-label="Buscar cuentas o comandos" />
+        <kbd class="cmd-kbd">ESC</kbd>
+      </div>
+      <div id="cmdList" class="cmd-list" role="listbox"></div>
+      <div class="cmd-foot">
+        <span>↑↓ Navegar · ↵ Abrir · ESC Cerrar</span>
+        <span>Búsqueda global 100 % local</span>
       </div>
     </div>
   </div>
@@ -4562,8 +4790,29 @@
       }
     }
 
+    const PRIVACY_STORAGE_KEY = "igf_privacy_v1";
+    const IDB_NAME = "igf_local_db";
+    const IDB_STORE = "sessions";
+    const IDB_KEY = "latest";
+    const LIMITE_PAGINA = 80;
+    let fechaGuardadoSesion = null;
+
+    function cargarPrivacidadGuardada() {
+      try {
+        modoPrivacidad = localStorage.getItem(PRIVACY_STORAGE_KEY) === "1";
+      } catch {
+        modoPrivacidad = false;
+      }
+      actualizarBotonPrivacidad();
+    }
+
     function alternarPrivacidad() {
       modoPrivacidad = !modoPrivacidad;
+      try {
+        localStorage.setItem(PRIVACY_STORAGE_KEY, modoPrivacidad ? "1" : "0");
+      } catch {
+        // Ignorar
+      }
       actualizarBotonPrivacidad();
       if (analisisActual) {
         actualizarBarraSuperior();
@@ -4571,6 +4820,157 @@
         if (usuarioInspeccionado) abrirInspectorCuenta(usuarioInspeccionado);
         const modal = document.getElementById("wrappedModal");
         if (modal && !modal.classList.contains("hidden")) renderResumenVisual();
+        const cmdModal = document.getElementById("cmdModal");
+        if (cmdModal && !cmdModal.classList.contains("hidden")) renderPaletaComandos();
+      }
+    }
+
+    /* -------------------------------------------------------------------------
+       PERSISTENCIA LOCAL AUTOMÁTICA EN IndexedDB (igf_local_db)
+       ------------------------------------------------------------------------- */
+    function abrirBaseIDB() {
+      return new Promise((resolve, reject) => {
+        if (typeof indexedDB === "undefined") {
+          reject(new Error("IndexedDB no disponible"));
+          return;
+        }
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(IDB_STORE)) {
+            db.createObjectStore(IDB_STORE);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    function serializarAnalisisParaIDB(a) {
+      return {
+        ...a,
+        followersPorUser: Array.from((a.followersPorUser || new Map()).entries()),
+        followingPorUser: Array.from((a.followingPorUser || new Map()).entries()),
+        pendingSet: Array.from(a.pendingSet || []),
+        receivedSet: Array.from(a.receivedSet || []),
+        recentlyUnfollowedSet: Array.from(a.recentlyUnfollowedSet || []),
+        blockedSet: Array.from(a.blockedSet || []),
+        restrictedSet: Array.from(a.restrictedSet || []),
+        closeFriendsSet: Array.from(a.closeFriendsSet || []),
+        likesPorUsuario: Array.from((a.likesPorUsuario || new Map()).entries()),
+        commentsPorUsuario: Array.from((a.commentsPorUsuario || new Map()).entries()),
+        comentariosDetalle: Array.from((a.comentariosDetalle || new Map()).entries()),
+        afinidadPorUser: Array.from((a.afinidadPorUser || new Map()).entries()),
+        ritmoActividad: a.ritmoActividad
+          ? {
+              ...a.ritmoActividad,
+              porDiaIso: Array.from((a.ritmoActividad.porDiaIso || new Map()).entries())
+            }
+          : null,
+        rangoFollowers: a.rangoFollowers
+          ? { ...a.rangoFollowers, porAnio: Array.from((a.rangoFollowers.porAnio || new Map()).entries()) }
+          : null,
+        rangoFollowing: a.rangoFollowing
+          ? { ...a.rangoFollowing, porAnio: Array.from((a.rangoFollowing.porAnio || new Map()).entries()) }
+          : null
+      };
+    }
+
+    function deserializarAnalisisDesdeIDB(raw) {
+      if (!raw || typeof raw !== "object") return null;
+      return {
+        ...raw,
+        followersPorUser: new Map(raw.followersPorUser || []),
+        followingPorUser: new Map(raw.followingPorUser || []),
+        pendingSet: new Set(raw.pendingSet || []),
+        receivedSet: new Set(raw.receivedSet || []),
+        recentlyUnfollowedSet: new Set(raw.recentlyUnfollowedSet || []),
+        blockedSet: new Set(raw.blockedSet || []),
+        restrictedSet: new Set(raw.restrictedSet || []),
+        closeFriendsSet: new Set(raw.closeFriendsSet || []),
+        likesPorUsuario: new Map(raw.likesPorUsuario || []),
+        commentsPorUsuario: new Map(raw.commentsPorUsuario || []),
+        comentariosDetalle: new Map(raw.comentariosDetalle || []),
+        afinidadPorUser: new Map(raw.afinidadPorUser || []),
+        ritmoActividad: raw.ritmoActividad
+          ? { ...raw.ritmoActividad, porDiaIso: new Map(raw.ritmoActividad.porDiaIso || []) }
+          : null,
+        rangoFollowers: raw.rangoFollowers
+          ? { ...raw.rangoFollowers, porAnio: new Map(raw.rangoFollowers.porAnio || []) }
+          : { min: null, max: null, dias: null, conFecha: 0, porAnio: new Map() },
+        rangoFollowing: raw.rangoFollowing
+          ? { ...raw.rangoFollowing, porAnio: new Map(raw.rangoFollowing.porAnio || []) }
+          : { min: null, max: null, dias: null, conFecha: 0, porAnio: new Map() }
+      };
+    }
+
+    async function guardarSesionIDB(analisis) {
+      try {
+        const db = await abrirBaseIDB();
+        const savedAt = Date.now();
+        const payload = serializarAnalisisParaIDB(analisis);
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction(IDB_STORE, "readwrite");
+          tx.objectStore(IDB_STORE).put({ savedAt, payload }, IDB_KEY);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+        db.close();
+        fechaGuardadoSesion = savedAt;
+        actualizarBarraSuperior();
+      } catch {
+        // Si IndexedDB no está disponible (modo incógnito estricto), continuar en memoria
+      }
+    }
+
+    async function cargarSesionIDB() {
+      try {
+        const db = await abrirBaseIDB();
+        const registro = await new Promise((resolve, reject) => {
+          const tx = db.transaction(IDB_STORE, "readonly");
+          const req = tx.objectStore(IDB_STORE).get(IDB_KEY);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => reject(req.error);
+        });
+        db.close();
+        if (!registro || !registro.payload) return null;
+        const analisis = deserializarAnalisisDesdeIDB(registro.payload);
+        if (!analisis || !Array.isArray(analisis.followers)) return null;
+        return { savedAt: registro.savedAt || Date.now(), analisis };
+      } catch {
+        return null;
+      }
+    }
+
+    async function borrarSesionIDB() {
+      try {
+        const db = await abrirBaseIDB();
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction(IDB_STORE, "readwrite");
+          tx.objectStore(IDB_STORE).delete(IDB_KEY);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+        db.close();
+      } catch {
+        // Ignorar
+      }
+      fechaGuardadoSesion = null;
+      cargarResultadosEnUI(generarDatosDeEjemplo(), { esDemo: true, omitirGuardado: true });
+    }
+
+    function formatearFechaGuardado(ms) {
+      if (!ms) return "";
+      try {
+        return new Date(ms).toLocaleString("es-ES", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+      } catch {
+        return "";
       }
     }
 
@@ -4619,11 +5019,16 @@
     function cargarResultadosEnUI(analisis, opciones = {}) {
       analisisActual = analisis;
       esVistaPreviaDemo = Boolean(opciones.esDemo);
+      if (esVistaPreviaDemo) {
+        fechaGuardadoSesion = null;
+      } else if (opciones.savedAt) {
+        fechaGuardadoSesion = opciones.savedAt;
+      }
       comparacionActual = null;
       pestanaActiva = "notFollowingBack";
       subGestion = "pending";
       subDiff = "lost";
-      estadoLista = { busqueda: "", orden: "date_desc", filtroRapido: "all", limite: 100 };
+      estadoLista = { busqueda: "", orden: "date_desc", filtroRapido: "all", limite: LIMITE_PAGINA };
       cargarSeleccionGuardada();
       cerrarInspectorCuenta();
 
@@ -4632,6 +5037,10 @@
       renderVisualizaciones();
       renderPestanas();
       renderContenidoPestana();
+
+      if (!esVistaPreviaDemo && !opciones.omitirGuardado) {
+        guardarSesionIDB(analisis);
+      }
     }
 
     function aplicarComparacionAnterior(anterior, etiqueta) {
@@ -4642,7 +5051,7 @@
       subDiff = diff.seguidoresPerdidos.length > 0 ? "lost" : "gained";
       estadoLista.busqueda = "";
       estadoLista.filtroRapido = "all";
-      estadoLista.limite = 100;
+      estadoLista.limite = LIMITE_PAGINA;
 
       actualizarBarraSuperior();
       renderPestanas();
@@ -4656,7 +5065,7 @@
       pestanaActiva = idPestana;
       estadoLista.busqueda = "";
       estadoLista.filtroRapido = "all";
-      estadoLista.limite = 100;
+      estadoLista.limite = LIMITE_PAGINA;
       renderPestanas();
       renderContenidoPestana();
       if (hacerScroll) {
@@ -4698,6 +5107,9 @@
         const rango = a.rangoFollowers.dias !== null
           ? `${fmtNum(a.rangoFollowers.dias)} días de historial`
           : `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos analizados`;
+        const infoGuardado = fechaGuardadoSesion
+          ? ` · Guardado el ${escaparHtml(formatearFechaGuardado(fechaGuardadoSesion))}`
+          : "";
         const infoDiff = comparacionActual
           ? ` · Comparando con ${escaparHtml(comparacionActual.etiqueta)}`
           : "";
@@ -4705,13 +5117,13 @@
           <div class="preview-strip-left">
             <span class="badge badge-ok">100 % local</span>
             <span>
-              Mostrando <strong>${escaparHtml(handle)}</strong> · ${escaparHtml(rango)}${infoDiff}
+              Mostrando <strong>${escaparHtml(handle)}</strong> · ${escaparHtml(rango)}${infoGuardado}${infoDiff}
             </span>
           </div>
           <div class="preview-strip-actions">
             ${btnCompararHtml}
             <button id="btnPickFolder" class="inline-action inline-action-muted" type="button">Importar carpeta</button>
-            <button id="btnBackToDemo" class="inline-action inline-action-muted" type="button">Volver a vista previa</button>
+            <button id="btnClearSavedSession" class="inline-action inline-action-danger" type="button">Borrar datos guardados</button>
           </div>
         `;
       }
@@ -4725,6 +5137,13 @@
           const inputPrev = document.getElementById("inputPrevFiles");
           inputPrev.value = "";
           inputPrev.click();
+        });
+      }
+
+      const btnClearSaved = document.getElementById("btnClearSavedSession");
+      if (btnClearSaved) {
+        btnClearSaved.addEventListener("click", () => {
+          borrarSesionIDB();
         });
       }
 
@@ -5367,12 +5786,23 @@
         }
         html += `</div>`;
 
-        if (filtrada.length > visibles.length) {
+        if (filtrada.length > LIMITE_PAGINA) {
+          const quedan = filtrada.length - visibles.length;
           html += `
-            <div class="load-more-wrap">
-              <button id="btnLoadMore" class="btn btn-sm" type="button">
-                Mostrar más (${fmtNum(visibles.length)} de ${fmtNum(filtrada.length)})
-              </button>
+            <div class="progressive-footer" id="progressiveFooter">
+              <span class="progressive-count">Mostrando <strong>${fmtNum(visibles.length)}</strong> de <strong>${fmtNum(filtrada.length)}</strong> cuentas</span>
+              ${
+                quedan > 0
+                  ? `<div class="progressive-actions">
+                      <button id="btnLoadMore" class="btn btn-sm" type="button">
+                        Mostrar ${Math.min(LIMITE_PAGINA, quedan)} más
+                      </button>
+                      <button id="btnLoadAll" class="btn btn-ghost btn-sm" type="button">
+                        Mostrar todas
+                      </button>
+                    </div>`
+                  : ""
+              }
             </div>
           `;
         }
@@ -5440,7 +5870,7 @@
       if (searchBox) {
         searchBox.addEventListener("input", (e) => {
           estadoLista.busqueda = e.target.value;
-          estadoLista.limite = 100;
+          estadoLista.limite = LIMITE_PAGINA;
           renderContenidoPestana();
           const nuevoInput = document.getElementById("searchBox");
           if (nuevoInput) {
@@ -5454,6 +5884,7 @@
       if (sortSelect) {
         sortSelect.addEventListener("change", (e) => {
           estadoLista.orden = e.target.value;
+          estadoLista.limite = LIMITE_PAGINA;
           renderContenidoPestana();
         });
       }
@@ -5461,7 +5892,7 @@
       contenedor.querySelectorAll("[data-qfilter]").forEach((pill) => {
         pill.addEventListener("click", () => {
           estadoLista.filtroRapido = pill.dataset.qfilter;
-          estadoLista.limite = 100;
+          estadoLista.limite = LIMITE_PAGINA;
           renderContenidoPestana();
         });
       });
@@ -5494,7 +5925,15 @@
       const btnMore = contenedor.querySelector("#btnLoadMore");
       if (btnMore) {
         btnMore.addEventListener("click", () => {
-          estadoLista.limite += 200;
+          estadoLista.limite += LIMITE_PAGINA;
+          renderContenidoPestana();
+        });
+      }
+
+      const btnAll = contenedor.querySelector("#btnLoadAll");
+      if (btnAll) {
+        btnAll.addEventListener("click", () => {
+          estadoLista.limite = filtrada.length;
           renderContenidoPestana();
         });
       }
@@ -6799,6 +7238,301 @@
     }
 
     /* =========================================================================
+       10C. PALETA DE COMANDOS Y BÚSQUEDA GLOBAL RÁPIDA (⌘K / Ctrl+K)
+       ========================================================================= */
+
+    let cmdActiveIdx = 0;
+    let cmdItemsActuales = [];
+
+    function construirAccionesPaleta() {
+      const temaActual = document.documentElement.getAttribute("data-theme");
+      const acciones = [
+        {
+          id: "tab_notFollowingBack",
+          tipo: "accion",
+          titulo: "Ir a: No te siguen de vuelta",
+          sub: "Pestaña 1",
+          badge: "1",
+          run: () => irAPestana("notFollowingBack", true)
+        },
+        {
+          id: "tab_youDontFollowBack",
+          tipo: "accion",
+          titulo: "Ir a: No sigues de vuelta (Fans)",
+          sub: "Pestaña 2",
+          badge: "2",
+          run: () => irAPestana("youDontFollowBack", true)
+        },
+        {
+          id: "tab_mutuals",
+          tipo: "accion",
+          titulo: "Ir a: Seguidores mutuos",
+          sub: "Pestaña 3",
+          badge: "3",
+          run: () => irAPestana("mutuals", true)
+        },
+        {
+          id: "tab_management",
+          tipo: "accion",
+          titulo: "Ir a: Solicitudes y gestión",
+          sub: "Pendientes, mejores amigos, bloqueados",
+          badge: "4",
+          run: () => irAPestana("management", true)
+        },
+        {
+          id: "tab_interactions",
+          tipo: "accion",
+          titulo: "Ir a: Interacciones y Mapa de actividad (Heatmap)",
+          sub: "Likes, comentarios, chats y heatmap",
+          badge: "5",
+          run: () => irAPestana("interactions", true)
+        },
+        {
+          id: "tab_diff",
+          tipo: "accion",
+          titulo: "Ir a: Cambios históricos (Diff)",
+          sub: "Comparar con exportación anterior",
+          badge: "6",
+          run: () => irAPestana("diff", true)
+        },
+        {
+          id: "tab_diagnostics",
+          tipo: "accion",
+          titulo: "Ir a: Diagnóstico de archivos",
+          sub: "Pestaña 7",
+          badge: "7",
+          run: () => irAPestana("diagnostics", true)
+        },
+        {
+          id: "act_wrapped",
+          tipo: "accion",
+          titulo: "Abrir Resumen visual (Story Cards PNG)",
+          sub: "Tarjetas compartibles en 4:5 y 1:1",
+          badge: "W",
+          run: () => abrirResumenVisual()
+        },
+        {
+          id: "act_privacy",
+          tipo: "accion",
+          titulo: modoPrivacidad ? "Desactivar Modo privacidad" : "Activar Modo privacidad",
+          sub: "Ocultar @usuarios y nombres para capturas y PNG",
+          badge: modoPrivacidad ? "ON" : "OFF",
+          run: () => alternarPrivacidad()
+        },
+        {
+          id: "act_theme",
+          tipo: "accion",
+          titulo: temaActual === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro",
+          sub: "Apariencia de la interfaz",
+          badge: temaActual === "dark" ? "Claro" : "Oscuro",
+          run: () => aplicarTema(temaActual === "dark" ? "light" : "dark")
+        },
+        {
+          id: "act_export_csv",
+          tipo: "accion",
+          titulo: "Exportar lista actual a CSV",
+          sub: "Descarga el conjunto filtrado completo",
+          badge: "CSV",
+          run: () => {
+            const btn = document.getElementById("btnExportCsv");
+            if (btn && !btn.disabled) btn.click();
+          }
+        },
+        {
+          id: "act_import_zip",
+          tipo: "accion",
+          titulo: "Importar exportación (.zip / .json / .html)",
+          sub: "Procesamiento 100 % local",
+          badge: "ZIP",
+          run: () => {
+            const inp = document.getElementById("inputFiles");
+            if (inp) { inp.value = ""; inp.click(); }
+          }
+        },
+        {
+          id: "act_compare",
+          tipo: "accion",
+          titulo: "Comparar con exportación anterior",
+          sub: "Detectar nuevos seguidores, bajas y cambios de @",
+          badge: "Diff",
+          run: () => {
+            const inp = document.getElementById("inputPrevFiles");
+            if (inp) { inp.value = ""; inp.click(); }
+          }
+        }
+      ];
+
+      if (!esVistaPreviaDemo) {
+        acciones.push({
+          id: "act_clear_idb",
+          tipo: "accion",
+          titulo: "Borrar datos guardados",
+          sub: "Elimina la sesión local de IndexedDB y vuelve a la vista previa",
+          badge: "Limpiar",
+          run: () => borrarSesionIDB()
+        });
+      }
+      return acciones;
+    }
+
+    function obtenerEstadoBadgeCuenta(username) {
+      const a = analisisActual;
+      if (!a) return { txt: "Cuenta", cls: "badge-neutral" };
+      const esFoll = a.followersPorUser && a.followersPorUser.has(username);
+      const esFing = a.followingPorUser && a.followingPorUser.has(username);
+      if (esFoll && esFing) return { txt: "Mutuo", cls: "badge-ok" };
+      if (esFing && !esFoll) return { txt: "No te sigue", cls: "badge-amber" };
+      if (esFoll && !esFing) return { txt: "Fan", cls: "badge-blue" };
+      return { txt: "Actividad", cls: "badge-neutral" };
+    }
+
+    function buscarCuentasPaleta(queryRaw) {
+      const a = analisisActual;
+      if (!a || !a.afinidadPorUser) return [];
+      const q = queryRaw.trim().toLowerCase().replace(/^@+/, "");
+      const lista = a.topAfinidad || [];
+      if (!q) {
+        return lista.slice(0, 5);
+      }
+      const res = [];
+      for (const item of lista) {
+        const u = (item.username || "").toLowerCase();
+        const n = (item.displayName || "").toLowerCase();
+        if (u.includes(q) || n.includes(q)) {
+          res.push(item);
+          if (res.length >= 8) break;
+        }
+      }
+      return res;
+    }
+
+    function renderPaletaComandos() {
+      const input = document.getElementById("cmdInput");
+      const listEl = document.getElementById("cmdList");
+      if (!input || !listEl) return;
+
+      const qRaw = input.value || "";
+      const q = qRaw.trim().toLowerCase();
+      const cuentas = buscarCuentasPaleta(qRaw);
+      const accionesTodas = construirAccionesPaleta();
+      const acciones = q
+        ? accionesTodas.filter(
+            (ac) =>
+              ac.titulo.toLowerCase().includes(q) ||
+              ac.sub.toLowerCase().includes(q) ||
+              ac.badge.toLowerCase().includes(q)
+          )
+        : accionesTodas;
+
+      cmdItemsActuales = [];
+      let html = "";
+
+      if (cuentas.length > 0) {
+        html += `<div class="cmd-group-title">${q ? "Cuentas encontradas" : "Conexiones destacadas"}</div>`;
+        for (const c of cuentas) {
+          const idx = cmdItemsActuales.length;
+          const est = obtenerEstadoBadgeCuenta(c.username);
+          const handleVis = mostrarHandle(c.username);
+          const nombreVis = mostrarNombre(c.displayName);
+          cmdItemsActuales.push({
+            run: () => {
+              cerrarPaletaComandos();
+              abrirInspectorCuenta(c.username);
+            }
+          });
+          html += `
+            <button type="button" class="cmd-item ${idx === cmdActiveIdx ? "is-active" : ""}" data-cmd-idx="${idx}" role="option" aria-selected="${idx === cmdActiveIdx}">
+              <span class="cmd-item-left">
+                <span class="cmd-avatar">${escaparHtml(modoPrivacidad ? "••" : inicialesUsuario(c.username))}</span>
+                <span style="min-width:0;">
+                  <div class="cmd-item-title">${escaparHtml(handleVis)}</div>
+                  ${nombreVis ? `<div class="cmd-item-sub">${escaparHtml(nombreVis)}</div>` : ""}
+                </span>
+              </span>
+              <span class="cmd-item-right">
+                <span class="affinity-pill ${c.clase}"><span class="aff-dot"></span>${c.score}</span>
+                <span class="badge ${est.cls}">${escaparHtml(est.txt)}</span>
+              </span>
+            </button>
+          `;
+        }
+      }
+
+      if (acciones.length > 0) {
+        html += `<div class="cmd-group-title">Vistas y acciones rápidas</div>`;
+        for (const ac of acciones) {
+          const idx = cmdItemsActuales.length;
+          cmdItemsActuales.push({
+            run: () => {
+              cerrarPaletaComandos();
+              ac.run();
+            }
+          });
+          html += `
+            <button type="button" class="cmd-item ${idx === cmdActiveIdx ? "is-active" : ""}" data-cmd-idx="${idx}" role="option" aria-selected="${idx === cmdActiveIdx}">
+              <span class="cmd-item-left">
+                <span style="min-width:0;">
+                  <div class="cmd-item-title">${escaparHtml(ac.titulo)}</div>
+                  <div class="cmd-item-sub">${escaparHtml(ac.sub)}</div>
+                </span>
+              </span>
+              <span class="cmd-item-right">
+                <kbd class="cmd-kbd">${escaparHtml(ac.badge)}</kbd>
+              </span>
+            </button>
+          `;
+        }
+      }
+
+      if (cmdItemsActuales.length === 0) {
+        html = `<div class="cmd-empty">No se encontraron cuentas ni comandos para «${escaparHtml(qRaw)}».</div>`;
+        cmdActiveIdx = 0;
+      } else {
+        if (cmdActiveIdx >= cmdItemsActuales.length) cmdActiveIdx = 0;
+        if (cmdActiveIdx < 0) cmdActiveIdx = cmdItemsActuales.length - 1;
+      }
+
+      listEl.innerHTML = html;
+
+      // Re-marcar activo si se ajustó el índice
+      listEl.querySelectorAll(".cmd-item").forEach((el) => {
+        const i = Number(el.dataset.cmdIdx);
+        el.classList.toggle("is-active", i === cmdActiveIdx);
+        el.setAttribute("aria-selected", String(i === cmdActiveIdx));
+        el.addEventListener("mouseenter", () => {
+          cmdActiveIdx = i;
+          listEl.querySelectorAll(".cmd-item").forEach((other) => {
+            other.classList.toggle("is-active", Number(other.dataset.cmdIdx) === cmdActiveIdx);
+          });
+        });
+        el.addEventListener("click", () => {
+          if (cmdItemsActuales[i]) cmdItemsActuales[i].run();
+        });
+      });
+
+      const activeEl = listEl.querySelector(".cmd-item.is-active");
+      if (activeEl && activeEl.scrollIntoView) {
+        activeEl.scrollIntoView({ block: "nearest" });
+      }
+    }
+
+    function abrirPaletaComandos() {
+      const modal = document.getElementById("cmdModal");
+      const input = document.getElementById("cmdInput");
+      if (!modal || !input) return;
+      input.value = "";
+      cmdActiveIdx = 0;
+      modal.classList.remove("hidden");
+      renderPaletaComandos();
+      requestAnimationFrame(() => input.focus());
+    }
+
+    function cerrarPaletaComandos() {
+      const modal = document.getElementById("cmdModal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    /* =========================================================================
        11. INICIALIZACIÓN, TEMA CLARO POR DEFECTO, ATAJOS DE TECLADO Y EVENTOS
        ========================================================================= */
 
@@ -6850,12 +7584,21 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
       iniciarTema();
-      actualizarBotonPrivacidad();
+      cargarPrivacidadGuardada();
 
-      // Cargar vista previa interactiva inmediatamente desde el segundo cero
-      cargarResultadosEnUI(generarDatosDeEjemplo(), { esDemo: true });
+      // Restaurar sesión guardada en IndexedDB si existe; si no, mostrar vista previa interactiva
+      const sesionGuardada = await cargarSesionIDB();
+      if (sesionGuardada && sesionGuardada.analisis) {
+        cargarResultadosEnUI(sesionGuardada.analisis, {
+          esDemo: false,
+          savedAt: sesionGuardada.savedAt,
+          omitirGuardado: true
+        });
+      } else {
+        cargarResultadosEnUI(generarDatosDeEjemplo(), { esDemo: true });
+      }
 
       const inputFiles = document.getElementById("inputFiles");
       const inputFolder = document.getElementById("inputFolder");
@@ -6863,6 +7606,8 @@
       const inputPrevFolder = document.getElementById("inputPrevFolder");
       const guideModal = document.getElementById("guideModal");
       const wrappedModal = document.getElementById("wrappedModal");
+      const cmdModal = document.getElementById("cmdModal");
+      const cmdInput = document.getElementById("cmdInput");
       const inspectorDrawer = document.getElementById("inspectorDrawer");
       const dropOverlay = document.getElementById("dropOverlay");
 
@@ -6881,6 +7626,35 @@
       document.getElementById("btnTheme").addEventListener("click", () => {
         const actual = document.documentElement.getAttribute("data-theme");
         aplicarTema(actual === "dark" ? "light" : "dark");
+      });
+
+      document.getElementById("btnCmdPalette").addEventListener("click", abrirPaletaComandos);
+      cmdModal.addEventListener("click", (e) => {
+        if (e.target === cmdModal) cerrarPaletaComandos();
+      });
+      cmdInput.addEventListener("input", () => {
+        cmdActiveIdx = 0;
+        renderPaletaComandos();
+      });
+      cmdInput.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          if (cmdItemsActuales.length > 0) {
+            cmdActiveIdx = (cmdActiveIdx + 1) % cmdItemsActuales.length;
+            renderPaletaComandos();
+          }
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          if (cmdItemsActuales.length > 0) {
+            cmdActiveIdx = (cmdActiveIdx - 1 + cmdItemsActuales.length) % cmdItemsActuales.length;
+            renderPaletaComandos();
+          }
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (cmdItemsActuales[cmdActiveIdx]) {
+            cmdItemsActuales[cmdActiveIdx].run();
+          }
+        }
       });
 
       document.getElementById("btnPrivacy").addEventListener("click", alternarPrivacidad);
@@ -6929,14 +7703,24 @@
         if (e.target === inspectorDrawer) cerrarInspectorCuenta();
       });
 
-      // Atajos de teclado estilo Cron / Linear: "/" buscador, "1"-"7" pestañas, "w" resumen visual, "←"/"→" tarjetas, "Esc" cerrar paneles
+      // Atajos de teclado estilo Cron / Linear: "⌘K/Ctrl+K" paleta, "/" buscador, "1"-"7" pestañas, "w" resumen visual, "←"/"→" tarjetas, "Esc" cerrar paneles
       document.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+          e.preventDefault();
+          if (cmdModal.classList.contains("hidden")) abrirPaletaComandos();
+          else cerrarPaletaComandos();
+          return;
+        }
+
         if (e.key === "Escape") {
+          if (!cmdModal.classList.contains("hidden")) cerrarPaletaComandos();
           if (!wrappedModal.classList.contains("hidden")) cerrarResumenVisual();
           if (!inspectorDrawer.classList.contains("hidden")) cerrarInspectorCuenta();
           if (!guideModal.classList.contains("hidden")) guideModal.classList.add("hidden");
           return;
         }
+
+        if (!cmdModal.classList.contains("hidden")) return;
 
         if (!wrappedModal.classList.contains("hidden")) {
           if (e.key === "ArrowLeft" && wrappedIndex > 0) {
