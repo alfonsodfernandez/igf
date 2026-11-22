@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Analizador de Instagram — 100 % Local y Privado</title>
   <meta name="description" content="Analiza tu exportación oficial de Instagram (ZIP, JSON o HTML) 100 % en local en tu navegador: quién no te sigue de vuelta, mutuos, solicitudes pendientes, actividad y cronología. Sin contraseñas ni servidores." />
-  <meta name="theme-color" content="#d62976" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#09090B" media="(prefers-color-scheme: dark)" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Analizador IG" />
@@ -15,91 +16,131 @@
   <meta property="og:url" content="https://alfonsodfernandez.github.io/igf/" />
   <meta property="og:locale" content="es_ES" />
   <meta name="twitter:card" content="summary" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23833ab4'/%3E%3Cstop offset='55%25' stop-color='%23d62976'/%3E%3Cstop offset='100%25' stop-color='%23f77737'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='28' font-weight='800' fill='%23ffffff'%3EIG%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23833ab4'/%3E%3Cstop offset='55%25' stop-color='%23e1306c'/%3E%3Cstop offset='100%25' stop-color='%23f77737'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='13' fill='none' stroke='%23ffffff' stroke-width='4.5'/%3E%3Ccircle cx='46' cy='18' r='3.5' fill='%23ffffff'/%3E%3C/svg%3E" />
   <style>
     /* =========================================================================
-       VARIABLES DE DISEÑO (MODO CLARO Y MODO OSCURO)
+       SISTEMA DE DISEÑO — ESTÉTICA EDITORIAL MINIMALISTA (CLARO / OSCURO)
        ========================================================================= */
     :root {
-      --bg: #f6f7fb;
-      --surface: #ffffff;
-      --surface-soft: #f1f3f9;
-      --border: #e3e7f0;
-      --text: #141824;
-      --text-muted: #5c6478;
-      --accent: #d62976;
-      --accent-2: #833ab4;
-      --accent-soft: rgba(214, 41, 118, 0.1);
-      --gradient: linear-gradient(135deg, #833ab4 0%, #d62976 55%, #f77737 100%);
-      --ok: #15803d;
-      --ok-soft: rgba(21, 128, 61, 0.12);
-      --warn: #b45309;
-      --warn-soft: rgba(180, 83, 9, 0.12);
-      --danger: #be123c;
-      --danger-soft: rgba(190, 18, 60, 0.12);
-      --info: #1d4ed8;
-      --info-soft: rgba(29, 78, 216, 0.1);
-      --shadow: 0 8px 24px rgba(20, 24, 36, 0.06);
-      --radius: 14px;
-      --radius-sm: 9px;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --surface-subtle: #F4F4F5;
+      --surface-hover: #F4F4F5;
+      --surface-glass: rgba(255, 255, 255, 0.86);
+      --border: #E4E4E7;
+      --border-strong: #D4D4D8;
+      --text: #09090B;
+      --text-secondary: #3F3F46;
+      --text-muted: #71717A;
+      --accent: #E1306C;
+      --accent-soft: rgba(225, 48, 108, 0.08);
+      --ig-gradient: linear-gradient(135deg, #833AB4 0%, #E1306C 55%, #F77737 100%);
+      --ok: #059669;
+      --ok-soft: rgba(5, 150, 105, 0.1);
+      --danger: #E11D48;
+      --danger-soft: rgba(225, 29, 72, 0.09);
+      --warn: #D97706;
+      --warn-soft: rgba(217, 119, 6, 0.1);
+      --info: #4F46E5;
+      --info-soft: rgba(79, 70, 229, 0.09);
+      --shadow-xs: 0 1px 2px rgba(9, 9, 11, 0.04);
+      --shadow-sm: 0 2px 8px rgba(9, 9, 11, 0.04), 0 1px 2px rgba(9, 9, 11, 0.03);
+      --shadow-md: 0 12px 32px rgba(9, 9, 11, 0.07), 0 2px 6px rgba(9, 9, 11, 0.03);
+      --radius: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --font: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     [data-theme="dark"] {
-      --bg: #0e1118;
-      --surface: #161b26;
-      --surface-soft: #1e2534;
-      --border: #2a3347;
-      --text: #eef2fa;
-      --text-muted: #9aa4bc;
-      --accent: #f0488e;
-      --accent-2: #a855f7;
-      --accent-soft: rgba(240, 72, 142, 0.16);
-      --ok: #4ade80;
-      --ok-soft: rgba(74, 222, 128, 0.14);
-      --warn: #fbbf24;
-      --warn-soft: rgba(251, 191, 36, 0.14);
-      --danger: #fb7185;
-      --danger-soft: rgba(251, 113, 133, 0.15);
-      --info: #60a5fa;
-      --info-soft: rgba(96, 165, 250, 0.14);
-      --shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      --bg: #09090B;
+      --surface: #111113;
+      --surface-subtle: #18181B;
+      --surface-hover: #1F1F23;
+      --surface-glass: rgba(17, 17, 19, 0.86);
+      --border: #27272A;
+      --border-strong: #3F3F46;
+      --text: #FAFAFA;
+      --text-secondary: #D4D4D8;
+      --text-muted: #A1A1AA;
+      --accent: #F43F5E;
+      --accent-soft: rgba(244, 63, 94, 0.14);
+      --ok: #34D399;
+      --ok-soft: rgba(52, 211, 153, 0.12);
+      --danger: #FB7185;
+      --danger-soft: rgba(251, 113, 133, 0.14);
+      --warn: #FBBF24;
+      --warn-soft: rgba(251, 191, 36, 0.13);
+      --info: #818CF8;
+      --info-soft: rgba(129, 140, 248, 0.14);
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.32);
+      --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.45);
     }
 
     /* =========================================================================
-       BASE Y ESTRUCTURA GENERAL
+       BASE, TIPOGRAFÍA E ICONOGRAFÍA
        ========================================================================= */
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
     body {
       margin: 0;
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
       min-height: 100vh;
-      transition: background 0.2s ease, color 0.2s ease;
+      transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
     }
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: inherit; text-decoration: none; }
+
+    button, input, select { font-family: inherit; }
+
+    .tabular { font-variant-numeric: tabular-nums; }
+
+    .hidden { display: none !important; }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .icon-sm { width: 14px; height: 14px; }
+    .icon-lg { width: 22px; height: 22px; stroke-width: 1.6; }
 
     .container {
-      max-width: 1120px;
+      max-width: 1160px;
       margin: 0 auto;
-      padding: 20px 18px 64px;
+      padding: 0 24px 72px;
     }
 
-    /* Barra superior */
+    /* =========================================================================
+       HEADER MINIMALISTA EN UNA SOLA LÍNEA
+       ========================================================================= */
     .topbar {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 22px;
-      padding-bottom: 16px;
+      gap: 16px;
+      padding: 20px 0;
+      margin-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -107,722 +148,57 @@
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: var(--gradient);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 800;
-      font-size: 1.15rem;
-      box-shadow: 0 4px 14px rgba(214, 41, 118, 0.3);
-      flex-shrink: 0;
-    }
-
-    .brand h1 {
-      margin: 0;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    .brand p {
-      margin: 2px 0 0;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .topbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .privacy-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--ok-soft);
-      color: var(--ok);
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    /* Botones */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      padding: 9px 15px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      font-size: 0.9rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
-    }
-
-    .btn:hover {
-      background: var(--surface-soft);
-      border-color: var(--accent);
-    }
-
-    .btn:active { transform: translateY(1px); }
-
-    .btn-primary {
-      background: var(--gradient);
-      color: #fff;
-      border: none;
-    }
-
-    .btn-primary:hover {
-      opacity: 0.94;
-      background: var(--gradient);
-    }
-
-    .btn-sm {
-      padding: 6px 11px;
-      font-size: 0.82rem;
-    }
-
-    /* Tarjetas */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      margin-bottom: 18px;
-    }
-
-    .hidden { display: none !important; }
-
-    /* =========================================================================
-       ZONA DE CARGA E INSTRUCCIONES
-       ========================================================================= */
-    .dropzone {
-      border: 2px dashed var(--border);
-      border-radius: var(--radius);
-      padding: 34px 20px;
-      text-align: center;
-      background: var(--surface-soft);
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .dropzone.dragover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    .dropzone-icon {
-      font-size: 2.3rem;
-      margin-bottom: 8px;
-    }
-
-    .dropzone h2 {
-      margin: 0 0 6px;
-      font-size: 1.2rem;
-    }
-
-    .dropzone p {
-      margin: 0 auto 18px;
-      max-width: 620px;
-      color: var(--text-muted);
-      font-size: 0.93rem;
-    }
-
-    .upload-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .progress-wrap {
-      margin-top: 18px;
-      max-width: 520px;
-      margin-inline: auto;
-      text-align: left;
-    }
-
-    .progress-bar-bg {
-      height: 8px;
-      background: var(--border);
-      border-radius: 999px;
-      overflow: hidden;
-      margin-top: 6px;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--gradient);
-      transition: width 0.15s ease;
-    }
-
-    .progress-text {
-      font-size: 0.83rem;
-      color: var(--text-muted);
-    }
-
-    /* Mensajes de alerta */
-    .alert {
-      padding: 13px 16px;
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-      border: 1px solid transparent;
-    }
-
-    .alert-danger {
-      background: var(--danger-soft);
-      color: var(--danger);
-      border-color: rgba(190, 18, 60, 0.25);
-    }
-
-    .alert-warn {
-      background: var(--warn-soft);
-      color: var(--warn);
-      border-color: rgba(180, 83, 9, 0.25);
-    }
-
-    .alert-info {
-      background: var(--info-soft);
-      color: var(--info);
-      border-color: rgba(29, 78, 216, 0.2);
-    }
-
-    /* Acordeón de instrucciones */
-    details.guide {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-bottom: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    details.guide summary {
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 1rem;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    details.guide summary::-webkit-details-marker { display: none; }
-
-    details.guide summary::after {
-      content: "▾";
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      transition: transform 0.2s ease;
-    }
-
-    details.guide[open] summary::after {
-      transform: rotate(180deg);
-    }
-
-    .guide-steps {
-      margin: 14px 0 0;
-      padding-left: 20px;
-      color: var(--text);
-      font-size: 0.92rem;
-    }
-
-    .guide-steps li { margin-bottom: 8px; }
-
-    .guide-tip {
-      margin-top: 12px;
-      padding: 10px 13px;
-      border-radius: var(--radius-sm);
-      background: var(--surface-soft);
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    /* =========================================================================
-       DASHBOARD DE RESULTADOS
-       ========================================================================= */
-    .profile-banner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px 20px;
-      border-radius: var(--radius);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      margin-bottom: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .profile-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .profile-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--gradient);
-      color: #fff;
-      font-weight: 800;
-      font-size: 1.2rem;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-
-    .profile-meta h2 {
-      margin: 0;
-      font-size: 1.1rem;
-    }
-
-    .profile-meta p {
-      margin: 2px 0 0;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .range-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    /* Tarjetas de métricas (KPIs) */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .kpi {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 15px 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .kpi-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    .kpi-value {
-      font-size: 1.6rem;
-      font-weight: 800;
-      margin-top: 4px;
-      letter-spacing: -0.02em;
-    }
-
-    .kpi-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .kpi.kpi-danger .kpi-value { color: var(--danger); }
-    .kpi.kpi-ok .kpi-value { color: var(--ok); }
-    .kpi.kpi-accent .kpi-value { color: var(--accent); }
-
-    /* Pestañas */
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-    }
-
-    .tab-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 13px;
-      border-radius: var(--radius-sm);
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-
-    .tab-btn:hover {
-      background: var(--surface-soft);
-      color: var(--text);
-    }
-
-    .tab-btn.active {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-color: rgba(214, 41, 118, 0.28);
-    }
-
-    .tab-badge {
-      padding: 1px 7px;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .tab-btn.active .tab-badge {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    /* Barra de herramientas de lista */
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .toolbar-left {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-      flex: 1;
-    }
-
-    .input, .select {
-      padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      color: var(--text);
-      font-size: 0.88rem;
-      font-family: inherit;
-      outline: none;
-    }
-
-    .input:focus, .select:focus {
-      border-color: var(--accent);
-      background: var(--surface);
-    }
-
-    .search-input {
-      min-width: 220px;
-      flex: 1;
-      max-width: 340px;
-    }
-
-    /* Lista de cuentas */
-    .account-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 10px;
-    }
-
-    .account-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 13px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      transition: border-color 0.15s ease;
-    }
-
-    .account-item:hover {
-      border-color: var(--accent);
-    }
-
-    .account-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
       min-width: 0;
     }
 
-    .avatar-mini {
+    .brand-mark {
       width: 34px;
       height: 34px;
-      border-radius: 50%;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.85rem;
+      border-radius: 10px;
+      background: var(--ig-gradient);
       display: grid;
       place-items: center;
+      color: #FFFFFF;
       flex-shrink: 0;
-      text-transform: uppercase;
+      box-shadow: 0 2px 10px rgba(225, 48, 108, 0.24);
     }
 
-    .account-info {
+    .brand-text {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
       min-width: 0;
     }
 
-    .account-user {
-      display: block;
-      font-weight: 700;
-      font-size: 0.92rem;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .account-user:hover {
-      color: var(--accent);
-    }
-
-    .account-sub {
-      font-size: 0.77rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .account-right {
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    .date-tag {
-      display: block;
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .mini-badge {
-      display: inline-block;
-      margin-top: 2px;
-      padding: 1px 6px;
-      border-radius: 6px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      background: var(--info-soft);
-      color: var(--info);
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 36px 16px;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .load-more-wrap {
-      text-align: center;
-      margin-top: 16px;
-    }
-
-    /* Sub-pestañas dentro de secciones compuestas */
-    .subtabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .subtab-btn {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      color: var(--text-muted);
-      font-size: 0.83rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    .subtab-btn.active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    /* Rankings y barras de actividad / cronología */
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 16px;
-    }
-
-    .panel-box {
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 15px;
-    }
-
-    .panel-box h3 {
-      margin: 0 0 12px;
+    .brand-name {
       font-size: 0.98rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
     }
 
-    .rank-row {
-      margin-bottom: 10px;
+    .brand-sep {
+      color: var(--border-strong);
+      font-weight: 300;
     }
 
-    .rank-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 0.86rem;
-      margin-bottom: 4px;
-    }
-
-    .rank-name {
-      font-weight: 600;
+    .brand-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .rank-count {
-      color: var(--text-muted);
-      font-variant-numeric: tabular-nums;
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       flex-shrink: 0;
     }
 
-    .bar-track {
-      height: 7px;
-      border-radius: 999px;
-      background: var(--border);
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      border-radius: 999px;
-      background: var(--gradient);
-    }
-
-    /* Tabla de diagnóstico */
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      border-radius: var(--radius-sm);
-    }
-
-    table {
-      width: 100%;
-      min-width: 560px;
-      border-collapse: collapse;
-      font-size: 0.84rem;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 9px 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    th {
-      color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.77rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      white-space: nowrap;
-    }
-
-    .mono {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      word-break: break-all;
-    }
-
-    .status-pill {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 0.74rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .status-ok { background: var(--ok-soft); color: var(--ok); }
-    .status-warn { background: var(--warn-soft); color: var(--warn); }
-    .status-skip { background: var(--surface-soft); color: var(--text-muted); }
-
-    /* Banner de privacidad visible en cabecera */
-    .privacy-banner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px 16px;
-      padding: 12px 16px;
-      margin-bottom: 18px;
-      border-radius: var(--radius);
-      background: var(--ok-soft);
-      border: 1px solid rgba(21, 128, 61, 0.22);
-      font-size: 0.86rem;
-      color: var(--text);
-    }
-
-    [data-theme="dark"] .privacy-banner {
-      border-color: rgba(74, 222, 128, 0.24);
-    }
-
-    .privacy-banner-text {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      flex: 1;
-      min-width: 240px;
-    }
-
-    .privacy-banner-text strong {
-      color: var(--ok);
-    }
-
-    .net-status {
+    .local-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -832,164 +208,1453 @@
       border: 1px solid var(--border);
       font-size: 0.78rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       white-space: nowrap;
+      box-shadow: var(--shadow-xs);
     }
 
-    .net-dot {
-      width: 8px;
-      height: 8px;
+    .local-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--ok);
       flex-shrink: 0;
     }
 
-    .net-status.is-offline .net-dot {
+    .local-badge.is-offline .local-dot {
       background: var(--info);
     }
 
-    /* Enlaces secundarios bajo los botones de carga */
-    .demo-links {
-      margin-top: 14px;
-      display: flex;
-      flex-wrap: wrap;
+    /* Botones reutilizables */
+    .btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px 14px;
-      font-size: 0.85rem;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      box-shadow: var(--shadow-xs);
+      transition: background-color 0.16s var(--ease), border-color 0.16s var(--ease), transform 0.12s var(--ease), box-shadow 0.16s var(--ease);
+    }
+
+    .btn:hover:not(:disabled) {
+      background: var(--surface-hover);
+      border-color: var(--border-strong);
+    }
+
+    .btn:active:not(:disabled) { transform: translateY(1px); }
+
+    .btn:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: transparent;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--text);
+      opacity: 0.9;
+      border-color: transparent;
+    }
+
+    .btn-accent {
+      background: var(--ig-gradient);
+      color: #FFFFFF;
+      border: none;
+      box-shadow: 0 4px 14px rgba(225, 48, 108, 0.25);
+    }
+
+    .btn-accent:hover:not(:disabled) {
+      background: var(--ig-gradient);
+      opacity: 0.94;
+      box-shadow: 0 6px 20px rgba(225, 48, 108, 0.32);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+      background: var(--surface-subtle);
+      color: var(--text);
+      border-color: transparent;
+    }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 0.82rem;
+    }
+
+    .btn-icon {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Alertas */
+    .alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.87rem;
+      margin: 12px 0 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .alert-danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border-color: rgba(225, 29, 72, 0.22);
+    }
+
+    .alert-warn {
+      background: var(--warn-soft);
+      color: var(--warn);
+      border-color: rgba(217, 119, 6, 0.24);
+    }
+
+    .alert-info {
+      background: var(--info-soft);
+      color: var(--info);
+      border-color: rgba(79, 70, 229, 0.22);
+    }
+
+    /* =========================================================================
+       PANTALLA DE BIENVENIDA — HERO 2 COLUMNAS + DROPZONE PROTAGONISTA
+       ========================================================================= */
+    .welcome-wrap {
+      padding-top: 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 44px;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 16px;
+      font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+      font-weight: 750;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--text);
+    }
+
+    .hero-copy p {
+      margin: 0 0 26px;
+      font-size: clamp(0.98rem, 1.25vw, 1.06rem);
+      color: var(--text-muted);
+      max-width: 48ch;
+      line-height: 1.6;
+    }
+
+    .hero-demo-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-demo-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--text-muted);
     }
 
-    .link-btn {
+    .hero-demo-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
       background: none;
       border: none;
-      padding: 4px 2px;
-      color: var(--accent);
-      font: inherit;
-      font-weight: 600;
+      padding: 4px 0;
       cursor: pointer;
+      transition: color 0.15s ease;
     }
 
-    .link-btn:hover {
-      text-decoration: underline;
+    .text-link:hover {
+      color: var(--text);
     }
 
-    footer {
-      margin-top: 32px;
+    /* Dropzone protagonista */
+    .dropzone {
+      position: relative;
+      background: var(--surface);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: var(--radius);
+      padding: 38px 28px 32px;
       text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+
+    .dropzone:hover {
+      border-color: var(--text-muted);
+      box-shadow: var(--shadow-md);
+    }
+
+    .dropzone.dragover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow-md);
+    }
+
+    .dropzone-icon-wrap {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 18px;
+      border-radius: 14px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      transition: transform 0.2s var(--ease), background-color 0.2s var(--ease), color 0.2s var(--ease);
+    }
+
+    .dropzone.dragover .dropzone-icon-wrap {
+      transform: scale(1.06);
+      background: var(--surface);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .dropzone h2 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .dropzone-sub {
+      margin: 0 auto 22px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      max-width: 34ch;
+    }
+
+    .dropzone-primary-cta {
+      width: 100%;
+      max-width: 280px;
+      padding: 11px 20px;
+    }
+
+    .dropzone-secondary {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 14px;
       font-size: 0.82rem;
       color: var(--text-muted);
     }
 
-    /* Ajustes responsive finos para móvil y pantallas táctiles */
-    @media (max-width: 640px) {
-      .container { padding: 14px 12px 48px; }
-      .card { padding: 15px; }
-      .dropzone { padding: 24px 14px; }
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .account-list { grid-template-columns: 1fr; }
-      .btn, .input, .select, .tab-btn, .subtab-btn { min-height: 44px; }
-      .tabs {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-      }
-      .tab-btn { white-space: nowrap; flex-shrink: 0; }
-      .toolbar { flex-direction: column; align-items: stretch; }
-      .toolbar-left { width: 100%; }
-      .search-input { max-width: none; width: 100%; }
-      .select { width: 100%; }
+    .dropzone-formats {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.77rem;
+      color: var(--text-muted);
     }
 
-    @media (max-width: 480px) {
-      .upload-buttons { flex-direction: column; align-items: stretch; }
-      .upload-buttons .btn { width: 100%; }
-      .topbar-actions { width: 100%; justify-content: flex-start; }
+    .format-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Progreso */
+    .progress-wrap {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .progress-bar-bg {
+      height: 6px;
+      background: var(--surface-subtle);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 7px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--ig-gradient);
+      border-radius: 999px;
+      transition: width 0.18s var(--ease);
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* =========================================================================
+       GUÍA DE EXPORTACIÓN COLAPSADA POR DEFECTO (LÍNEA DE TIEMPO NUMERADA)
+       ========================================================================= */
+    details.guide {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-xs);
+      overflow: hidden;
+    }
+
+    details.guide summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: background-color 0.15s ease;
+    }
+
+    details.guide summary::-webkit-details-marker { display: none; }
+
+    details.guide summary:hover {
+      background: var(--surface-subtle);
+    }
+
+    .guide-summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .guide-chevron {
+      color: var(--text-muted);
+      transition: transform 0.22s var(--ease);
+    }
+
+    details.guide[open] .guide-chevron {
+      transform: rotate(180deg);
+    }
+
+    .guide-body {
+      padding: 6px 24px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 18px 0 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 14px;
+      bottom: 14px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-step {
+      position: relative;
+      display: flex;
+      gap: 16px;
+      padding-bottom: 18px;
+    }
+
+    .timeline-step:last-child { padding-bottom: 0; }
+
+    .step-num {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      z-index: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .step-content {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      padding-top: 2px;
+    }
+
+    .step-content strong { color: var(--text); font-weight: 600; }
+
+    .step-content a {
+      color: var(--accent);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .step-code {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 5px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.8em;
+      color: var(--text);
+    }
+
+    /* =========================================================================
+       DASHBOARD DE RESULTADOS — BARRA DE SESIÓN + BENTO GRID + GRÁFICOS SVG
+       ========================================================================= */
+    .dashboard-wrap {
+      padding-top: 16px;
+      animation: fadeUp 0.3s var(--ease);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Barra superior de sesión */
+    .session-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .session-identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .session-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .session-meta {
+      min-width: 0;
+    }
+
+    .session-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .session-title {
+      margin: 0;
+      font-size: 1.06rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .session-sub {
+      margin: 2px 0 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 52ch;
+    }
+
+    .session-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      font-size: 0.77rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Bento Grid — Fila 1: KPIs */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-xs);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      width: 100%;
+      transition: border-color 0.16s var(--ease), transform 0.16s var(--ease), box-shadow 0.16s var(--ease);
+    }
+
+    button.kpi-card {
+      cursor: pointer;
+    }
+
+    button.kpi-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .kpi-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+    }
+
+    .kpi-action-hint {
+      color: var(--text-muted);
+      opacity: 0.65;
+      transition: transform 0.16s var(--ease), opacity 0.16s ease;
+    }
+
+    button.kpi-card:hover .kpi-action-hint {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+
+    .kpi-number {
+      font-size: clamp(1.65rem, 2.3vw, 2.1rem);
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+    }
+
+    .kpi-card.kpi-danger .kpi-number { color: var(--danger); }
+    .kpi-card.kpi-info .kpi-number { color: var(--info); }
+
+    .kpi-foot {
+      margin-top: 8px;
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Bento Grid — Fila 2: Visualizaciones SVG */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .bento-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .bento-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .bento-title {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+    }
+
+    .bento-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Donut SVG */
+    .donut-layout {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .donut-svg-wrap {
+      position: relative;
+      width: 148px;
+      height: 148px;
+      flex-shrink: 0;
+    }
+
+    .donut-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .donut-pct {
+      font-size: 1.35rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .donut-caption {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .donut-legend {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .legend-item:hover {
+      background: var(--surface-subtle);
+      border-color: var(--border);
+    }
+
+    .legend-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .legend-swatch {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .legend-name {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .legend-val {
+      font-size: 0.83rem;
+      font-weight: 650;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Bar Chart SVG */
+    .chart-legend-inline {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.77rem;
+      color: var(--text-muted);
+    }
+
+    .chart-legend-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bar-chart-svg {
+      width: 100%;
+      height: 158px;
+      display: block;
+      overflow: visible;
+    }
+
+    .bar-chart-empty {
+      height: 158px;
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      background: var(--surface-subtle);
+      border-radius: var(--radius-sm);
+    }
+
+    /* =========================================================================
+       EXPLORADOR DE CUENTAS — SEGMENTED TABS + STICKY TOOLBAR + FILAS
+       ========================================================================= */
+    .explorer-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-xs);
+      overflow: clip;
+    }
+
+    .tabs-shell {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .tabs-shell::-webkit-scrollbar { display: none; }
+
+    .segmented-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      background: var(--surface-subtle);
+      border-radius: 11px;
+      border: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.81rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background-color 0.16s var(--ease), color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .tab-pill {
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--border);
+      color: var(--text-secondary);
+      font-size: 0.72rem;
+      font-weight: 650;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tab-btn.active .tab-pill {
+      background: var(--surface-subtle);
+      color: var(--text);
+    }
+
+    /* Toolbar pegajosa */
+    .sticky-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 20px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toolbar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .search-field {
+      position: relative;
+      flex: 1;
+      min-width: 210px;
+      max-width: 340px;
+    }
+
+    .search-field .icon {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .input, .select {
+      height: 36px;
+      padding: 0 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .search-field .input {
+      width: 100%;
+      padding-left: 34px;
+    }
+
+    .input:focus, .select:focus {
+      border-color: var(--text-muted);
+      box-shadow: 0 0 0 3px var(--surface-subtle);
+    }
+
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Sub-pestañas / filtros rápidos */
+    .subbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--surface-subtle);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-pill:hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    .filter-pill.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    /* Lista de usuarios */
+    .explorer-body {
+      padding: 16px 20px 22px;
+    }
+
+    .account-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 10px;
+    }
+
+    .account-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .account-row:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-hover);
+    }
+
+    .account-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .avatar-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .account-text {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .account-top-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .account-handle {
+      font-size: 0.9rem;
+      font-weight: 650;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .account-handle:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .account-fullname {
+      font-size: 0.79rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .account-date {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      margin-top: 1px;
+    }
+
+    .account-aside {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.71rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .tag-mutual { background: var(--ok-soft); color: var(--ok); }
+    .tag-unfollow { background: var(--danger-soft); color: var(--danger); }
+    .tag-fan { background: var(--info-soft); color: var(--info); }
+    .tag-neutral { background: var(--surface-subtle); color: var(--text-muted); }
+    .tag-warn { background: var(--warn-soft); color: var(--warn); }
+
+    .open-profile-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .open-profile-btn:hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+      background: var(--surface-subtle);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 44px 16px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .load-more-wrap {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    /* =========================================================================
+       ACTIVIDAD, CRONOLOGÍA Y DIAGNÓSTICO
+       ========================================================================= */
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .panel-box {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 650;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .rank-row {
+      margin-bottom: 12px;
+    }
+
+    .rank-row:last-child { margin-bottom: 0; }
+
+    .rank-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.84rem;
+      margin-bottom: 5px;
+    }
+
+    .rank-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .rank-pos {
+      font-size: 0.74rem;
+      font-weight: 650;
+      color: var(--text-muted);
+      width: 18px;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .rank-name {
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rank-name a:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .rank-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .bar-track {
+      height: 6px;
+      border-radius: 999px;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--ig-gradient);
+    }
+
+    .bar-fill-solid {
+      background: var(--text);
+    }
+
+    /* Tabla de diagnóstico */
+    .diag-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    table {
+      width: 100%;
+      min-width: 580px;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      background: var(--surface);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    th {
+      background: var(--surface-subtle);
+      color: var(--text-muted);
+      font-weight: 650;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      word-break: break-all;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.79rem;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================================
+       RESPONSIVE (TABLET Y MÓVIL 390px)
+       ========================================================================= */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 16px 52px; }
+      .topbar { padding: 14px 0; }
+      .brand-sep, .brand-sub { display: none; }
+      .welcome-wrap { padding-top: 16px; }
+      .dropzone { padding: 28px 18px 24px; }
+      .donut-layout { flex-direction: column; align-items: stretch; gap: 18px; }
+      .donut-svg-wrap { margin: 0 auto; }
+      .account-list { grid-template-columns: 1fr; }
+      .account-row { padding: 10px 11px; gap: 8px; }
+      .account-main { gap: 10px; }
+      .avatar-circle { width: 34px; height: 34px; font-size: 0.8rem; }
+      .account-aside { gap: 6px; }
+      .status-tag { font-size: 0.68rem; padding: 2px 7px; }
+      .sticky-toolbar { padding: 12px 14px; }
+      .explorer-body { padding: 14px; }
+      .subbar { padding: 10px 14px; }
+      .btn, .input, .select, .tab-btn { min-height: 42px; }
+      .search-field { max-width: none; width: 100%; }
+      .toolbar-right, .select { width: 100%; }
+      .toolbar-right .btn { width: 100%; }
+      .session-bar { padding: 14px 16px; }
+      .session-actions { width: 100%; justify-content: space-between; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- =====================================================================
-         CABECERA
+         HEADER MINIMALISTA EN UNA LÍNEA
          ===================================================================== -->
     <header class="topbar">
       <div class="brand">
-        <div class="brand-logo" aria-hidden="true">IG</div>
-        <div>
-          <h1>Analizador de Instagram</h1>
-          <p>Analiza tu exportación oficial de Meta directamente en tu navegador</p>
+        <div class="brand-mark" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px;stroke-width:2;">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Analizador de Instagram</span>
+          <span class="brand-sep" aria-hidden="true">/</span>
+          <span class="brand-sub">Exportación oficial JSON y HTML</span>
         </div>
       </div>
 
-      <div class="topbar-actions">
-        <span class="privacy-pill" title="Ningún archivo se sube a internet">
-          🔒 100 % local · Sin contraseñas
+      <div class="topbar-right">
+        <span id="networkStatusPill" class="local-badge" title="Todo se procesa localmente en tu navegador; ningún archivo se sube a ningún servidor">
+          <span class="local-dot" aria-hidden="true"></span>
+          <span id="networkStatusText">100 % local</span>
         </span>
-        <button id="btnReset" class="btn btn-sm hidden" type="button">
-          ↺ Nueva carga
-        </button>
-        <button id="btnTheme" class="btn btn-sm" type="button" title="Cambiar modo claro/oscuro">
-          🌙 Oscuro
+        <button id="btnTheme" class="btn btn-icon" type="button" aria-label="Cambiar tema claro u oscuro" title="Cambiar modo claro/oscuro">
+          <!-- Icono actualizado dinámicamente por JS -->
         </button>
       </div>
     </header>
-
-    <!-- Sello / banner de privacidad visible para uso en GitHub Pages -->
-    <div class="privacy-banner" role="note" aria-label="Aviso de privacidad local">
-      <div class="privacy-banner-text">
-        <span aria-hidden="true">🛡️</span>
-        <span>
-          <strong>Tu archivo nunca sale de tu dispositivo:</strong> aunque esta web esté alojada en GitHub Pages,
-          todo el procesamiento ocurre 100 % en local dentro de tu navegador. No hay servidor, ni base de datos, ni inicio de sesión.
-        </span>
-      </div>
-      <span id="networkStatusPill" class="net-status" title="Funciona incluso desconectando internet">
-        <span class="net-dot" aria-hidden="true"></span>
-        <span id="networkStatusText">Procesamiento local listo</span>
-      </span>
-    </div>
 
     <!-- Mensajes de error o aviso global -->
     <div id="alertContainer"></div>
 
     <!-- =====================================================================
-         PANTALLA DE CARGA
+         PANTALLA DE BIENVENIDA (ESTADO VACÍO)
          ===================================================================== -->
-    <section id="uploadSection">
-      <div class="card">
-        <div id="dropzone" class="dropzone">
-          <div class="dropzone-icon" aria-hidden="true">📦</div>
-          <h2>Arrastra aquí tu exportación de Instagram</h2>
+    <section id="uploadSection" class="welcome-wrap">
+      <div class="hero-grid">
+        <!-- Columna izquierda: propuesta de valor + prueba rápida -->
+        <div class="hero-copy">
+          <h1>Entiende tu cuenta de Instagram sin compartir tu contraseña.</h1>
           <p>
-            Acepta el archivo <strong>.zip oficial</strong> (ignora fotos y vídeos pesados para no gastar RAM),
-            una <strong>carpeta descomprimida</strong> o archivos <strong>.json / .html</strong> sueltos.
+            Analiza el archivo oficial de Meta directamente en tu navegador: quién no te sigue de vuelta,
+            seguidores mutuos, solicitudes pendientes, interacciones y evolución temporal.
           </p>
 
-          <div class="upload-buttons">
-            <button id="btnPickFiles" class="btn btn-primary" type="button">
-              📄 Seleccionar ZIP o archivos
-            </button>
-            <button id="btnPickFolder" class="btn" type="button">
-              📁 Seleccionar carpeta
-            </button>
-            <button id="btnLoadDemoZip" class="btn" type="button">
-              📦 Probar ZIP de ejemplo
-            </button>
+          <div class="hero-demo-box">
+            <span class="hero-demo-label">¿Quieres probarlo primero?</span>
+            <div class="hero-demo-actions">
+              <button id="btnLoadDemoZip" class="btn btn-sm" type="button">
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                </svg>
+                Probar con datos_ejemplo_instagram.zip
+              </button>
+              <a class="text-link" href="./datos_ejemplo_instagram.zip" download="datos_ejemplo_instagram.zip">
+                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Descargar ZIP
+              </a>
+              <button id="btnLoadDemo" class="text-link" type="button">
+                Demo en memoria
+              </button>
+            </div>
           </div>
+        </div>
 
-          <div class="demo-links">
-            <a href="./datos_ejemplo_instagram.zip" download="datos_ejemplo_instagram.zip">
-              ⬇ Descargar <code>datos_ejemplo_instagram.zip</code>
-            </a>
+        <!-- Columna derecha: Dropzone protagonista -->
+        <div id="dropzone" class="dropzone">
+          <div class="dropzone-icon-wrap" aria-hidden="true">
+            <svg class="icon icon-lg" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <h2>Arrastra tu exportación de Instagram</h2>
+          <p class="dropzone-sub">
+            Sube el archivo <strong>.zip</strong> oficial. Fotos y vídeos pesados se omiten automáticamente.
+          </p>
+
+          <button id="btnPickFiles" class="btn btn-accent dropzone-primary-cta" type="button">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            Seleccionar archivo .zip
+          </button>
+
+          <div class="dropzone-secondary">
+            <button id="btnPickFolder" class="text-link" type="button">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              Seleccionar carpeta descomprimida
+            </button>
             <span aria-hidden="true">·</span>
-            <button id="btnLoadDemo" class="link-btn" type="button">
-              ✨ Cargar demo rápida en memoria
+            <button id="btnPickLoose" class="text-link" type="button">
+              Archivos .json / .html sueltos
             </button>
           </div>
 
-          <!-- Inputs ocultos para selección de archivos y carpetas -->
+          <div class="dropzone-formats">
+            <span class="format-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              JSON (2020–2026) y HTML
+            </span>
+            <span class="format-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Sin subida a servidor
+            </span>
+          </div>
+
+          <!-- Inputs ocultos -->
           <input id="inputFiles" type="file" accept=".zip,.json,.html,.htm" multiple class="hidden" />
           <input id="inputFolder" type="file" webkitdirectory directory multiple class="hidden" />
 
@@ -1003,44 +1668,85 @@
         </div>
       </div>
 
-      <!-- Instrucciones paso a paso -->
-      <details class="guide" open>
-        <summary>📖 ¿Cómo pedir tu exportación de Instagram en formato JSON? (Paso a paso)</summary>
-        <ol class="guide-steps">
-          <li>Abre el <strong>Centro de cuentas de Meta</strong> en <a href="https://accountscenter.instagram.com/info_and_permissions/" target="_blank" rel="noopener noreferrer">accountscenter.instagram.com/info_and_permissions</a> (o desde la app: <em>Configuración y actividad → Centro de cuentas → Tu información y permisos</em>).</li>
-          <li>Pulsa en <strong>Exportar tu información</strong> (o <em>Descargar tu información</em>) → <strong>Crear exportación</strong>.</li>
-          <li>Selecciona tu cuenta de <strong>Instagram</strong> y elige <strong>Exportar al dispositivo</strong>.</li>
-          <li>En <strong>Personalizar información</strong> puedes elegir toda tu información (si quieres ver también likes, comentarios y mensajes) o marcar solo <strong>Seguidores y seguidos</strong> para una descarga más rápida y ligera.</li>
-          <li>En <strong>Intervalo de fechas</strong> selecciona obligatoriamente <strong>Desde el principio</strong> (si eliges «Último año» faltarán seguidores antiguos).</li>
-          <li>En <strong>Formato</strong> cambia de HTML a <strong>JSON</strong> (esta app también lee HTML como respaldo, pero JSON es más rápido y preciso).</li>
-          <li>Pulsa <strong>Iniciar exportación</strong>. Cuando recibas el correo de Meta, descarga el archivo <code>.zip</code> y arrástralo directamente arriba.</li>
-        </ol>
-        <div class="guide-tip">
-          💡 <strong>Privacidad real:</strong> esta página es un único archivo HTML sin servidor ni conexiones externas.
-          Puedes incluso desconectar el Wi-Fi antes de cargar tu ZIP y todo seguirá funcionando igual.
+      <!-- Guía paso a paso colapsada por defecto -->
+      <details class="guide">
+        <summary>
+          <span class="guide-summary-left">
+            <svg class="icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            ¿Cómo descargar tu exportación de Instagram en formato JSON?
+          </span>
+          <svg class="icon guide-chevron" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
+        <div class="guide-body">
+          <ol class="timeline">
+            <li class="timeline-step">
+              <span class="step-num">1</span>
+              <div class="step-content">
+                Abre el Centro de cuentas de Meta en
+                <a href="https://accountscenter.instagram.com/info_and_permissions/" target="_blank" rel="noopener noreferrer">accountscenter.instagram.com/info_and_permissions</a>
+                y entra en <strong>Exportar tu información → Crear exportación</strong>.
+              </div>
+            </li>
+            <li class="timeline-step">
+              <span class="step-num">2</span>
+              <div class="step-content">
+                Elige tu perfil de <strong>Instagram</strong> y selecciona <strong>Exportar al dispositivo</strong>.
+              </div>
+            </li>
+            <li class="timeline-step">
+              <span class="step-num">3</span>
+              <div class="step-content">
+                En <strong>Intervalo de fechas</strong> marca obligatoriamente <strong>Desde el principio</strong> (si eliges un periodo corto faltarán seguidores antiguos).
+              </div>
+            </li>
+            <li class="timeline-step">
+              <span class="step-num">4</span>
+              <div class="step-content">
+                Cambia el <strong>Formato</strong> a <span class="step-code">JSON</span> (también aceptamos HTML como respaldo). Puedes exportar toda tu cuenta o solo <strong>Seguidores y seguidos</strong>.
+              </div>
+            </li>
+            <li class="timeline-step">
+              <span class="step-num">5</span>
+              <div class="step-content">
+                Descarga el archivo <span class="step-code">.zip</span> que te enviará Meta por correo y arrástralo directamente a la zona de carga superior.
+              </div>
+            </li>
+          </ol>
         </div>
       </details>
     </section>
 
     <!-- =====================================================================
-         PANEL DE RESULTADOS
+         DASHBOARD DE RESULTADOS
          ===================================================================== -->
-    <main id="dashboardSection" class="hidden">
-      <!-- Cabecera de perfil y rangos temporales -->
-      <div id="profileBanner" class="profile-banner"></div>
+    <main id="dashboardSection" class="dashboard-wrap hidden">
+      <!-- Barra superior de sesión -->
+      <div id="sessionBar" class="session-bar"></div>
 
-      <!-- Métricas principales (KPIs) -->
+      <!-- Bento Grid: 4 KPIs interactivos -->
       <div id="kpiGrid" class="kpi-grid"></div>
 
-      <!-- Navegación por pestañas -->
-      <nav id="tabsNav" class="tabs" role="tablist"></nav>
+      <!-- Bento Grid: Visualizaciones SVG (Donut + Evolución temporal) -->
+      <div id="chartsGrid" class="charts-grid"></div>
 
-      <!-- Contenido dinámico de la pestaña activa -->
-      <section id="tabContent" class="card"></section>
+      <!-- Explorador de cuentas y secciones -->
+      <section class="explorer-card">
+        <div class="tabs-shell">
+          <nav id="tabsNav" class="segmented-tabs" role="tablist"></nav>
+        </div>
+        <div id="tabContent"></div>
+      </section>
     </main>
 
     <footer>
-      Procesamiento 100% local en tu navegador · Compatible con JSON (2020–2026) y HTML · Sin librerías externas
+      <span>Procesamiento 100 % local en tu navegador · Sin servidor ni contraseñas</span>
+      <span>Compatible con JSON (2020–2026) y HTML · Exportación CSV para Excel</span>
     </footer>
   </div>
 
@@ -2450,107 +3156,428 @@
     }
 
     /* =========================================================================
-       8. INTERFAZ Y RENDERIZADO DEL DASHBOARD
+       8. ICONOGRAFÍA SVG, AVATARES DETERMINISTAS Y FECHAS RELATIVAS
+       ========================================================================= */
+
+    const ICONOS = {
+      sun: `<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="6.34" y1="17.66" x2="4.93" y2="19.07"></line><line x1="19.07" y1="4.93" x2="17.66" y2="6.34"></line></svg>`,
+      moon: `<svg class="icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+      search: `<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
+      download: `<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
+      external: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`,
+      arrowRight: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
+      upload: `<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>`,
+      heart: `<svg class="icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
+      comment: `<svg class="icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
+      mail: `<svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+      calendar: `<svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
+    };
+
+    const PALETA_AVATAR = [
+      { bg: "rgba(225, 29, 72, 0.12)", fg: "#BE123C", fgDark: "#FDA4AF" },
+      { bg: "rgba(217, 119, 6, 0.13)", fg: "#B45309", fgDark: "#FCD34D" },
+      { bg: "rgba(5, 150, 105, 0.12)", fg: "#047857", fgDark: "#6EE7B7" },
+      { bg: "rgba(2, 132, 199, 0.12)", fg: "#0369A1", fgDark: "#7DD3FC" },
+      { bg: "rgba(79, 70, 229, 0.12)", fg: "#4338CA", fgDark: "#A5B4FC" },
+      { bg: "rgba(147, 51, 234, 0.12)", fg: "#7E22CE", fgDark: "#D8B4FE" },
+      { bg: "rgba(219, 39, 119, 0.12)", fg: "#BE185D", fgDark: "#F9A8D4" },
+      { bg: "rgba(13, 148, 136, 0.12)", fg: "#0F766E", fgDark: "#5EEAD4" }
+    ];
+
+    /**
+     * Devuelve un par de colores determinista a partir del @username.
+     */
+    function estiloAvatar(username) {
+      const str = String(username || "ig");
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+      }
+      const p = PALETA_AVATAR[hash % PALETA_AVATAR.length];
+      const esOscuro = document.documentElement.getAttribute("data-theme") === "dark";
+      return `background:${p.bg};color:${esOscuro ? p.fgDark : p.fg};`;
+    }
+
+    /**
+     * Formatea un timestamp Unix a texto relativo + fecha exacta: "hace 4 meses · 12 jul 2025".
+     */
+    function formatearFechaCompleta(ts) {
+      if (!ts) return "Sin fecha registrada";
+      const exacta = formatearFecha(ts);
+      const ahora = Math.floor(Date.now() / 1000);
+      const diff = Math.max(0, ahora - ts);
+      const dias = Math.floor(diff / 86400);
+
+      let relativa = "";
+      if (dias === 0) relativa = "hoy";
+      else if (dias === 1) relativa = "hace 1 día";
+      else if (dias < 30) relativa = `hace ${dias} días`;
+      else if (dias < 365) {
+        const meses = Math.floor(dias / 30);
+        relativa = meses === 1 ? "hace 1 mes" : `hace ${meses} meses`;
+      } else {
+        const anios = Math.floor(dias / 365);
+        relativa = anios === 1 ? "hace 1 año" : `hace ${anios} años`;
+      }
+      return `${relativa} · ${exacta}`;
+    }
+
+    /* =========================================================================
+       9. INTERFAZ Y RENDERIZADO DEL DASHBOARD
        ========================================================================= */
 
     let analisisActual = null;
+    let fechaAnalisis = null;
     let pestanaActiva = "notFollowingBack";
     let subPestanaSolicitudes = "pending";
     let subPestanaListas = "closeFriends";
     let estadoLista = {
       busqueda: "",
       orden: "date_desc",
+      filtroRapido: "all",
       limite: 100
     };
 
     function cargarResultadosEnUI(analisis) {
       analisisActual = analisis;
+      fechaAnalisis = new Date();
       pestanaActiva = "notFollowingBack";
-      estadoLista = { busqueda: "", orden: "date_desc", limite: 100 };
+      estadoLista = { busqueda: "", orden: "date_desc", filtroRapido: "all", limite: 100 };
 
       document.getElementById("uploadSection").classList.add("hidden");
       document.getElementById("dashboardSection").classList.remove("hidden");
-      document.getElementById("btnReset").classList.remove("hidden");
 
-      renderPerfilYFechas();
+      renderBarraSesion();
       renderKPIs();
+      renderGraficosSVG();
       renderPestanas();
       renderContenidoPestana();
     }
 
-    function renderPerfilYFechas() {
-      const a = analisisActual;
-      const banner = document.getElementById("profileBanner");
+    function volverAlInicio() {
+      analisisActual = null;
+      limpiarAlertas();
+      document.getElementById("dashboardSection").classList.add("hidden");
+      document.getElementById("uploadSection").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-      const tituloPerfil = a.perfil && a.perfil.username
-        ? `@${a.perfil.username}`
-        : "Resumen de tu exportación";
-      const subPerfil = a.perfil && (a.perfil.name || a.perfil.bio)
-        ? [a.perfil.name, a.perfil.bio].filter(Boolean).join(" · ")
-        : `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos analizados localmente`;
+    function irAPestana(idPestana, hacerScroll = false) {
+      pestanaActiva = idPestana;
+      estadoLista.busqueda = "";
+      estadoLista.filtroRapido = "all";
+      estadoLista.limite = 100;
+      renderPestanas();
+      renderContenidoPestana();
+      if (hacerScroll) {
+        const el = document.querySelector(".explorer-card");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function renderBarraSesion() {
+      const a = analisisActual;
+      const bar = document.getElementById("sessionBar");
+
+      const handle = a.perfil && a.perfil.username ? `@${a.perfil.username}` : "Exportación analizada";
+      const nombre = a.perfil && a.perfil.name ? a.perfil.name : "";
+      const bio = a.perfil && a.perfil.bio ? a.perfil.bio : "";
+      const sub = [nombre, bio].filter(Boolean).join(" · ") ||
+        `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos leídos localmente`;
       const inicial = (a.perfil && a.perfil.username ? a.perfil.username[0] : "I").toUpperCase();
 
-      const chips = [];
-      if (a.rangoFollowers.min && a.rangoFollowers.max) {
-        chips.push(
-          `<span class="chip">📅 Seguidores: ${formatearFecha(a.rangoFollowers.min)} – ${formatearFecha(a.rangoFollowers.max)} (${fmtNum(a.rangoFollowers.dias)} días)</span>`
-        );
-      }
-      if (a.rangoFollowing.min && a.rangoFollowing.max) {
-        chips.push(
-          `<span class="chip">📅 Seguidos: ${formatearFecha(a.rangoFollowing.min)} – ${formatearFecha(a.rangoFollowing.max)} (${fmtNum(a.rangoFollowing.dias)} días)</span>`
-        );
-      }
+      const fechaTxt = (fechaAnalisis || new Date()).toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      });
 
-      banner.innerHTML = `
-        <div class="profile-left">
-          <div class="profile-avatar">${escaparHtml(inicial)}</div>
-          <div class="profile-meta">
-            <h2>${escaparHtml(tituloPerfil)}</h2>
-            <p>${escaparHtml(subPerfil)}</p>
+      const rangoTxt = a.rangoFollowers.dias !== null
+        ? `${fmtNum(a.rangoFollowers.dias)} días de historial`
+        : `${fmtNum(a.diagnostico.archivosLeidos.length)} archivos`;
+
+      bar.innerHTML = `
+        <div class="session-identity">
+          <div class="session-avatar" style="${estiloAvatar(a.perfil && a.perfil.username ? a.perfil.username : "ig")}">
+            ${escaparHtml(inicial)}
+          </div>
+          <div class="session-meta">
+            <div class="session-title-row">
+              <h2 class="session-title">${escaparHtml(handle)}</h2>
+              <span class="meta-pill">${ICONOS.calendar} Analizado el ${escaparHtml(fechaTxt)}</span>
+            </div>
+            <p class="session-sub">${escaparHtml(sub)}</p>
           </div>
         </div>
-        <div class="range-chips">${chips.join("")}</div>
+        <div class="session-actions">
+          <span class="meta-pill">${escaparHtml(rangoTxt)}</span>
+          <button id="btnResetSession" class="btn btn-sm" type="button">
+            ${ICONOS.upload} Cargar otro archivo
+          </button>
+        </div>
       `;
+
+      const btnReset = document.getElementById("btnResetSession");
+      if (btnReset) btnReset.addEventListener("click", volverAlInicio);
     }
 
     function renderKPIs() {
       const a = analisisActual;
       const grid = document.getElementById("kpiGrid");
       const ratioTxt = a.following.length > 0 ? a.ratio.toFixed(2) + "x" : "—";
-      const recTxt = a.following.length > 0 ? a.reciprocidad.toFixed(1) + "%" : "—";
+      const pctNoSiguen = a.following.length > 0
+        ? ((a.notFollowingBack.length / a.following.length) * 100).toFixed(1) + " % de tus seguidos"
+        : "Sin seguidos";
+      const pctFans = a.followers.length > 0
+        ? ((a.youDontFollowBack.length / a.followers.length) * 100).toFixed(1) + " % de tus seguidores"
+        : "Sin seguidores";
 
       grid.innerHTML = `
-        <div class="kpi">
-          <div class="kpi-label">Seguidores</div>
-          <div class="kpi-value">${fmtNum(a.followers.length)}</div>
-          <div class="kpi-sub">Te siguen</div>
+        <div class="kpi-card">
+          <div class="kpi-head">
+            <span class="kpi-label">Seguidores</span>
+          </div>
+          <div class="kpi-number">${fmtNum(a.followers.length)}</div>
+          <div class="kpi-foot">${a.rangoFollowers.min ? "Desde " + formatearFecha(a.rangoFollowers.min) : "Total detectado"}</div>
         </div>
-        <div class="kpi">
-          <div class="kpi-label">Seguidos</div>
-          <div class="kpi-value">${fmtNum(a.following.length)}</div>
-          <div class="kpi-sub">Sigues tú</div>
+
+        <div class="kpi-card">
+          <div class="kpi-head">
+            <span class="kpi-label">Seguidos</span>
+          </div>
+          <div class="kpi-number">${fmtNum(a.following.length)}</div>
+          <div class="kpi-foot">Ratio seguidores/seguidos: ${ratioTxt}</div>
         </div>
-        <div class="kpi kpi-danger">
-          <div class="kpi-label">No te siguen</div>
-          <div class="kpi-value">${fmtNum(a.notFollowingBack.length)}</div>
-          <div class="kpi-sub">De tus seguidos</div>
+
+        <button type="button" class="kpi-card kpi-danger" data-jump="notFollowingBack">
+          <div class="kpi-head">
+            <span class="kpi-label">No te siguen de vuelta</span>
+            <span class="kpi-action-hint">${ICONOS.arrowRight}</span>
+          </div>
+          <div class="kpi-number">${fmtNum(a.notFollowingBack.length)}</div>
+          <div class="kpi-foot">${pctNoSiguen}</div>
+        </button>
+
+        <button type="button" class="kpi-card kpi-info" data-jump="youDontFollowBack">
+          <div class="kpi-head">
+            <span class="kpi-label">No sigues de vuelta</span>
+            <span class="kpi-action-hint">${ICONOS.arrowRight}</span>
+          </div>
+          <div class="kpi-number">${fmtNum(a.youDontFollowBack.length)}</div>
+          <div class="kpi-foot">${pctFans}</div>
+        </button>
+      `;
+
+      grid.querySelectorAll("[data-jump]").forEach((card) => {
+        card.addEventListener("click", () => irAPestana(card.dataset.jump, true));
+      });
+    }
+
+    /**
+     * Genera el gráfico Donut SVG de relaciones y el gráfico de barras SVG de evolución temporal.
+     */
+    function renderGraficosSVG() {
+      const a = analisisActual;
+      const grid = document.getElementById("chartsGrid");
+
+      // --- 1. Donut SVG de distribución de relaciones ---
+      const mutuos = a.mutuals.length;
+      const soloTu = a.notFollowingBack.length;
+      const soloEllos = a.youDontFollowBack.length;
+      const totalRel = mutuos + soloTu + soloEllos;
+
+      const r = 56;
+      const circ = 2 * Math.PI * r;
+      const segmentos = [
+        { id: "mutuals", label: "Mutuos", val: mutuos, color: "#10B981" },
+        { id: "notFollowingBack", label: "Solo tú les sigues", val: soloTu, color: "#E11D48" },
+        { id: "youDontFollowBack", label: "Solo ellos te siguen", val: soloEllos, color: "#6366F1" }
+      ];
+
+      let offset = 0;
+      const arcosSvg = totalRel > 0
+        ? segmentos
+            .filter((s) => s.val > 0)
+            .map((s) => {
+              const frac = s.val / totalRel;
+              const len = Math.max(0, frac * circ - 2);
+              const dash = `${len.toFixed(2)} ${(circ - len).toFixed(2)}`;
+              const dashOffset = (-offset).toFixed(2);
+              offset += frac * circ;
+              return `<circle cx="74" cy="74" r="${r}" fill="none" stroke="${s.color}" stroke-width="14" stroke-dasharray="${dash}" stroke-dashoffset="${dashOffset}" stroke-linecap="butt"><title>${s.label}: ${fmtNum(s.val)}</title></circle>`;
+            })
+            .join("")
+        : "";
+
+      const recPct = a.following.length > 0 ? a.reciprocidad.toFixed(1) + " %" : "—";
+
+      const leyendaHtml = segmentos
+        .map((s) => {
+          const pct = totalRel > 0 ? Math.round((s.val / totalRel) * 100) : 0;
+          return `
+            <button type="button" class="legend-item" data-jump="${s.id}">
+              <span class="legend-left">
+                <span class="legend-swatch" style="background:${s.color}"></span>
+                <span class="legend-name">${escaparHtml(s.label)}</span>
+              </span>
+              <span class="legend-val">${fmtNum(s.val)} <span style="color:var(--text-muted);font-weight:500;">(${pct}%)</span></span>
+            </button>
+          `;
+        })
+        .join("");
+
+      // --- 2. Gráfico de barras SVG (evolución temporal por año o por mes) ---
+      const seriesTemp = construirSerieTemporal(a.followers, a.following);
+      const barChartHtml = renderBarChartSVG(seriesTemp);
+
+      grid.innerHTML = `
+        <div class="bento-card">
+          <div class="bento-header">
+            <h3 class="bento-title">Distribución de relaciones</h3>
+            <span class="bento-subtitle tabular">${fmtNum(totalRel)} cuentas únicas</span>
+          </div>
+          <div class="donut-layout">
+            <div class="donut-svg-wrap">
+              <svg class="donut-svg" viewBox="0 0 148 148" aria-label="Distribución de relaciones">
+                <circle cx="74" cy="74" r="${r}" fill="none" stroke="var(--surface-subtle)" stroke-width="14"></circle>
+                ${arcosSvg}
+              </svg>
+              <div class="donut-center">
+                <span class="donut-pct">${recPct}</span>
+                <span class="donut-caption">Reciprocidad</span>
+              </div>
+            </div>
+            <div class="donut-legend">${leyendaHtml}</div>
+          </div>
         </div>
-        <div class="kpi">
-          <div class="kpi-label">No sigues tú</div>
-          <div class="kpi-value">${fmtNum(a.youDontFollowBack.length)}</div>
-          <div class="kpi-sub">Fans</div>
+
+        <div class="bento-card">
+          <div class="bento-header">
+            <h3 class="bento-title">Evolución temporal (${seriesTemp.modo === "mes" ? "por mes" : "por año"})</h3>
+            <div class="chart-legend-inline">
+              <span class="chart-legend-dot"><span class="legend-swatch" style="background:#10B981"></span>Seguidores</span>
+              <span class="chart-legend-dot"><span class="legend-swatch" style="background:#E1306C"></span>Seguidos</span>
+            </div>
+          </div>
+          ${barChartHtml}
         </div>
-        <div class="kpi kpi-ok">
-          <div class="kpi-label">Mutuos</div>
-          <div class="kpi-value">${fmtNum(a.mutuals.length)}</div>
-          <div class="kpi-sub">Seguimiento mutuo</div>
-        </div>
-        <div class="kpi kpi-accent">
-          <div class="kpi-label">Ratio / Reciprocidad</div>
-          <div class="kpi-value">${ratioTxt}</div>
-          <div class="kpi-sub">${recTxt} te devuelven follow</div>
-        </div>
+      `;
+
+      grid.querySelectorAll("[data-jump]").forEach((btn) => {
+        btn.addEventListener("click", () => irAPestana(btn.dataset.jump, true));
+      });
+    }
+
+    /**
+     * Agrupa seguidores y seguidos por año (o por mes si todo ocurre en un mismo año).
+     */
+    function construirSerieTemporal(followers, following) {
+      const anios = new Set();
+      for (const x of followers) {
+        if (x.timestamp) anios.add(new Date(x.timestamp * 1000).getUTCFullYear());
+      }
+      for (const x of following) {
+        if (x.timestamp) anios.add(new Date(x.timestamp * 1000).getUTCFullYear());
+      }
+      const listaAnios = Array.from(anios).filter((y) => y >= 2010 && y <= 2035).sort((a, b) => a - b);
+      if (listaAnios.length === 0) return { modo: "anio", puntos: [] };
+
+      const usarMeses = listaAnios.length === 1;
+      const mapa = new Map();
+
+      const sumar = (lista, campo) => {
+        for (const x of lista) {
+          if (!x.timestamp) continue;
+          const d = new Date(x.timestamp * 1000);
+          const y = d.getUTCFullYear();
+          if (y < 2010 || y > 2035) continue;
+          const clave = usarMeses
+            ? `${y}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`
+            : String(y);
+          const etiqueta = usarMeses
+            ? d.toLocaleDateString("es-ES", { month: "short", timeZone: "UTC" })
+            : String(y);
+          if (!mapa.has(clave)) {
+            mapa.set(clave, { clave, etiqueta, followers: 0, following: 0 });
+          }
+          mapa.get(clave)[campo]++;
+        }
+      };
+
+      sumar(followers, "followers");
+      sumar(following, "following");
+
+      const puntos = Array.from(mapa.values())
+        .sort((a, b) => a.clave.localeCompare(b.clave))
+        .slice(-8);
+
+      return { modo: usarMeses ? "mes" : "anio", puntos };
+    }
+
+    function renderBarChartSVG(serie) {
+      if (!serie.puntos.length) {
+        return `<div class="bar-chart-empty">No hay fechas suficientes para dibujar la evolución temporal.</div>`;
+      }
+
+      const w = 460;
+      const h = 158;
+      const padL = 28;
+      const padR = 10;
+      const padT = 14;
+      const padB = 26;
+      const chartW = w - padL - padR;
+      const chartH = h - padT - padB;
+
+      const maxVal = Math.max(
+        1,
+        ...serie.puntos.map((p) => Math.max(p.followers, p.following))
+      );
+
+      // Líneas horizontales de referencia (0%, 50%, 100%)
+      const gridLines = [0, 0.5, 1]
+        .map((f) => {
+          const y = (padT + chartH * (1 - f)).toFixed(1);
+          const lbl = Math.round(maxVal * f);
+          return `
+            <line x1="${padL}" y1="${y}" x2="${w - padR}" y2="${y}" stroke="var(--border)" stroke-dasharray="${f === 0 ? "" : "3 3"}" stroke-width="1"></line>
+            <text x="${padL - 6}" y="${Number(y) + 3}" text-anchor="end" fill="var(--text-muted)" font-size="10" style="font-variant-numeric:tabular-nums;">${lbl}</text>
+          `;
+        })
+        .join("");
+
+      const groupW = chartW / serie.puntos.length;
+      const barW = Math.min(20, Math.max(8, (groupW - 16) / 2));
+      const gap = 4;
+
+      const barras = serie.puntos
+        .map((p, idx) => {
+          const cx = padL + idx * groupW + groupW / 2;
+          const hFoll = (p.followers / maxVal) * chartH;
+          const hFollowing = (p.following / maxVal) * chartH;
+          const yFoll = padT + chartH - hFoll;
+          const yFollowing = padT + chartH - hFollowing;
+          const x1 = cx - barW - gap / 2;
+          const x2 = cx + gap / 2;
+
+          return `
+            <g>
+              <rect x="${x1.toFixed(1)}" y="${yFoll.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFoll).toFixed(1)}" rx="4" fill="#10B981">
+                <title>${p.etiqueta} · Seguidores: ${fmtNum(p.followers)}</title>
+              </rect>
+              <rect x="${x2.toFixed(1)}" y="${yFollowing.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, hFollowing).toFixed(1)}" rx="4" fill="#E1306C">
+                <title>${p.etiqueta} · Seguidos: ${fmtNum(p.following)}</title>
+              </rect>
+              <text x="${cx.toFixed(1)}" y="${h - 6}" text-anchor="middle" fill="var(--text-muted)" font-size="10.5" font-weight="500">${escaparHtml(p.etiqueta)}</text>
+            </g>
+          `;
+        })
+        .join("");
+
+      return `
+        <svg class="bar-chart-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" aria-label="Evolución temporal de seguidores y seguidos">
+          ${gridLines}
+          ${barras}
+        </svg>
       `;
     }
 
@@ -2579,29 +3606,24 @@
           <button
             type="button"
             role="tab"
+            aria-selected="${pestanaActiva === t.id ? "true" : "false"}"
             class="tab-btn ${pestanaActiva === t.id ? "active" : ""}"
             data-tab="${t.id}"
           >
             ${escaparHtml(t.label)}
-            ${t.count !== null ? `<span class="tab-badge">${escaparHtml(String(t.count))}</span>` : ""}
+            ${t.count !== null ? `<span class="tab-pill">${escaparHtml(String(t.count))}</span>` : ""}
           </button>
         `
         )
         .join("");
 
       nav.querySelectorAll(".tab-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          pestanaActiva = btn.dataset.tab;
-          estadoLista.busqueda = "";
-          estadoLista.limite = 100;
-          renderPestanas();
-          renderContenidoPestana();
-        });
+        btn.addEventListener("click", () => irAPestana(btn.dataset.tab, false));
       });
     }
 
     /**
-     * Filtra y ordena una lista de cuentas según el buscador y el selector de orden.
+     * Filtra y ordena una lista de cuentas según el buscador, filtro rápido y orden.
      */
     function filtrarYOrdenar(lista) {
       const q = estadoLista.busqueda.trim().toLowerCase();
@@ -2612,6 +3634,12 @@
               (c.displayName && c.displayName.toLowerCase().includes(q))
           )
         : [...lista];
+
+      if (estadoLista.filtroRapido === "dated") {
+        res = res.filter((c) => Boolean(c.timestamp));
+      } else if (estadoLista.filtroRapido === "renamed") {
+        res = res.filter((c) => Boolean(c.possibleRename));
+      }
 
       switch (estadoLista.orden) {
         case "az":
@@ -2632,37 +3660,63 @@
     }
 
     /**
-     * Renderiza una vista estándar de lista de cuentas con buscador, orden y botón CSV.
+     * Renderiza el explorador de cuentas con barra pegajosa, avatares deterministas y etiquetas de estado.
      */
     function renderVistaLista(contenedor, opciones) {
-      const { titulo, descripcion, lista, nombreCsv, etiquetaFecha } = opciones;
+      const {
+        descripcion,
+        lista,
+        nombreCsv,
+        etiquetaFecha,
+        badgeTexto,
+        badgeClase,
+        subPillsHtml = ""
+      } = opciones;
+
       const filtrada = filtrarYOrdenar(lista);
       const visibles = filtrada.slice(0, estadoLista.limite);
+      const tienePosiblesCambios = lista.some((c) => c.possibleRename);
 
       let html = `
-        <div class="toolbar">
+        <div class="sticky-toolbar">
           <div class="toolbar-left">
-            <input
-              id="searchBox"
-              class="input search-input"
-              type="search"
-              placeholder="Buscar @usuario…"
-              value="${escaparHtml(estadoLista.busqueda)}"
-            />
-            <select id="sortSelect" class="select" aria-label="Ordenar lista">
+            <div class="search-field">
+              ${ICONOS.search}
+              <input
+                id="searchBox"
+                class="input"
+                type="search"
+                placeholder="Buscar @usuario o nombre…"
+                value="${escaparHtml(estadoLista.busqueda)}"
+              />
+            </div>
+            <select id="sortSelect" class="select" aria-label="Ordenar cuentas">
               <option value="date_desc" ${estadoLista.orden === "date_desc" ? "selected" : ""}>Más reciente primero</option>
               <option value="date_asc" ${estadoLista.orden === "date_asc" ? "selected" : ""}>Más antiguo primero</option>
-              <option value="az" ${estadoLista.orden === "az" ? "selected" : ""}>Alfabético (A → Z)</option>
-              <option value="za" ${estadoLista.orden === "za" ? "selected" : ""}>Alfabético (Z → A)</option>
+              <option value="az" ${estadoLista.orden === "az" ? "selected" : ""}>Alfabético (A–Z)</option>
+              <option value="za" ${estadoLista.orden === "za" ? "selected" : ""}>Alfabético (Z–A)</option>
             </select>
           </div>
-          <button id="btnExportCsv" class="btn btn-sm" type="button" ${filtrada.length === 0 ? "disabled" : ""}>
-            ⬇ Exportar CSV (${fmtNum(filtrada.length)})
-          </button>
+          <div class="toolbar-right">
+            <button id="btnExportCsv" class="btn btn-sm" type="button" ${filtrada.length === 0 ? "disabled" : ""}>
+              ${ICONOS.download} Exportar CSV (${fmtNum(filtrada.length)})
+            </button>
+          </div>
         </div>
-        <p style="margin: 0 0 14px; font-size: 0.86rem; color: var(--text-muted);">
-          <strong>${escaparHtml(titulo)}:</strong> ${escaparHtml(descripcion)}
-        </p>
+
+        <div class="subbar">
+          <span>${escaparHtml(descripcion)}</span>
+          <div class="filter-pills">
+            ${subPillsHtml}
+            ${
+              tienePosiblesCambios
+                ? `<button type="button" class="filter-pill ${estadoLista.filtroRapido === "renamed" ? "active" : ""}" data-qfilter="${estadoLista.filtroRapido === "renamed" ? "all" : "renamed"}">Posible cambio de @</button>`
+                : ""
+            }
+          </div>
+        </div>
+
+        <div class="explorer-body">
       `;
 
       if (visibles.length === 0) {
@@ -2673,19 +3727,26 @@
           const inicial = (c.username || "?")[0];
           const urlPerfil = `https://instagram.com/${encodeURIComponent(c.username)}`;
           html += `
-            <div class="account-item">
-              <div class="account-left">
-                <div class="avatar-mini">${escaparHtml(inicial)}</div>
-                <div class="account-info">
-                  <a class="account-user" href="${urlPerfil}" target="_blank" rel="noopener noreferrer">
-                    @${escaparHtml(c.username)}
-                  </a>
-                  ${c.displayName ? `<div class="account-sub">${escaparHtml(c.displayName)}</div>` : ""}
+            <div class="account-row">
+              <div class="account-main">
+                <div class="avatar-circle" style="${estiloAvatar(c.username)}">${escaparHtml(inicial)}</div>
+                <div class="account-text">
+                  <div class="account-top-line">
+                    <a class="account-handle" href="${urlPerfil}" target="_blank" rel="noopener noreferrer">
+                      @${escaparHtml(c.username)}
+                    </a>
+                  </div>
+                  ${c.displayName ? `<div class="account-fullname">${escaparHtml(c.displayName)}</div>` : ""}
+                  <div class="account-date" title="${escaparHtml(etiquetaFecha)}">${escaparHtml(formatearFechaCompleta(c.timestamp))}</div>
                 </div>
               </div>
-              <div class="account-right">
-                <span class="date-tag" title="${escaparHtml(etiquetaFecha)}">${formatearFecha(c.timestamp)}</span>
-                ${c.possibleRename ? `<span class="mini-badge" title="El archivo contenía dos nombres distintos">posible cambio</span>` : ""}
+              <div class="account-aside">
+                <span class="status-tag ${c.possibleRename ? "tag-warn" : badgeClase}">
+                  ${c.possibleRename ? "Cambio @" : escaparHtml(badgeTexto)}
+                </span>
+                <a class="open-profile-btn" href="${urlPerfil}" target="_blank" rel="noopener noreferrer" title="Abrir @${escaparHtml(c.username)} en Instagram" aria-label="Abrir perfil de ${escaparHtml(c.username)} en Instagram">
+                  ${ICONOS.external}
+                </a>
               </div>
             </div>
           `;
@@ -2696,23 +3757,23 @@
           html += `
             <div class="load-more-wrap">
               <button id="btnLoadMore" class="btn btn-sm" type="button">
-                Mostrar más (mostrando ${fmtNum(visibles.length)} de ${fmtNum(filtrada.length)})
+                Mostrar más (${fmtNum(visibles.length)} de ${fmtNum(filtrada.length)})
               </button>
             </div>
           `;
         }
       }
 
+      html += `</div>`;
       contenedor.innerHTML = html;
 
-      // Eventos de búsqueda, orden, paginación y CSV
+      // Eventos
       const searchBox = contenedor.querySelector("#searchBox");
       if (searchBox) {
         searchBox.addEventListener("input", (e) => {
           estadoLista.busqueda = e.target.value;
           estadoLista.limite = 100;
           renderContenidoPestana();
-          // Mantener foco en el buscador
           const nuevoInput = document.getElementById("searchBox");
           if (nuevoInput) {
             nuevoInput.focus();
@@ -2729,15 +3790,24 @@
         });
       }
 
+      contenedor.querySelectorAll("[data-qfilter]").forEach((pill) => {
+        pill.addEventListener("click", () => {
+          estadoLista.filtroRapido = pill.dataset.qfilter;
+          estadoLista.limite = 100;
+          renderContenidoPestana();
+        });
+      });
+
       const btnCsv = contenedor.querySelector("#btnExportCsv");
       if (btnCsv) {
         btnCsv.addEventListener("click", () => {
           descargarCSV(
             nombreCsv,
-            ["Usuario", "Nombre", "Enlace", etiquetaFecha, "Timestamp Unix"],
+            ["Usuario", "Nombre", "Estado", "Enlace", etiquetaFecha, "Timestamp Unix"],
             filtrada.map((c) => [
               c.username,
               c.displayName || "",
+              badgeTexto,
               `https://instagram.com/${c.username}`,
               formatearFechaISO(c.timestamp),
               c.timestamp || ""
@@ -2761,137 +3831,131 @@
 
       if (pestanaActiva === "notFollowingBack") {
         renderVistaLista(panel, {
-          titulo: "No te siguen de vuelta",
           descripcion: "Cuentas que sigues pero que no aparecen en tu lista de seguidores.",
           lista: a.notFollowingBack,
           nombreCsv: "instagram_no_te_siguen.csv",
-          etiquetaFecha: "Sigues desde"
+          etiquetaFecha: "Sigues desde",
+          badgeTexto: "No te sigue",
+          badgeClase: "tag-unfollow"
         });
         return;
       }
 
       if (pestanaActiva === "youDontFollowBack") {
         renderVistaLista(panel, {
-          titulo: "No sigues de vuelta (Fans)",
-          descripcion: "Cuentas que te siguen pero a las que tú no sigues.",
+          descripcion: "Cuentas que te siguen pero a las que tú no sigues de vuelta.",
           lista: a.youDontFollowBack,
           nombreCsv: "instagram_no_sigues_de_vuelta.csv",
-          etiquetaFecha: "Te sigue desde"
+          etiquetaFecha: "Te sigue desde",
+          badgeTexto: "Fan",
+          badgeClase: "tag-fan"
         });
         return;
       }
 
       if (pestanaActiva === "mutuals") {
         renderVistaLista(panel, {
-          titulo: "Seguidores mutuos",
           descripcion: "Cuentas con seguimiento recíproco en ambas direcciones.",
           lista: a.mutuals,
           nombreCsv: "instagram_mutuos.csv",
-          etiquetaFecha: "Sigues desde"
+          etiquetaFecha: "Sigues desde",
+          badgeTexto: "Mutuo",
+          badgeClase: "tag-mutual"
         });
         return;
       }
 
       if (pestanaActiva === "recentlyUnfollowed") {
         renderVistaLista(panel, {
-          titulo: "Dejados de seguir recientemente",
-          descripcion: "Cuentas que tú dejaste de seguir según el registro oficial de Instagram (no son quienes te dejaron de seguir).",
+          descripcion: "Cuentas que tú dejaste de seguir recientemente según el archivo oficial de Meta.",
           lista: a.recentlyUnfollowed,
           nombreCsv: "instagram_dejados_de_seguir.csv",
-          etiquetaFecha: "Dejado de seguir"
+          etiquetaFecha: "Dejado de seguir",
+          badgeTexto: "Unfollow",
+          badgeClase: "tag-neutral"
         });
         return;
       }
 
       if (pestanaActiva === "requests") {
-        panel.innerHTML = `
-          <div class="subtabs">
-            <button type="button" class="subtab-btn ${subPestanaSolicitudes === "pending" ? "active" : ""}" data-sub="pending">
-              Enviadas pendientes (${fmtNum(a.pendingRequests.length)})
-            </button>
-            <button type="button" class="subtab-btn ${subPestanaSolicitudes === "received" ? "active" : ""}" data-sub="received">
-              Recibidas (${fmtNum(a.receivedRequests.length)})
-            </button>
-          </div>
-          <div id="subPanel"></div>
+        const subPills = `
+          <button type="button" class="filter-pill ${subPestanaSolicitudes === "pending" ? "active" : ""}" data-subreq="pending">
+            Enviadas (${fmtNum(a.pendingRequests.length)})
+          </button>
+          <button type="button" class="filter-pill ${subPestanaSolicitudes === "received" ? "active" : ""}" data-subreq="received">
+            Recibidas (${fmtNum(a.receivedRequests.length)})
+          </button>
         `;
-        panel.querySelectorAll(".subtab-btn").forEach((b) => {
+        const esPendiente = subPestanaSolicitudes === "pending";
+        renderVistaLista(panel, {
+          descripcion: esPendiente
+            ? "Solicitudes que enviaste a cuentas privadas y aún siguen pendientes."
+            : "Solicitudes de seguimiento que otras personas te han enviado.",
+          lista: esPendiente ? a.pendingRequests : a.receivedRequests,
+          nombreCsv: esPendiente ? "instagram_solicitudes_pendientes.csv" : "instagram_solicitudes_recibidas.csv",
+          etiquetaFecha: esPendiente ? "Enviada el" : "Recibida el",
+          badgeTexto: esPendiente ? "Pendiente" : "Recibida",
+          badgeClase: esPendiente ? "tag-warn" : "tag-fan",
+          subPillsHtml: subPills
+        });
+        panel.querySelectorAll("[data-subreq]").forEach((b) => {
           b.addEventListener("click", () => {
-            subPestanaSolicitudes = b.dataset.sub;
+            subPestanaSolicitudes = b.dataset.subreq;
             estadoLista.busqueda = "";
             estadoLista.limite = 100;
             renderContenidoPestana();
           });
         });
-        const sub = panel.querySelector("#subPanel");
-        if (subPestanaSolicitudes === "pending") {
-          renderVistaLista(sub, {
-            titulo: "Solicitudes enviadas pendientes",
-            descripcion: "Cuentas privadas a las que enviaste solicitud y aún no te han aceptado.",
-            lista: a.pendingRequests,
-            nombreCsv: "instagram_solicitudes_pendientes.csv",
-            etiquetaFecha: "Enviada el"
-          });
-        } else {
-          renderVistaLista(sub, {
-            titulo: "Solicitudes recibidas",
-            descripcion: "Personas que solicitaron seguirte.",
-            lista: a.receivedRequests,
-            nombreCsv: "instagram_solicitudes_recibidas.csv",
-            etiquetaFecha: "Recibida el"
-          });
-        }
         return;
       }
 
       if (pestanaActiva === "lists") {
-        panel.innerHTML = `
-          <div class="subtabs">
-            <button type="button" class="subtab-btn ${subPestanaListas === "closeFriends" ? "active" : ""}" data-sub="closeFriends">
-              Mejores amigos (${fmtNum(a.closeFriends.length)})
-            </button>
-            <button type="button" class="subtab-btn ${subPestanaListas === "blocked" ? "active" : ""}" data-sub="blocked">
-              Bloqueados (${fmtNum(a.blocked.length)})
-            </button>
-            <button type="button" class="subtab-btn ${subPestanaListas === "restricted" ? "active" : ""}" data-sub="restricted">
-              Restringidos (${fmtNum(a.restricted.length)})
-            </button>
-          </div>
-          <div id="subPanel"></div>
+        const subPills = `
+          <button type="button" class="filter-pill ${subPestanaListas === "closeFriends" ? "active" : ""}" data-sublist="closeFriends">
+            Mejores amigos (${fmtNum(a.closeFriends.length)})
+          </button>
+          <button type="button" class="filter-pill ${subPestanaListas === "blocked" ? "active" : ""}" data-sublist="blocked">
+            Bloqueados (${fmtNum(a.blocked.length)})
+          </button>
+          <button type="button" class="filter-pill ${subPestanaListas === "restricted" ? "active" : ""}" data-sublist="restricted">
+            Restringidos (${fmtNum(a.restricted.length)})
+          </button>
         `;
-        panel.querySelectorAll(".subtab-btn").forEach((b) => {
+        const configs = {
+          closeFriends: {
+            descripcion: "Tu lista de Mejores Amigos para historias.",
+            lista: a.closeFriends,
+            nombreCsv: "instagram_mejores_amigos.csv",
+            etiquetaFecha: "Añadido el",
+            badgeTexto: "Mejor amigo",
+            badgeClase: "tag-mutual"
+          },
+          blocked: {
+            descripcion: "Cuentas que tienes bloqueadas.",
+            lista: a.blocked,
+            nombreCsv: "instagram_bloqueados.csv",
+            etiquetaFecha: "Bloqueado el",
+            badgeTexto: "Bloqueado",
+            badgeClase: "tag-unfollow"
+          },
+          restricted: {
+            descripcion: "Cuentas que tienes restringidas.",
+            lista: a.restricted,
+            nombreCsv: "instagram_restringidos.csv",
+            etiquetaFecha: "Restringido el",
+            badgeTexto: "Restringido",
+            badgeClase: "tag-warn"
+          }
+        };
+        renderVistaLista(panel, { ...configs[subPestanaListas], subPillsHtml: subPills });
+        panel.querySelectorAll("[data-sublist]").forEach((b) => {
           b.addEventListener("click", () => {
-            subPestanaListas = b.dataset.sub;
+            subPestanaListas = b.dataset.sublist;
             estadoLista.busqueda = "";
             estadoLista.limite = 100;
             renderContenidoPestana();
           });
         });
-        const sub = panel.querySelector("#subPanel");
-        const configs = {
-          closeFriends: {
-            titulo: "Mejores amigos",
-            descripcion: "Tu lista de Mejores Amigos para historias.",
-            lista: a.closeFriends,
-            nombreCsv: "instagram_mejores_amigos.csv",
-            etiquetaFecha: "Añadido el"
-          },
-          blocked: {
-            titulo: "Cuentas bloqueadas",
-            descripcion: "Perfiles que tienes bloqueados.",
-            lista: a.blocked,
-            nombreCsv: "instagram_bloqueados.csv",
-            etiquetaFecha: "Bloqueado el"
-          },
-          restricted: {
-            titulo: "Cuentas restringidas",
-            descripcion: "Perfiles que tienes restringidos.",
-            lista: a.restricted,
-            nombreCsv: "instagram_restringidos.csv",
-            etiquetaFecha: "Restringido el"
-          }
-        };
-        renderVistaLista(sub, configs[subPestanaListas]);
         return;
       }
 
@@ -2912,12 +3976,12 @@
 
     function renderRankingBarras(items, etiquetaValor, esUsuarioInstagram) {
       if (!items.length) {
-        return `<div class="empty-state" style="padding:18px 8px;">No se encontraron datos en esta exportación.</div>`;
+        return `<div class="empty-state" style="padding:20px 8px;">No se encontraron datos en esta exportación.</div>`;
       }
-      const top = items.slice(0, 15);
+      const top = items.slice(0, 12);
       const max = top[0].valor || 1;
       return top
-        .map((item) => {
+        .map((item, idx) => {
           const pct = Math.max(4, Math.round((item.valor / max) * 100));
           const nombreHtml = esUsuarioInstagram
             ? `<a href="https://instagram.com/${encodeURIComponent(item.nombre)}" target="_blank" rel="noopener noreferrer">@${escaparHtml(item.nombre)}</a>`
@@ -2925,7 +3989,10 @@
           return `
             <div class="rank-row">
               <div class="rank-top">
-                <span class="rank-name">${nombreHtml}</span>
+                <span class="rank-left">
+                  <span class="rank-pos">${idx + 1}</span>
+                  <span class="rank-name">${nombreHtml}</span>
+                </span>
                 <span class="rank-count">${fmtNum(item.valor)} ${escaparHtml(etiquetaValor)}</span>
               </div>
               <div class="bar-track">
@@ -2939,57 +4006,61 @@
 
     function renderPestanaActividad(panel) {
       const a = analisisActual;
-
       const likesItems = a.topLikes.map((x) => ({ nombre: x.username, valor: x.count }));
       const commentsItems = a.topComments.map((x) => ({ nombre: x.username, valor: x.count }));
       const chatsItems = a.topChats.map((x) => ({ nombre: x.titulo, valor: x.totalMensajes }));
 
       panel.innerHTML = `
-        <div class="two-col">
-          <div class="panel-box">
-            <h3>
-              <span>❤️ Cuentas con más likes dados</span>
-              <span class="chip">${fmtNum(a.totalLikes)} total</span>
-            </h3>
-            ${renderRankingBarras(likesItems, "likes", true)}
-          </div>
+        <div class="explorer-body">
+          <div class="two-col">
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3 class="panel-title">${ICONOS.heart} Cuentas con más likes dados</h3>
+                <span class="meta-pill">${fmtNum(a.totalLikes)} total</span>
+              </div>
+              ${renderRankingBarras(likesItems, "likes", true)}
+            </div>
 
-          <div class="panel-box">
-            <h3>
-              <span>💬 Cuentas más comentadas</span>
-              <span class="chip">${fmtNum(a.totalComments)} total</span>
-            </h3>
-            ${renderRankingBarras(commentsItems, "coment.", true)}
-          </div>
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3 class="panel-title">${ICONOS.comment} Cuentas más comentadas</h3>
+                <span class="meta-pill">${fmtNum(a.totalComments)} total</span>
+              </div>
+              ${renderRankingBarras(commentsItems, "coment.", true)}
+            </div>
 
-          <div class="panel-box">
-            <h3>
-              <span>✉️ Chats con más mensajes</span>
-              <span class="chip">${fmtNum(a.totalMensajes)} total</span>
-            </h3>
-            ${renderRankingBarras(chatsItems, "msgs", false)}
-          </div>
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3 class="panel-title">${ICONOS.mail} Chats con más mensajes</h3>
+                <span class="meta-pill">${fmtNum(a.totalMensajes)} total</span>
+              </div>
+              ${renderRankingBarras(chatsItems, "msgs", false)}
+            </div>
 
-          <div class="panel-box">
-            <h3>
-              <span>🔍 Búsquedas recientes</span>
-              <span class="chip">${fmtNum(a.busquedas.length)} total</span>
-            </h3>
-            ${
-              a.busquedas.length === 0
-                ? `<div class="empty-state" style="padding:18px 8px;">No se encontraron archivos de búsquedas.</div>`
-                : a.busquedas
-                    .slice(0, 15)
-                    .map(
-                      (b) => `
-                    <div class="rank-top" style="padding:5px 0; border-bottom:1px solid var(--border);">
-                      <span class="rank-name">${escaparHtml(b.texto)}</span>
-                      <span class="rank-count">${formatearFecha(b.timestamp)}</span>
-                    </div>
-                  `
-                    )
-                    .join("")
-            }
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3 class="panel-title">${ICONOS.search} Búsquedas recientes</h3>
+                <span class="meta-pill">${fmtNum(a.busquedas.length)} total</span>
+              </div>
+              ${
+                a.busquedas.length === 0
+                  ? `<div class="empty-state" style="padding:20px 8px;">No se encontraron archivos de búsquedas.</div>`
+                  : a.busquedas
+                      .slice(0, 12)
+                      .map(
+                        (b, idx) => `
+                      <div class="rank-top" style="padding:7px 0; border-bottom:1px solid var(--border);">
+                        <span class="rank-left">
+                          <span class="rank-pos">${idx + 1}</span>
+                          <span class="rank-name">${escaparHtml(b.texto)}</span>
+                        </span>
+                        <span class="rank-count">${formatearFecha(b.timestamp)}</span>
+                      </div>
+                    `
+                      )
+                      .join("")
+              }
+            </div>
           </div>
         </div>
       `;
@@ -3000,7 +4071,7 @@
       const renderAnios = (mapaAnios) => {
         const entradas = Array.from(mapaAnios.entries()).sort((x, y) => y[0] - x[0]);
         if (!entradas.length) {
-          return `<div class="empty-state" style="padding:16px;">Sin fechas registradas en los archivos.</div>`;
+          return `<div class="empty-state" style="padding:18px;">Sin fechas registradas en los archivos.</div>`;
         }
         const max = Math.max(...entradas.map((e) => e[1]), 1);
         return entradas
@@ -3009,10 +4080,10 @@
             return `
               <div class="rank-row">
                 <div class="rank-top">
-                  <span class="rank-name">${anio}</span>
+                  <span class="rank-name tabular">${anio}</span>
                   <span class="rank-count">${fmtNum(count)} cuentas</span>
                 </div>
-                <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+                <div class="bar-track"><div class="bar-fill bar-fill-solid" style="width:${pct}%"></div></div>
               </div>
             `;
           })
@@ -3024,33 +4095,35 @@
         if (!conFecha.length) return "—";
         conFecha.sort((x, y) => (masAntiguo ? x.timestamp - y.timestamp : y.timestamp - x.timestamp));
         const item = conFecha[0];
-        return `<a href="https://instagram.com/${encodeURIComponent(item.username)}" target="_blank" rel="noopener noreferrer">@${escaparHtml(item.username)}</a> (${formatearFecha(item.timestamp)})`;
+        return `<a href="https://instagram.com/${encodeURIComponent(item.username)}" target="_blank" rel="noopener noreferrer" style="font-weight:600;text-decoration:underline;text-underline-offset:2px;">@${escaparHtml(item.username)}</a> <span style="color:var(--text-muted);">(${formatearFecha(item.timestamp)})</span>`;
       };
 
       panel.innerHTML = `
-        <div class="two-col">
-          <div class="panel-box">
-            <h3>
-              <span>📥 Seguidores por año</span>
-              <span class="chip">${a.rangoFollowers.dias !== null ? fmtNum(a.rangoFollowers.dias) + " días de rango" : "Sin rango"}</span>
-            </h3>
-            <p style="font-size:0.83rem; color:var(--text-muted); margin-top:0;">
-              Más antiguo: ${extremo(a.followers, true)}<br/>
-              Más reciente: ${extremo(a.followers, false)}
-            </p>
-            ${renderAnios(a.rangoFollowers.porAnio)}
-          </div>
+        <div class="explorer-body">
+          <div class="two-col">
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3 class="panel-title">${ICONOS.calendar} Seguidores por año</h3>
+                <span class="meta-pill">${a.rangoFollowers.dias !== null ? fmtNum(a.rangoFollowers.dias) + " días de rango" : "Sin rango"}</span>
+              </div>
+              <p style="font-size:0.83rem; color:var(--text-secondary); margin:0 0 16px; line-height:1.7;">
+                Más antiguo: ${extremo(a.followers, true)}<br/>
+                Más reciente: ${extremo(a.followers, false)}
+              </p>
+              ${renderAnios(a.rangoFollowers.porAnio)}
+            </div>
 
-          <div class="panel-box">
-            <h3>
-              <span>📤 Seguidos por año</span>
-              <span class="chip">${a.rangoFollowing.dias !== null ? fmtNum(a.rangoFollowing.dias) + " días de rango" : "Sin rango"}</span>
-            </h3>
-            <p style="font-size:0.83rem; color:var(--text-muted); margin-top:0;">
-              Más antiguo: ${extremo(a.following, true)}<br/>
-              Más reciente: ${extremo(a.following, false)}
-            </p>
-            ${renderAnios(a.rangoFollowing.porAnio)}
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3 class="panel-title">${ICONOS.calendar} Seguidos por año</h3>
+                <span class="meta-pill">${a.rangoFollowing.dias !== null ? fmtNum(a.rangoFollowing.dias) + " días de rango" : "Sin rango"}</span>
+              </div>
+              <p style="font-size:0.83rem; color:var(--text-secondary); margin:0 0 16px; line-height:1.7;">
+                Más antiguo: ${extremo(a.following, true)}<br/>
+                Más reciente: ${extremo(a.following, false)}
+              </p>
+              ${renderAnios(a.rangoFollowing.porAnio)}
+            </div>
           </div>
         </div>
       `;
@@ -3066,9 +4139,9 @@
             <td class="mono">${escaparHtml(f.ruta)}</td>
             <td>${escaparHtml(f.categoria)}</td>
             <td>${escaparHtml(f.formato)}</td>
-            <td>${fmtNum(f.registros)}</td>
+            <td class="tabular">${fmtNum(f.registros)}</td>
             <td>
-              <span class="status-pill ${f.estado === "ok" ? "status-ok" : "status-warn"}">
+              <span class="status-tag ${f.estado === "ok" ? "tag-mutual" : "tag-warn"}">
                 ${f.estado === "ok" ? "Leído" : "Error"}
               </span>
             </td>
@@ -3079,52 +4152,65 @@
 
       const bloqueErrores =
         d.errores.length > 0
-          ? `<div class="alert alert-warn" style="margin-top:14px;">
-              <strong>Avisos durante el análisis (${d.errores.length}):</strong>
-              <ul style="margin:6px 0 0; padding-left:18px;">
-                ${d.errores.map((e) => `<li><span class="mono">${escaparHtml(e.ruta)}</span>: ${escaparHtml(e.mensaje)}</li>`).join("")}
-              </ul>
+          ? `<div class="alert alert-warn" style="margin-top:16px;">
+              <div>
+                <strong>Avisos durante el análisis (${d.errores.length}):</strong>
+                <ul style="margin:6px 0 0; padding-left:18px;">
+                  ${d.errores.map((e) => `<li><span class="mono">${escaparHtml(e.ruta)}</span>: ${escaparHtml(e.mensaje)}</li>`).join("")}
+                </ul>
+              </div>
             </div>`
           : "";
 
       panel.innerHTML = `
-        <div class="range-chips" style="margin-bottom:14px;">
-          <span class="chip">✅ Archivos analizados: ${fmtNum(d.archivosLeidos.length)}</span>
-          <span class="chip">🖼️ Archivos multimedia omitidos (ahorro de RAM): ${fmtNum(d.mediaOmitida)}</span>
-          <span class="chip">🧵 Archivos de Threads ignorados: ${fmtNum(d.threadsOmitidos)}</span>
+        <div class="explorer-body">
+          <div class="diag-summary">
+            <span class="meta-pill">Archivos analizados: ${fmtNum(d.archivosLeidos.length)}</span>
+            <span class="meta-pill">Multimedia omitida (ahorro RAM): ${fmtNum(d.mediaOmitida)}</span>
+            <span class="meta-pill">Archivos de Threads ignorados: ${fmtNum(d.threadsOmitidos)}</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Archivo</th>
+                  <th>Categoría</th>
+                  <th>Formato</th>
+                  <th>Registros</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${filas || `<tr><td colspan="5">No se registraron archivos.</td></tr>`}
+              </tbody>
+            </table>
+          </div>
+          ${bloqueErrores}
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Archivo</th>
-                <th>Categoría</th>
-                <th>Formato</th>
-                <th>Registros</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${filas || `<tr><td colspan="5">No se registraron archivos.</td></tr>`}
-            </tbody>
-          </table>
-        </div>
-        ${bloqueErrores}
       `;
     }
 
     /* =========================================================================
-       9. INICIALIZACIÓN, TEMA CLARO/OSCURO Y EVENTOS
+       10. INICIALIZACIÓN, TEMA CLARO POR DEFECTO Y EVENTOS
        ========================================================================= */
 
     function aplicarTema(tema) {
       document.documentElement.setAttribute("data-theme", tema);
       const btn = document.getElementById("btnTheme");
-      btn.textContent = tema === "dark" ? "☀️ Claro" : "🌙 Oscuro";
+      if (btn) {
+        btn.innerHTML = tema === "dark" ? ICONOS.sun : ICONOS.moon;
+        btn.setAttribute("title", tema === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+        btn.setAttribute("aria-label", tema === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+      }
       try {
         localStorage.setItem("igf_theme", tema);
       } catch {
-        // Ignorar si el navegador bloquea localStorage en file://
+        // Ignorar si localStorage está restringido
+      }
+      // Re-renderizar avatares si ya hay resultados cargados para ajustar el contraste
+      if (analisisActual) {
+        renderBarraSesion();
+        renderContenidoPestana();
       }
     }
 
@@ -3135,16 +4221,12 @@
       } catch {
         guardado = null;
       }
-      if (guardado === "dark" || guardado === "light") {
-        aplicarTema(guardado);
-      } else {
-        const prefiereOscuro = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        aplicarTema(prefiereOscuro ? "dark" : "light");
-      }
+      // Modo claro por defecto, salvo que el usuario haya elegido oscuro previamente
+      aplicarTema(guardado === "dark" ? "dark" : "light");
     }
 
     /**
-     * Actualiza el indicador visual de estado local / offline en el banner de privacidad.
+     * Actualiza el indicador discreto de estado local / offline en el header.
      */
     function actualizarEstadoConexion() {
       const pill = document.getElementById("networkStatusPill");
@@ -3153,13 +4235,7 @@
 
       const offline = typeof navigator !== "undefined" && navigator.onLine === false;
       pill.classList.toggle("is-offline", offline);
-      if (offline) {
-        text.textContent = "Sin conexión · Modo offline operativo";
-      } else if (window.location && window.location.protocol === "file:") {
-        text.textContent = "Archivo local · 0 peticiones de red";
-      } else {
-        text.textContent = "Modo local activo · Funciona incluso offline";
-      }
+      text.textContent = offline ? "Offline · 100 % local" : "100 % local";
     }
 
     /**
@@ -3183,7 +4259,7 @@
         ocultarProgreso();
         cargarResultadosEnUI(generarDatosDeEjemplo());
         mostrarAlerta(
-          "No se pudo descargar datos_ejemplo_instagram.zip (habitual al abrir index.html directamente desde file://). Se han cargado los datos de ejemplo en memoria.",
+          "No se pudo descargar datos_ejemplo_instagram.zip (habitual al abrir index.html desde file://). Se han cargado los datos de ejemplo en memoria.",
           "info"
         );
       }
@@ -3204,10 +4280,14 @@
       const inputFolder = document.getElementById("inputFolder");
       const dropzone = document.getElementById("dropzone");
 
-      document.getElementById("btnPickFiles").addEventListener("click", () => {
+      const abrirSelectorArchivos = () => {
         inputFiles.value = "";
         inputFiles.click();
-      });
+      };
+
+      document.getElementById("btnPickFiles").addEventListener("click", abrirSelectorArchivos);
+      const btnPickLoose = document.getElementById("btnPickLoose");
+      if (btnPickLoose) btnPickLoose.addEventListener("click", abrirSelectorArchivos);
 
       document.getElementById("btnPickFolder").addEventListener("click", () => {
         inputFolder.value = "";
@@ -3219,14 +4299,6 @@
       document.getElementById("btnLoadDemo").addEventListener("click", () => {
         limpiarAlertas();
         cargarResultadosEnUI(generarDatosDeEjemplo());
-      });
-
-      document.getElementById("btnReset").addEventListener("click", () => {
-        analisisActual = null;
-        limpiarAlertas();
-        document.getElementById("dashboardSection").classList.add("hidden");
-        document.getElementById("uploadSection").classList.remove("hidden");
-        document.getElementById("btnReset").classList.add("hidden");
       });
 
       inputFiles.addEventListener("change", (e) => procesarSeleccionArchivos(e.target.files));
