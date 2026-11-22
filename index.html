@@ -1702,6 +1702,605 @@
       .diff-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px 14px; }
       .kbd-hint { display: none; }
     }
+
+    /* =========================================================================
+       MODO PRIVACIDAD, AFINIDAD REAL, HEATMAP Y STORY CARDS (RESUMEN VISUAL)
+       ========================================================================= */
+    :root {
+      --hm-0: #EFEFED;
+      --hm-1: #C6E6CE;
+      --hm-2: #7BC993;
+      --hm-3: #2E9E56;
+      --hm-4: #15803D;
+    }
+
+    [data-theme="dark"] {
+      --hm-0: #1D1D21;
+      --hm-1: #163826;
+      --hm-2: #1E5A38;
+      --hm-3: #29844E;
+      --hm-4: #3FC474;
+    }
+
+    .btn-privacy.is-active {
+      background: var(--accent-amber-soft, rgba(180, 83, 9, 0.12));
+      color: var(--accent-amber, #B45309);
+      border-color: rgba(180, 83, 9, 0.25);
+    }
+
+    .btn-wrapped {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-weight: 560;
+      gap: 6px;
+    }
+    .btn-wrapped:hover {
+      border-color: var(--text);
+      background: var(--surface-subtle);
+    }
+
+    @media (max-width: 780px) {
+      .btn-wrapped-label { display: none; }
+    }
+
+    /* Etiqueta sutil de afinidad en filas y tarjeta en Inspector */
+    .affinity-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-variant-numeric: tabular-nums;
+      background: var(--surface-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .affinity-pill .aff-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .affinity-pill.aff-core .aff-dot { background: #15803D; }
+    .affinity-pill.aff-close .aff-dot { background: #2563EB; }
+    .affinity-pill.aff-mid .aff-dot { background: #71717A; }
+    .affinity-pill.aff-ghost .aff-dot { background: #B45309; }
+
+    .drawer-affinity-card {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+    .drawer-affinity-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .drawer-affinity-score {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .drawer-affinity-score span {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .drawer-affinity-bar {
+      height: 6px;
+      border-radius: 999px;
+      background: var(--border);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .drawer-affinity-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--ink);
+      transition: width 0.25s ease;
+    }
+    .drawer-affinity-factors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .factor-chip {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Heatmap de actividad (estilo GitHub Contributions) */
+    .heatmap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .heatmap-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .heatmap-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .hm-pill {
+      font-size: 0.76rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+    .hm-pill strong { color: var(--text); font-weight: 600; }
+
+    .heatmap-scroll {
+      overflow-x: auto;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+    }
+    .hm-grid-wrap {
+      min-width: 580px;
+    }
+    .hm-hour-labels {
+      display: grid;
+      grid-template-columns: 36px repeat(24, minmax(16px, 1fr));
+      gap: 4px;
+      margin-bottom: 6px;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .hm-row {
+      display: grid;
+      grid-template-columns: 36px repeat(24, minmax(16px, 1fr));
+      gap: 4px;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .hm-day-lbl {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-weight: 550;
+    }
+    .hm-cell {
+      aspect-ratio: 1 / 1;
+      border-radius: 4px;
+      background: var(--hm-0);
+      transition: transform 0.1s ease, outline-color 0.1s ease;
+      cursor: default;
+      outline: 1px solid transparent;
+    }
+    .hm-cell:hover {
+      transform: scale(1.16);
+      outline-color: var(--text);
+      position: relative;
+      z-index: 2;
+    }
+    .hm-l1 { background: var(--hm-1); }
+    .hm-l2 { background: var(--hm-2); }
+    .hm-l3 { background: var(--hm-3); }
+    .hm-l4 { background: var(--hm-4); }
+
+    /* Calendario anual 52 semanas estilo GitHub */
+    .hm-year-wrap {
+      min-width: 680px;
+    }
+    .hm-year-months {
+      display: grid;
+      grid-template-columns: 32px repeat(53, minmax(10px, 1fr));
+      gap: 3px;
+      margin-bottom: 5px;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+    .hm-year-body {
+      display: grid;
+      grid-template-columns: 32px repeat(53, minmax(10px, 1fr));
+      gap: 3px;
+    }
+    .hm-year-col {
+      display: grid;
+      grid-template-rows: repeat(7, 1fr);
+      gap: 3px;
+    }
+    .hm-year-days {
+      display: grid;
+      grid-template-rows: repeat(7, 1fr);
+      gap: 3px;
+      font-size: 0.66rem;
+      color: var(--text-muted);
+      align-items: center;
+    }
+    .hm-year-cell {
+      aspect-ratio: 1 / 1;
+      border-radius: 3px;
+      background: var(--hm-0);
+    }
+    .hm-year-cell.is-empty { background: transparent; pointer-events: none; }
+    .hm-year-cell:hover { outline: 1px solid var(--text); }
+
+    .heatmap-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .hm-tooltip-line {
+      color: var(--text-secondary);
+      font-weight: 520;
+      font-variant-numeric: tabular-nums;
+      min-height: 1.2em;
+    }
+    .hm-legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .hm-legend-box {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    /* =========================================================================
+       MODAL RESUMEN VISUAL (STORY CARDS / WRAPPED)
+       ========================================================================= */
+    .wrapped-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(12, 12, 14, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .wrapped-backdrop.hidden { display: none; }
+
+    .wrapped-shell {
+      width: 100%;
+      max-width: 470px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 94vh;
+    }
+
+    .wrapped-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #FFFFFF;
+    }
+    .wrapped-top-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wrapped-close {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .wrapped-close:hover { background: rgba(255, 255, 255, 0.22); }
+
+    .wrapped-progress {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+    .wrapped-seg {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.24);
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      transition: background 0.18s ease;
+    }
+    .wrapped-seg.is-done { background: rgba(255, 255, 255, 0.65); }
+    .wrapped-seg.is-active { background: #FFFFFF; }
+
+    .wrapped-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-card {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 66vh;
+      border-radius: 22px;
+      padding: 26px 26px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.36);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #FAF9F6;
+      color: #111111;
+      user-select: none;
+    }
+    .story-card.is-square {
+      aspect-ratio: 1 / 1;
+    }
+    .story-card.theme-ink {
+      background: #111113;
+      color: #FAFAFA;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .story-card.theme-emerald {
+      background: #F4F9F5;
+      color: #0F1F15;
+    }
+    .story-card.theme-amber {
+      background: #FCF8F2;
+      color: #1C150E;
+    }
+
+    .story-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-weight: 650;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.64;
+    }
+    .story-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: auto 0;
+      padding: 8px 0;
+    }
+    .story-title {
+      font-size: clamp(1.3rem, 3.8vw, 1.65rem);
+      font-weight: 720;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 0;
+    }
+    .story-hero-num {
+      font-size: clamp(2.8rem, 9vw, 3.8rem);
+      font-weight: 760;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .story-lead {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      opacity: 0.78;
+      margin: 0;
+    }
+    .story-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .story-stat-box {
+      background: rgba(17, 17, 17, 0.045);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .story-card.theme-ink .story-stat-box {
+      background: rgba(255, 255, 255, 0.07);
+    }
+    .story-stat-val {
+      font-size: 1.15rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .story-stat-lbl {
+      font-size: 0.72rem;
+      opacity: 0.68;
+      margin-top: 2px;
+    }
+    .story-rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .story-rank-item {
+      background: rgba(17, 17, 17, 0.045);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .story-card.theme-ink .story-rank-item {
+      background: rgba(255, 255, 255, 0.07);
+    }
+    .story-rank-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .story-rank-pos {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: #111111;
+      color: #FFFFFF;
+      font-size: 0.74rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .story-card.theme-ink .story-rank-pos {
+      background: #FFFFFF;
+      color: #111111;
+    }
+    .story-rank-user {
+      font-weight: 650;
+      font-size: 0.88rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .story-rank-sub {
+      font-size: 0.72rem;
+      opacity: 0.68;
+    }
+    .story-rank-score {
+      font-size: 0.86rem;
+      font-weight: 720;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .story-mini-hm {
+      display: grid;
+      grid-template-columns: 30px repeat(4, 1fr);
+      gap: 5px;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .story-mini-lbl {
+      font-size: 0.68rem;
+      opacity: 0.65;
+      font-weight: 600;
+    }
+    .story-mini-cell {
+      height: 15px;
+      border-radius: 4px;
+    }
+    .story-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      opacity: 0.58;
+      border-top: 1px solid rgba(128, 128, 128, 0.18);
+      padding-top: 10px;
+    }
+
+    .wrapped-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(17, 17, 19, 0.65);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 4;
+    }
+    .wrapped-nav-btn:hover { background: rgba(17, 17, 19, 0.9); }
+    .wrapped-nav-btn:disabled { opacity: 0.28; cursor: default; }
+    .wrapped-prev { left: -50px; }
+    .wrapped-next { right: -50px; }
+
+    @media (max-width: 600px) {
+      .wrapped-prev { left: 8px; }
+      .wrapped-next { right: 8px; }
+      .story-card { padding: 20px 20px 18px; }
+    }
+
+    .wrapped-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: 8px 10px;
+    }
+    .wrapped-controls-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .wrapped-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-size: 0.76rem;
+      font-weight: 560;
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .wrapped-pill.is-active {
+      background: #FFFFFF;
+      color: #111111;
+      border-color: #FFFFFF;
+    }
+    .wrapped-dl-btn {
+      background: #FFFFFF;
+      color: #111111;
+      border: 0;
+      font-size: 0.8rem;
+      font-weight: 650;
+      padding: 8px 14px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .wrapped-dl-btn:hover { opacity: 0.92; }
   </style>
 </head>
 <body>
@@ -1727,6 +2326,15 @@
       </div>
 
       <div class="topbar-right">
+        <button id="btnOpenWrapped" class="btn btn-wrapped" type="button" title="Abrir Resumen visual y Story Cards descargables (W)">
+          <svg class="icon icon-sm" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+            <path d="M8 15l2.5-3 2 2.5L16 10l3 5"></path>
+            <circle cx="8.5" cy="8.5" r="1.2"></circle>
+          </svg>
+          <span class="btn-wrapped-label">Resumen visual</span>
+        </button>
+
         <button id="btnOpenGuide" class="btn btn-ghost" type="button" title="Cómo exportar tus datos en JSON">
           <svg class="icon icon-sm" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10"></circle>
@@ -1734,6 +2342,10 @@
             <line x1="12" y1="17" x2="12.01" y2="17"></line>
           </svg>
           <span class="btn-guide-label">¿Cómo exportar en JSON?</span>
+        </button>
+
+        <button id="btnPrivacy" class="btn btn-ghost btn-icon btn-privacy" type="button" aria-label="Activar o desactivar modo privacidad" title="Modo privacidad: ocultar @usuarios para capturas y PNG">
+          <!-- Icono actualizado por JS -->
         </button>
 
         <button id="btnTheme" class="btn btn-ghost btn-icon" type="button" aria-label="Cambiar modo claro u oscuro" title="Cambiar modo claro/oscuro">
@@ -1890,6 +2502,54 @@
   <!-- Ficha lateral: Inspector de cuenta -->
   <div id="inspectorDrawer" class="drawer-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="inspectorHandle">
     <div id="inspectorPanel" class="drawer-panel"></div>
+  </div>
+
+  <!-- Modal Resumen Visual (Story Cards descargables en PNG) -->
+  <div id="wrappedModal" class="wrapped-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="wrappedModalTitle">
+    <div class="wrapped-shell">
+      <div class="wrapped-top">
+        <div id="wrappedModalTitle" class="wrapped-top-title">
+          <span>Resumen visual</span>
+          <span id="wrappedStepLabel" style="opacity:0.65;font-weight:500;">1 / 5</span>
+        </div>
+        <button id="btnCloseWrapped" class="wrapped-close" type="button" aria-label="Cerrar resumen visual">
+          <svg class="icon" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div id="wrappedProgress" class="wrapped-progress" role="tablist" aria-label="Tarjetas del resumen visual"></div>
+
+      <div class="wrapped-stage">
+        <button id="btnWrappedPrev" class="wrapped-nav-btn wrapped-prev" type="button" aria-label="Tarjeta anterior">
+          <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <div id="wrappedCardMount" style="width:100%;"></div>
+
+        <button id="btnWrappedNext" class="wrapped-nav-btn wrapped-next" type="button" aria-label="Siguiente tarjeta">
+          <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="wrapped-controls">
+        <div class="wrapped-controls-left">
+          <button id="btnWrappedFormat45" class="wrapped-pill is-active" type="button" data-wfmt="45">4:5 Story</button>
+          <button id="btnWrappedFormat11" class="wrapped-pill" type="button" data-wfmt="11">1:1 Post</button>
+          <button id="btnWrappedPrivacy" class="wrapped-pill" type="button">Privacidad</button>
+        </div>
+        <button id="btnWrappedDownload" class="wrapped-dl-btn" type="button">
+          <svg class="icon icon-sm" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Descargar PNG
+        </button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -2574,9 +3234,45 @@
     }
 
     /**
+     * Crea la estructura compacta para el mapa de actividad (7 días × 24 horas + mapa diario).
+     */
+    function crearMatrizActividad() {
+      const matriz = Array.from({ length: 7 }, () =>
+        Array.from({ length: 24 }, () => ({ total: 0, likes: 0, comments: 0, dms: 0 }))
+      );
+      return {
+        matriz,
+        porDiaIso: new Map(),
+        totalEventos: 0
+      };
+    }
+
+    /**
+     * Registra un evento de actividad (like, comment, dm) en el mapa temporal.
+     */
+    function registrarEventoActividad(actividad, ts, tipo) {
+      if (!actividad || !ts || ts < 946684800 || ts > 2524608000) return;
+      const d = new Date(ts * 1000);
+      const dow = (d.getDay() + 6) % 7; // 0 = Lunes .. 6 = Domingo
+      const hour = d.getHours();
+      const celda = actividad.matriz[dow][hour];
+      celda.total += 1;
+      if (tipo === "like") celda.likes += 1;
+      else if (tipo === "comment") celda.comments += 1;
+      else if (tipo === "dm") celda.dms += 1;
+
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      const iso = `${yyyy}-${mm}-${dd}`;
+      actividad.porDiaIso.set(iso, (actividad.porDiaIso.get(iso) || 0) + 1);
+      actividad.totalEventos += 1;
+    }
+
+    /**
      * Parsea archivos de likes (liked_posts.json y liked_comments.json).
      */
-    function parsearLikes(data, conteoLikes) {
+    function parsearLikes(data, conteoLikes, actividad) {
       const arr = extraerArrayDeJson(data, ["likes_media_likes", "likes_comment_likes"]);
       let total = 0;
       for (const item of arr) {
@@ -2585,6 +3281,12 @@
         if (!autor && Array.isArray(item.label_values)) {
           const reg = parsearRegistroCuenta(item);
           if (reg) autor = reg.username;
+        }
+        if (Array.isArray(item.string_list_data)) {
+          for (const s of item.string_list_data) {
+            const ts = normalizarTimestamp(s && s.timestamp);
+            if (ts) registrarEventoActividad(actividad, ts, "like");
+          }
         }
         if (!autor) continue;
         const cantidad = Array.isArray(item.string_list_data) && item.string_list_data.length > 0
@@ -2599,7 +3301,7 @@
     /**
      * Parsea archivos de comentarios (post_comments_1.json y reels_comments.json).
      */
-    function parsearComentarios(data, conteoComentarios, detalleComentarios) {
+    function parsearComentarios(data, conteoComentarios, detalleComentarios, actividad) {
       const arr = extraerArrayDeJson(data, ["comments_media_comments", "comments_reels_comments"]);
       let total = 0;
       for (const item of arr) {
@@ -2630,6 +3332,9 @@
           const reg = parsearRegistroCuenta(item);
           if (reg) autor = reg.username;
         }
+        if (tsComentario) {
+          registrarEventoActividad(actividad, tsComentario, "comment");
+        }
         if (autor) {
           conteoComentarios.set(autor, (conteoComentarios.get(autor) || 0) + 1);
           if (detalleComentarios && textoComentario) {
@@ -2647,7 +3352,7 @@
      * Parsea un archivo de mensajes (messages/inbox/<chat>/message_N.json)
      * y acumula los conteos por conversación (soportando múltiples shards).
      */
-    function parsearMensajes(ruta, data, mapaChats) {
+    function parsearMensajes(ruta, data, mapaChats, actividad) {
       if (!data || typeof data !== "object" || !Array.isArray(data.messages)) return 0;
 
       // Clave única por carpeta de conversación
@@ -2672,8 +3377,11 @@
       chat.totalMensajes += data.messages.length;
       for (const msg of data.messages) {
         const ts = normalizarTimestamp(msg.timestamp_ms || msg.timestamp);
-        if (ts && (!chat.ultimoTimestamp || ts > chat.ultimoTimestamp)) {
-          chat.ultimoTimestamp = ts;
+        if (ts) {
+          registrarEventoActividad(actividad, ts, "dm");
+          if (!chat.ultimoTimestamp || ts > chat.ultimoTimestamp) {
+            chat.ultimoTimestamp = ts;
+          }
         }
       }
       return data.messages.length;
@@ -2847,6 +3555,181 @@
       const topChats = Array.from(recolector.chats.values())
         .sort((a, b) => b.totalMensajes - a.totalMensajes);
 
+      const pendingSet = new Set(pendingRequests.map((x) => x.username));
+      const receivedSet = new Set(receivedRequests.map((x) => x.username));
+      const recentlyUnfollowedSet = new Set(recentlyUnfollowed.map((x) => x.username));
+      const blockedSet = new Set(blocked.map((x) => x.username));
+      const restrictedSet = new Set(restricted.map((x) => x.username));
+      const closeFriendsSet = new Set(closeFriends.map((x) => x.username));
+
+      // Coincidencia de chat DM para una cuenta (por username o displayName)
+      const normTxt = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const buscarChat = (username, displayName) => {
+        const needleUser = normTxt(username).replace(/[._]/g, " ");
+        const needleName = normTxt(displayName);
+        return topChats.find((ch) => {
+          const hay = normTxt([ch.titulo, ...(ch.participantes || [])].join(" "));
+          return (
+            (needleName && needleName.length >= 3 && hay.includes(needleName)) ||
+            hay.includes(normTxt(username)) ||
+            (needleUser.length >= 4 && hay.includes(needleUser))
+          );
+        }) || null;
+      };
+
+      // Índice de Afinidad real (0–100) transparente para todas las cuentas conocidas
+      const ahora = Math.floor(Date.now() / 1000);
+      const todosUsuarios = new Set([
+        ...followersPorUser.keys(),
+        ...followingPorUser.keys(),
+        ...recolector.likes.keys(),
+        ...recolector.comments.keys()
+      ]);
+
+      const afinidadPorUser = new Map();
+      for (const u of todosUsuarios) {
+        const regFoll = followersPorUser.get(u);
+        const regFing = followingPorUser.get(u);
+        const esMutuo = Boolean(regFoll && regFing);
+        const esClose = closeFriendsSet.has(u);
+        const displayName = (regFoll && regFoll.displayName) || (regFing && regFing.displayName) || "";
+        const likes = recolector.likes.get(u) || 0;
+        const comments = recolector.comments.get(u) || 0;
+        const chatMatch = buscarChat(u, displayName);
+        const dms = chatMatch ? chatMatch.totalMensajes : 0;
+
+        // Antigüedad (meses) desde el vínculo más antiguo
+        const tsMin = Math.min(
+          regFoll && regFoll.timestamp ? regFoll.timestamp : Infinity,
+          regFing && regFing.timestamp ? regFing.timestamp : Infinity
+        );
+        const mesesAntiguedad = Number.isFinite(tsMin) ? Math.max(0, (ahora - tsMin) / (30 * 86400)) : 0;
+
+        const factores = [];
+        let ptsRel = 0;
+        if (esMutuo) {
+          ptsRel = 25;
+          factores.push({ label: "Mutuo", pts: 25 });
+        } else if (regFoll) {
+          ptsRel = 10;
+          factores.push({ label: "Te sigue", pts: 10 });
+        } else if (regFing) {
+          ptsRel = 5;
+          factores.push({ label: "Le sigues", pts: 5 });
+        }
+
+        const ptsClose = esClose ? 8 : 0;
+        if (ptsClose > 0) factores.push({ label: "Mejores amigos", pts: ptsClose });
+
+        const ptsAnt = Math.min(12, Math.round((Math.min(24, mesesAntiguedad) / 24) * 12));
+        if (ptsAnt > 0) factores.push({ label: "Antigüedad", pts: ptsAnt });
+
+        const ptsLikes = likes > 0 ? Math.min(20, Math.round(Math.log2(likes + 1) * 3.2)) : 0;
+        if (ptsLikes > 0) factores.push({ label: `${likes} likes`, pts: ptsLikes });
+
+        const ptsCom = comments > 0 ? Math.min(15, Math.round(Math.log2(comments + 1) * 3.8)) : 0;
+        if (ptsCom > 0) factores.push({ label: `${comments} com.`, pts: ptsCom });
+
+        const ptsDm = dms > 0 ? Math.min(25, Math.round(Math.log2(dms + 1) * 2.9)) : 0;
+        if (ptsDm > 0) factores.push({ label: `${dms} DMs`, pts: ptsDm });
+
+        const score = Math.min(100, ptsRel + ptsClose + ptsAnt + ptsLikes + ptsCom + ptsDm);
+        let nivel = "Fantasma";
+        let clase = "aff-ghost";
+        let badgeClase = "badge-amber";
+        if (score >= 70) {
+          nivel = "Núcleo";
+          clase = "aff-core";
+          badgeClase = "badge-ok";
+        } else if (score >= 42) {
+          nivel = "Cercana";
+          clase = "aff-close";
+          badgeClase = "badge-blue";
+        } else if (score >= 20) {
+          nivel = "Ocasional";
+          clase = "aff-mid";
+          badgeClase = "badge-neutral";
+        }
+
+        afinidadPorUser.set(u, {
+          username: u,
+          displayName,
+          score,
+          nivel,
+          clase,
+          badgeClase,
+          esMutuo,
+          likes,
+          comments,
+          dms,
+          chatMatch,
+          factores
+        });
+      }
+
+      const topAfinidad = Array.from(afinidadPorUser.values())
+        .filter((x) => followingPorUser.has(x.username) || followersPorUser.has(x.username))
+        .sort((a, b) => b.score - a.score || (b.likes + b.comments + b.dms) - (a.likes + a.comments + a.dms));
+
+      // Diagnóstico de limpieza
+      const haceUnAnio = ahora - 365 * 86400;
+      const fantasmaMas1Anio = following.filter((c) => {
+        const likes = recolector.likes.get(c.username) || 0;
+        const comments = recolector.comments.get(c.username) || 0;
+        return c.timestamp && c.timestamp < haceUnAnio && likes === 0 && comments === 0;
+      });
+      const noTeSiguenSinInteraccion = notFollowingBack.filter((c) => {
+        const likes = recolector.likes.get(c.username) || 0;
+        const comments = recolector.comments.get(c.username) || 0;
+        return likes === 0 && comments === 0;
+      });
+      const sumaAfinidadSeguidos = following.reduce(
+        (acc, c) => acc + ((afinidadPorUser.get(c.username) || {}).score || 0),
+        0
+      );
+      const afinidadMediaSeguidos = following.length > 0 ? Math.round(sumaAfinidadSeguidos / following.length) : 0;
+
+      // Resumen de ritmo temporal (Heatmap 7x24 + 52 semanas)
+      const DIAS_SEMANA = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+      const act = recolector.actividad || crearMatrizActividad();
+      const totalesPorDia = Array(7).fill(0);
+      const totalesPorHora = Array(24).fill(0);
+      const bloquesFranja = [
+        { id: "madrugada", nombre: "Madrugada", rango: "00:00–06:59", total: 0 },
+        { id: "manana", nombre: "Mañana", rango: "07:00–13:59", total: 0 },
+        { id: "tarde", nombre: "Tarde", rango: "14:00–19:59", total: 0 },
+        { id: "noche", nombre: "Noche", rango: "20:00–23:59", total: 0 }
+      ];
+      let maxCelda = 0;
+      for (let d = 0; d < 7; d++) {
+        for (let h = 0; h < 24; h++) {
+          const val = act.matriz[d][h].total;
+          if (val > maxCelda) maxCelda = val;
+          totalesPorDia[d] += val;
+          totalesPorHora[h] += val;
+          if (h < 7) bloquesFranja[0].total += val;
+          else if (h < 14) bloquesFranja[1].total += val;
+          else if (h < 20) bloquesFranja[2].total += val;
+          else bloquesFranja[3].total += val;
+        }
+      }
+      let idxDiaPico = 0;
+      for (let d = 1; d < 7; d++) if (totalesPorDia[d] > totalesPorDia[idxDiaPico]) idxDiaPico = d;
+      let horaPico = 0;
+      for (let h = 1; h < 24; h++) if (totalesPorHora[h] > totalesPorHora[horaPico]) horaPico = h;
+      const franjaPicoObj = [...bloquesFranja].sort((a, b) => b.total - a.total)[0];
+
+      const ritmoActividad = {
+        matriz: act.matriz,
+        porDiaIso: act.porDiaIso,
+        totalEventos: act.totalEventos,
+        maxCelda,
+        diaPico: act.totalEventos > 0 ? DIAS_SEMANA[idxDiaPico] : "Sin datos",
+        horaPico,
+        franjaPico: act.totalEventos > 0 ? `${franjaPicoObj.nombre} (${franjaPicoObj.rango})` : "Sin datos",
+        franjaNombre: act.totalEventos > 0 ? franjaPicoObj.nombre : "Sin datos"
+      };
+
       return {
         perfil: recolector.perfil,
         followers,
@@ -2862,15 +3745,23 @@
         closeFriends,
         followersPorUser,
         followingPorUser,
-        pendingSet: new Set(pendingRequests.map((x) => x.username)),
-        receivedSet: new Set(receivedRequests.map((x) => x.username)),
-        recentlyUnfollowedSet: new Set(recentlyUnfollowed.map((x) => x.username)),
-        blockedSet: new Set(blocked.map((x) => x.username)),
-        restrictedSet: new Set(restricted.map((x) => x.username)),
-        closeFriendsSet: new Set(closeFriends.map((x) => x.username)),
+        pendingSet,
+        receivedSet,
+        recentlyUnfollowedSet,
+        blockedSet,
+        restrictedSet,
+        closeFriendsSet,
         likesPorUsuario: recolector.likes,
         commentsPorUsuario: recolector.comments,
         comentariosDetalle: recolector.commentsDetail,
+        afinidadPorUser,
+        topAfinidad,
+        diagnosticoLimpieza: {
+          fantasmaMas1Anio,
+          noTeSiguenSinInteraccion,
+          afinidadMediaSeguidos
+        },
+        ritmoActividad,
         ratio,
         reciprocidad,
         rangoFollowers: calcularRangoFechas(followers),
@@ -2908,6 +3799,7 @@
         totalComments: 0,
         chats: new Map(),
         busquedas: [],
+        actividad: crearMatrizActividad(),
         diagnostico: {
           archivosLeidos: [],
           mediaOmitida: 0,
@@ -2960,12 +3852,12 @@
           recolector.listas[clasificacion.tipo].push(...cuentas);
           registros = cuentas.length;
         } else if (clasificacion.tipo === "liked_posts" || clasificacion.tipo === "liked_comments") {
-          registros = parsearLikes(data, recolector.likes);
+          registros = parsearLikes(data, recolector.likes, recolector.actividad);
         } else if (clasificacion.tipo === "comments") {
-          registros = parsearComentarios(data, recolector.comments, recolector.commentsDetail);
+          registros = parsearComentarios(data, recolector.comments, recolector.commentsDetail, recolector.actividad);
           recolector.totalComments += registros;
         } else if (clasificacion.tipo === "messages") {
-          registros = parsearMensajes(ruta, data, recolector.chats);
+          registros = parsearMensajes(ruta, data, recolector.chats, recolector.actividad);
         } else if (clasificacion.tipo === "searches") {
           registros = parsearBusquedas(data, recolector.busquedas);
         } else if (clasificacion.tipo === "personal_info") {
@@ -3496,6 +4388,19 @@
         { texto: "cafeterías madrid", timestamp: ahora - 15 * dia }
       );
 
+      // Eventos temporales de actividad de ejemplo (últimos 350 días) con ritmo realista
+      const tiposDemo = ["like", "like", "like", "dm", "dm", "comment"];
+      const horasPico = [8, 9, 12, 13, 14, 17, 18, 19, 20, 20, 21, 21, 21, 22, 22, 23];
+      for (let i = 0; i < 480; i++) {
+        const diasAtras = (i * 19 + (i % 11) * 3 + (i % 5 === 0 ? 4 : 0)) % 350;
+        const baseDate = new Date((ahora - diasAtras * dia) * 1000);
+        const esPicoSemana = baseDate.getDay() === 4 || baseDate.getDay() === 0;
+        const hora = horasPico[(i * 5 + (esPicoSemana ? 9 : 0)) % horasPico.length];
+        baseDate.setHours(hora, (i * 17) % 60, 0, 0);
+        const tsEvento = Math.floor(baseDate.getTime() / 1000);
+        registrarEventoActividad(recolector.actividad, tsEvento, tiposDemo[i % tiposDemo.length]);
+      }
+
       recolector.diagnostico.archivosLeidos = [
         { ruta: "connections/followers_and_following/followers_1.json", categoria: "followers", formato: "JSON (demo)", registros: mutuos.length + noSigues.length, estado: "ok" },
         { ruta: "connections/followers_and_following/following.json", categoria: "following", formato: "JSON (demo)", registros: mutuos.length + noTeSiguen.length, estado: "ok" },
@@ -3523,6 +4428,8 @@
     const ICONOS = {
       sun: `<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="6.34" y1="17.66" x2="4.93" y2="19.07"></line><line x1="19.07" y1="4.93" x2="17.66" y2="6.34"></line></svg>`,
       moon: `<svg class="icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+      eye: `<svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`,
+      eyeOff: `<svg class="icon" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`,
       search: `<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
       download: `<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
       external: `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`,
@@ -3599,6 +4506,10 @@
     let subGestion = "pending";
     let subDiff = "lost";
     let modoGrafico = "anio"; // "anio" | "mes" | "acumulado"
+    let modoHeatmap = "semana"; // "semana" | "anio"
+    let modoPrivacidad = false;
+    let wrappedIndex = 0;
+    let wrappedFormato = "45"; // "45" (1080x1350) | "11" (1080x1080)
     let usuarioInspeccionado = null;
     let cuentasSeleccionadas = new Set();
 
@@ -3608,6 +4519,60 @@
       filtroRapido: "all", // all | old1y | noInteraction | withInteraction | selected | renamed
       limite: 100
     };
+
+    function enmascararTexto(txt) {
+      const s = String(txt || "").trim();
+      if (!s) return "";
+      if (s.length <= 2) return "**";
+      return `${s[0]}${"*".repeat(Math.min(5, Math.max(2, s.length - 2)))}${s[s.length - 1]}`;
+    }
+
+    function mostrarHandle(username) {
+      const u = String(username || "").replace(/^@+/, "");
+      if (!u) return "@cuenta";
+      return modoPrivacidad ? `@${enmascararTexto(u)}` : `@${u}`;
+    }
+
+    function mostrarNombre(nombre) {
+      const s = String(nombre || "").trim();
+      if (!s) return "";
+      if (!modoPrivacidad) return s;
+      return s
+        .split(/\s+/)
+        .map((p) => enmascararTexto(p))
+        .join(" ");
+    }
+
+    function actualizarBotonPrivacidad() {
+      const btn = document.getElementById("btnPrivacy");
+      if (btn) {
+        btn.innerHTML = modoPrivacidad ? ICONOS.eyeOff : ICONOS.eye;
+        btn.classList.toggle("is-active", modoPrivacidad);
+        btn.setAttribute(
+          "title",
+          modoPrivacidad
+            ? "Modo privacidad activo (clic para mostrar @usuarios)"
+            : "Modo privacidad: ocultar @usuarios para capturas y PNG"
+        );
+      }
+      const btnW = document.getElementById("btnWrappedPrivacy");
+      if (btnW) {
+        btnW.classList.toggle("is-active", modoPrivacidad);
+        btnW.textContent = modoPrivacidad ? "Privacidad: ON" : "Privacidad";
+      }
+    }
+
+    function alternarPrivacidad() {
+      modoPrivacidad = !modoPrivacidad;
+      actualizarBotonPrivacidad();
+      if (analisisActual) {
+        actualizarBarraSuperior();
+        renderContenidoPestana();
+        if (usuarioInspeccionado) abrirInspectorCuenta(usuarioInspeccionado);
+        const modal = document.getElementById("wrappedModal");
+        if (modal && !modal.classList.contains("hidden")) renderResumenVisual();
+      }
+    }
 
     function claveStorageSeleccion() {
       const u = analisisActual && analisisActual.perfil && analisisActual.perfil.username
@@ -3706,7 +4671,7 @@
       const dot = document.getElementById("sessionDot");
       const strip = document.getElementById("previewStrip");
 
-      const handle = a && a.perfil && a.perfil.username ? `@${a.perfil.username}` : "Exportación local";
+      const handle = a && a.perfil && a.perfil.username ? mostrarHandle(a.perfil.username) : "Exportación local";
       if (chipText) chipText.textContent = handle;
       if (dot) dot.classList.toggle("is-demo", esVistaPreviaDemo);
 
@@ -4196,6 +5161,13 @@
       });
     }
 
+    function obtenerAfinidadCuenta(username) {
+      if (analisisActual && analisisActual.afinidadPorUser && analisisActual.afinidadPorUser.has(username)) {
+        return analisisActual.afinidadPorUser.get(username);
+      }
+      return { score: 0, nivel: "Fantasma", clase: "aff-ghost", badgeClase: "badge-amber", factores: [], likes: 0, comments: 0, dms: 0, chatMatch: null };
+    }
+
     function obtenerInteraccionCuenta(username) {
       const a = analisisActual;
       const likes = (a && a.likesPorUsuario && a.likesPorUsuario.get(username)) || 0;
@@ -4228,6 +5200,20 @@
       }
 
       switch (estadoLista.orden) {
+        case "affinity_desc":
+          res.sort((a, b) => {
+            const aa = obtenerAfinidadCuenta(a.username);
+            const bb = obtenerAfinidadCuenta(b.username);
+            return bb.score - aa.score || (bb.likes + bb.comments + bb.dms) - (aa.likes + aa.comments + aa.dms);
+          });
+          break;
+        case "affinity_asc":
+          res.sort((a, b) => {
+            const aa = obtenerAfinidadCuenta(a.username);
+            const bb = obtenerAfinidadCuenta(b.username);
+            return aa.score - bb.score || (aa.likes + aa.comments + aa.dms) - (bb.likes + bb.comments + bb.dms);
+          });
+          break;
         case "az":
           res.sort((a, b) => a.username.localeCompare(b.username));
           break;
@@ -4314,6 +5300,8 @@
             <select id="sortSelect" class="select" aria-label="Ordenar lista">
               <option value="date_desc" ${estadoLista.orden === "date_desc" ? "selected" : ""}>Más reciente primero</option>
               <option value="date_asc" ${estadoLista.orden === "date_asc" ? "selected" : ""}>Más antiguo primero</option>
+              <option value="affinity_desc" ${estadoLista.orden === "affinity_desc" ? "selected" : ""}>Mayor afinidad</option>
+              <option value="affinity_asc" ${estadoLista.orden === "affinity_asc" ? "selected" : ""}>Menor afinidad</option>
               <option value="az" ${estadoLista.orden === "az" ? "selected" : ""}>Alfabético (A–Z)</option>
               <option value="za" ${estadoLista.orden === "za" ? "selected" : ""}>Alfabético (Z–A)</option>
             </select>
@@ -4342,7 +5330,10 @@
           const urlPerfil = `https://instagram.com/${encodeURIComponent(c.username)}`;
           const marcada = cuentasSeleccionadas.has(c.username);
           const inter = obtenerInteraccionCuenta(c.username);
+          const aff = obtenerAfinidadCuenta(c.username);
           const pistaInter = inter.total > 0 ? ` · ${inter.likes} likes, ${inter.comments} com.` : "";
+          const handleVis = mostrarHandle(c.username);
+          const nombreVis = mostrarNombre(c.displayName);
           html += `
             <div class="account-row is-clickable ${marcada ? "is-checked" : ""}" data-inspect="${escaparHtml(c.username)}">
               <div class="account-main">
@@ -4350,21 +5341,24 @@
                   type="checkbox"
                   class="row-check"
                   data-check="${escaparHtml(c.username)}"
-                  aria-label="Marcar @${escaparHtml(c.username)} para revisar"
+                  aria-label="Marcar ${escaparHtml(handleVis)} para revisar"
                   ${marcada ? "checked" : ""}
                 />
-                <div class="avatar-neutral">${escaparHtml(inicialesUsuario(c.username))}</div>
+                <div class="avatar-neutral">${escaparHtml(modoPrivacidad ? "••" : inicialesUsuario(c.username))}</div>
                 <div class="account-info">
-                  <span class="account-handle">@${escaparHtml(c.username)}</span>
-                  ${c.displayName ? `<div class="account-name">${escaparHtml(c.displayName)}</div>` : ""}
+                  <span class="account-handle">${escaparHtml(handleVis)}</span>
+                  ${nombreVis ? `<div class="account-name">${escaparHtml(nombreVis)}</div>` : ""}
                   <div class="account-date" title="${escaparHtml(etiquetaFecha)}">${escaparHtml(formatearFechaCompleta(c.timestamp))}${escaparHtml(pistaInter)}</div>
                 </div>
               </div>
               <div class="account-right">
+                <span class="affinity-pill ${aff.clase}" title="Índice de afinidad real: ${aff.score}/100 (${aff.nivel})">
+                  <span class="aff-dot" aria-hidden="true"></span>${aff.score}
+                </span>
                 <span class="badge ${c.possibleRename ? "badge-amber" : badgeClase}">
                   ${c.possibleRename ? "Cambio @" : escaparHtml(badgeTexto)}
                 </span>
-                <a class="ext-link" href="${urlPerfil}" target="_blank" rel="noopener noreferrer" title="Abrir @${escaparHtml(c.username)} en Instagram" aria-label="Abrir perfil de ${escaparHtml(c.username)} en Instagram">
+                <a class="ext-link" href="${urlPerfil}" target="_blank" rel="noopener noreferrer" title="Abrir ${escaparHtml(handleVis)} en Instagram" aria-label="Abrir perfil de ${escaparHtml(handleVis)} en Instagram">
                   ${ICONOS.external}
                 </a>
               </div>
@@ -4477,13 +5471,15 @@
         btnCsv.addEventListener("click", () => {
           descargarCSV(
             nombreCsv,
-            ["Usuario", "Nombre", "Estado", "Enlace", etiquetaFecha, "Likes dados", "Comentarios", "Timestamp Unix"],
+            ["Usuario", "Nombre", "Estado", "Afinidad (0-100)", "Enlace", etiquetaFecha, "Likes dados", "Comentarios", "Timestamp Unix"],
             filtrada.map((c) => {
               const inter = obtenerInteraccionCuenta(c.username);
+              const aff = obtenerAfinidadCuenta(c.username);
               return [
                 c.username,
                 c.displayName || "",
                 badgeTexto,
+                aff.score,
                 `https://instagram.com/${c.username}`,
                 formatearFechaISO(c.timestamp),
                 inter.likes,
@@ -4869,19 +5865,12 @@
       const comments = (a.commentsPorUsuario && a.commentsPorUsuario.get(username)) || 0;
       const detalleCom = (a.comentariosDetalle && a.comentariosDetalle.get(username)) || [];
 
-      // Coincidencia de mensajes directos (por username o displayName en título/participantes)
-      const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      const needleUser = norm(username).replace(/[._]/g, " ");
-      const needleName = norm(displayName);
-      const chatMatch = (a.topChats || []).find((ch) => {
-        const hay = norm([ch.titulo, ...(ch.participantes || [])].join(" "));
-        return (needleName && needleName.length >= 3 && hay.includes(needleName)) ||
-          hay.includes(norm(username)) ||
-          (needleUser.length >= 4 && hay.includes(needleUser));
-      });
-
+      const aff = obtenerAfinidadCuenta(username);
+      const chatMatch = aff.chatMatch;
       const marcada = cuentasSeleccionadas.has(username);
       const urlPerfil = `https://instagram.com/${encodeURIComponent(username)}`;
+      const handleVis = mostrarHandle(username);
+      const nombreVis = mostrarNombre(displayName);
 
       const comentariosHtml = detalleCom.length > 0
         ? detalleCom
@@ -4897,14 +5886,18 @@
             .join("")
         : `<p style="margin:0;font-size:0.82rem;color:var(--text-muted);">No hay textos de comentarios registrados para esta cuenta.</p>`;
 
+      const factoresHtml = aff.factores.length > 0
+        ? aff.factores.map((f) => `<span class="factor-chip">${escaparHtml(f.label)} +${f.pts}</span>`).join("")
+        : `<span class="factor-chip">Sin señales de interacción</span>`;
+
       const panel = document.getElementById("inspectorPanel");
       panel.innerHTML = `
         <div class="drawer-head">
           <div class="drawer-identity">
-            <div class="drawer-avatar">${escaparHtml(inicialesUsuario(username))}</div>
+            <div class="drawer-avatar">${escaparHtml(modoPrivacidad ? "••" : inicialesUsuario(username))}</div>
             <div>
-              <h2 id="inspectorHandle" class="drawer-handle">@${escaparHtml(username)}</h2>
-              ${displayName ? `<p class="drawer-sub">${escaparHtml(displayName)}</p>` : ""}
+              <h2 id="inspectorHandle" class="drawer-handle">${escaparHtml(handleVis)}</h2>
+              ${nombreVis ? `<p class="drawer-sub">${escaparHtml(nombreVis)}</p>` : ""}
             </div>
           </div>
           <button id="btnCloseInspector" class="btn btn-ghost btn-icon" type="button" aria-label="Cerrar inspector">
@@ -4914,6 +5907,20 @@
 
         <div class="drawer-badges">
           ${estados.map((e) => `<span class="badge ${e.cls}">${escaparHtml(e.txt)}</span>`).join("") || `<span class="badge badge-neutral">Sin relación activa</span>`}
+        </div>
+
+        <div class="drawer-affinity-card">
+          <div class="drawer-affinity-top">
+            <div>
+              <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;color:var(--text-muted);">Índice de afinidad real</div>
+              <div class="drawer-affinity-score">${aff.score}<span> / 100</span></div>
+            </div>
+            <span class="badge ${aff.badgeClase}">${escaparHtml(aff.nivel)}</span>
+          </div>
+          <div class="drawer-affinity-bar" role="progressbar" aria-valuenow="${aff.score}" aria-valuemin="0" aria-valuemax="100">
+            <div class="drawer-affinity-fill" style="width:${aff.score}%;"></div>
+          </div>
+          <div class="drawer-affinity-factors">${factoresHtml}</div>
         </div>
 
         <div class="drawer-stats">
@@ -4949,7 +5956,7 @@
             ${
               chatMatch
                 ? `<div class="drawer-kv-row">
-                    <span class="drawer-kv-key">Último mensaje (${escaparHtml(chatMatch.titulo)})</span>
+                    <span class="drawer-kv-key">Último mensaje (${escaparHtml(mostrarNombre(chatMatch.titulo))})</span>
                     <span class="drawer-kv-val">${escaparHtml(formatearFecha(chatMatch.ultimoTimestamp))}</span>
                   </div>`
                 : ""
@@ -4993,6 +6000,159 @@
       if (drawer) drawer.classList.add("hidden");
     }
 
+    function nivelIntensidadHeatmap(valor, maxVal) {
+      if (!valor || valor <= 0) return "";
+      const ratio = valor / Math.max(1, maxVal);
+      if (ratio >= 0.75) return "hm-l4";
+      if (ratio >= 0.5) return "hm-l3";
+      if (ratio >= 0.25) return "hm-l2";
+      return "hm-l1";
+    }
+
+    function renderHeatmapSemanalHTML(ritmo) {
+      const diasCortos = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+      const diasLargos = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+      let headHoras = `<span></span>`;
+      for (let h = 0; h < 24; h++) {
+        headHoras += `<span style="text-align:center;">${h % 3 === 0 ? String(h).padStart(2, "0") : ""}</span>`;
+      }
+      let filas = "";
+      for (let d = 0; d < 7; d++) {
+        let celdas = "";
+        for (let h = 0; h < 24; h++) {
+          const c = ritmo.matriz[d][h];
+          const lvl = nivelIntensidadHeatmap(c.total, ritmo.maxCelda);
+          const hh = String(h).padStart(2, "0");
+          const detalle = c.total > 0
+            ? `${diasLargos[d]} · ${hh}:00–${hh}:59 → ${fmtNum(c.total)} eventos (${c.likes} likes, ${c.comments} com., ${c.dms} DMs)`
+            : `${diasLargos[d]} · ${hh}:00–${hh}:59 → Sin actividad registrada`;
+          celdas += `<div class="hm-cell ${lvl}" data-hm-tip="${escaparHtml(detalle)}" title="${escaparHtml(detalle)}"></div>`;
+        }
+        filas += `<div class="hm-row"><span class="hm-day-lbl">${diasCortos[d]}</span>${celdas}</div>`;
+      }
+      return `
+        <div class="hm-grid-wrap">
+          <div class="hm-hour-labels">${headHoras}</div>
+          ${filas}
+        </div>
+      `;
+    }
+
+    function renderHeatmapAnualHTML(ritmo) {
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0);
+      // Retroceder 52 semanas al lunes más cercano
+      const inicio = new Date(hoy);
+      inicio.setDate(hoy.getDate() - 364);
+      const dowInicio = (inicio.getDay() + 6) % 7;
+      inicio.setDate(inicio.getDate() - dowInicio);
+
+      let maxDia = 0;
+      const semanas = [];
+      const mesesCabecera = [];
+      const mesesNombres = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+      let mesAnterior = -1;
+
+      for (let w = 0; w < 53; w++) {
+        const col = [];
+        let etiquetaMes = "";
+        for (let d = 0; d < 7; d++) {
+          const cur = new Date(inicio);
+          cur.setDate(inicio.getDate() + w * 7 + d);
+          if (d === 0 && cur.getMonth() !== mesAnterior) {
+            etiquetaMes = mesesNombres[cur.getMonth()];
+            mesAnterior = cur.getMonth();
+          }
+          if (cur > hoy) {
+            col.push({ vacio: true });
+          } else {
+            const iso = `${cur.getFullYear()}-${String(cur.getMonth() + 1).padStart(2, "0")}-${String(cur.getDate()).padStart(2, "0")}`;
+            const count = ritmo.porDiaIso.get(iso) || 0;
+            if (count > maxDia) maxDia = count;
+            col.push({ vacio: false, iso, count });
+          }
+        }
+        semanas.push(col);
+        mesesCabecera.push(etiquetaMes);
+      }
+
+      const mesesHtml = `<span></span>` + mesesCabecera.map((m) => `<span>${m}</span>`).join("");
+      const diasCol = `<div class="hm-year-days"><span>Lun</span><span></span><span>Mié</span><span></span><span>Vie</span><span></span><span>Dom</span></div>`;
+      const colsHtml = semanas
+        .map((col) => {
+          const celdas = col
+            .map((cell) => {
+              if (cell.vacio) return `<div class="hm-year-cell is-empty"></div>`;
+              const lvl = nivelIntensidadHeatmap(cell.count, maxDia);
+              const tip = `${cell.iso} → ${fmtNum(cell.count)} ${cell.count === 1 ? "evento" : "eventos"} de actividad`;
+              return `<div class="hm-year-cell ${lvl}" data-hm-tip="${escaparHtml(tip)}" title="${escaparHtml(tip)}"></div>`;
+            })
+            .join("");
+          return `<div class="hm-year-col">${celdas}</div>`;
+        })
+        .join("");
+
+      return `
+        <div class="hm-year-wrap">
+          <div class="hm-year-months">${mesesHtml}</div>
+          <div class="hm-year-body">${diasCol}${colsHtml}</div>
+        </div>
+      `;
+    }
+
+    function renderHeatmapCardHTML(ritmo) {
+      if (!ritmo || ritmo.totalEventos === 0) {
+        return `
+          <div class="heatmap-card">
+            <div class="sub-card-head" style="margin-bottom:6px;">
+              <h3 class="sub-card-title">Mapa de actividad (Heatmap)</h3>
+              <span class="card-meta">Sin marcas temporales</span>
+            </div>
+            <p style="margin:0;font-size:0.84rem;color:var(--text-secondary);">
+              No se encontraron fechas en likes, comentarios o mensajes en esta exportación para construir el mapa horario.
+            </p>
+          </div>
+        `;
+      }
+
+      const hhPico = `${String(ritmo.horaPico).padStart(2, "0")}:00`;
+      return `
+        <div class="heatmap-card" id="activityHeatmapCard">
+          <div class="heatmap-head">
+            <div>
+              <h3 class="sub-card-title" style="margin:0;">Mapa de actividad</h3>
+              <div class="heatmap-meta-pills">
+                <span class="hm-pill">Día pico: <strong>${escaparHtml(ritmo.diaPico)}</strong></span>
+                <span class="hm-pill">Franja: <strong>${escaparHtml(ritmo.franjaNombre)} (${hhPico})</strong></span>
+                <span class="hm-pill"><strong>${fmtNum(ritmo.totalEventos)}</strong> eventos con fecha</span>
+              </div>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Vista del mapa de actividad">
+              <button type="button" class="seg-btn ${modoHeatmap === "semana" ? "active" : ""}" data-hmode="semana">Semana × Hora</button>
+              <button type="button" class="seg-btn ${modoHeatmap === "anio" ? "active" : ""}" data-hmode="anio">Último año</button>
+            </div>
+          </div>
+
+          <div class="heatmap-scroll">
+            ${modoHeatmap === "anio" ? renderHeatmapAnualHTML(ritmo) : renderHeatmapSemanalHTML(ritmo)}
+          </div>
+
+          <div class="heatmap-foot">
+            <span id="hmTooltipLine" class="hm-tooltip-line">Pasa el cursor sobre cualquier casilla para ver el detalle.</span>
+            <span class="hm-legend" aria-label="Escala de intensidad">
+              <span>Menos</span>
+              <span class="hm-legend-box" style="background:var(--hm-0);"></span>
+              <span class="hm-legend-box" style="background:var(--hm-1);"></span>
+              <span class="hm-legend-box" style="background:var(--hm-2);"></span>
+              <span class="hm-legend-box" style="background:var(--hm-3);"></span>
+              <span class="hm-legend-box" style="background:var(--hm-4);"></span>
+              <span>Más</span>
+            </span>
+          </div>
+        </div>
+      `;
+    }
+
     function renderRankingFino(items, etiquetaValor, esUsuarioInstagram, barraAzul = false) {
       if (!items.length) {
         return `<div class="empty-state" style="padding:20px 8px;">No se encontraron datos en esta exportación.</div>`;
@@ -5002,9 +6162,10 @@
       return top
         .map((item, idx) => {
           const pct = Math.max(4, Math.round((item.valor / max) * 100));
+          const etiquetaNombre = esUsuarioInstagram ? mostrarHandle(item.nombre) : mostrarNombre(item.nombre);
           const nombreHtml = esUsuarioInstagram
-            ? `<a href="https://instagram.com/${encodeURIComponent(item.nombre)}" target="_blank" rel="noopener noreferrer">@${escaparHtml(item.nombre)}</a>`
-            : escaparHtml(item.nombre);
+            ? `<a href="https://instagram.com/${encodeURIComponent(item.nombre)}" target="_blank" rel="noopener noreferrer">${escaparHtml(etiquetaNombre)}</a>`
+            : escaparHtml(etiquetaNombre);
           return `
             <div class="rank-row">
               <div class="rank-top">
@@ -5031,6 +6192,8 @@
 
       panel.innerHTML = `
         <div class="explorer-body">
+          ${renderHeatmapCardHTML(a.ritmoActividad)}
+
           <div class="two-col">
             <div class="sub-card">
               <div class="sub-card-head">
@@ -5071,7 +6234,7 @@
                       <div class="rank-top" style="padding:7px 0; border-bottom:1px solid var(--border);">
                         <span class="rank-left">
                           <span class="rank-num">${idx + 1}</span>
-                          <span class="rank-name">${escaparHtml(b.texto)}</span>
+                          <span class="rank-name">${escaparHtml(modoPrivacidad ? enmascararTexto(b.texto) : b.texto)}</span>
                         </span>
                         <span class="rank-val">${formatearFecha(b.timestamp)}</span>
                       </div>
@@ -5083,6 +6246,23 @@
           </div>
         </div>
       `;
+
+      // Interacción del Heatmap (cambio de modo y tooltip)
+      panel.querySelectorAll("[data-hmode]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          modoHeatmap = btn.dataset.hmode;
+          renderPestanaInteracciones(panel);
+        });
+      });
+
+      const tipLine = panel.querySelector("#hmTooltipLine");
+      if (tipLine) {
+        panel.querySelectorAll("[data-hm-tip]").forEach((cell) => {
+          cell.addEventListener("mouseenter", () => {
+            tipLine.textContent = cell.dataset.hmTip;
+          });
+        });
+      }
     }
 
     function renderPestanaDiagnostico(panel) {
@@ -5147,6 +6327,478 @@
     }
 
     /* =========================================================================
+       10B. RESUMEN VISUAL NARRATIVO (STORY CARDS + EXPORTACIÓN PNG EN CANVAS)
+       ========================================================================= */
+
+    function construirTarjetasWrapped(a) {
+      const handleCuenta = a.perfil && a.perfil.username ? mostrarHandle(a.perfil.username) : "Tu cuenta";
+      const recPct = `${a.reciprocidad.toFixed(1)}%`;
+      const antiguedadAnios = a.rangoFollowers.min
+        ? Math.max(0.1, (Math.floor(Date.now() / 1000) - a.rangoFollowers.min) / (365 * 86400))
+        : null;
+      const textoAntiguedad = antiguedadAnios !== null
+        ? (antiguedadAnios >= 1 ? `${antiguedadAnios.toFixed(1)} años` : `${Math.max(1, Math.round(antiguedadAnios * 12))} meses`)
+        : "Sin fechas";
+
+      const top3 = (a.topAfinidad || []).slice(0, 3);
+      const ritmo = a.ritmoActividad || { diaPico: "Sin datos", franjaNombre: "Sin datos", horaPico: 0, totalEventos: 0, matriz: [] };
+      const limpieza = a.diagnosticoLimpieza || { fantasmaMas1Anio: [], noTeSiguenSinInteraccion: [], afinidadMediaSeguidos: 0 };
+
+      // Bloques 7×4 (Madrugada, Mañana, Tarde, Noche) para mini-heatmap en tarjeta 3
+      const bloques7x4 = [];
+      let maxBloque = 1;
+      for (let d = 0; d < 7; d++) {
+        const row = [0, 0, 0, 0];
+        if (ritmo.matriz && ritmo.matriz[d]) {
+          for (let h = 0; h < 24; h++) {
+            const v = ritmo.matriz[d][h].total || 0;
+            if (h < 7) row[0] += v;
+            else if (h < 14) row[1] += v;
+            else if (h < 20) row[2] += v;
+            else row[3] += v;
+          }
+        }
+        row.forEach((v) => { if (v > maxBloque) maxBloque = v; });
+        bloques7x4.push(row);
+      }
+
+      return [
+        {
+          id: "circulo",
+          kicker: "01 · Tu círculo real",
+          theme: "theme-emerald",
+          palette: { bg: "#F4F9F5", fg: "#0F1F15", muted: "#4B6354", cardBg: "rgba(15,31,21,0.06)", accent: "#15803D" },
+          title: "Reciprocidad real de tu comunidad",
+          hero: recPct,
+          lead: `De las ${fmtNum(a.following.length)} cuentas que sigues, ${fmtNum(a.mutuals.length)} también te siguen de vuelta.`,
+          stats: [
+            { val: fmtNum(a.mutuals.length), lbl: "Seguidores mutuos" },
+            { val: fmtNum(a.followers.length), lbl: "Seguidores totales" },
+            { val: textoAntiguedad, lbl: "Antigüedad registrada" },
+            { val: `${limpieza.afinidadMediaSeguidos}/100`, lbl: "Afinidad media" }
+          ],
+          handleCuenta
+        },
+        {
+          id: "conexiones",
+          kicker: "02 · Tus conexiones más fieles",
+          theme: "theme-ink",
+          palette: { bg: "#111113", fg: "#FAFAFA", muted: "#A1A1AA", cardBg: "rgba(255,255,255,0.08)", accent: "#3FC474" },
+          title: "Tu núcleo más cercano",
+          hero: top3.length > 0 ? `${top3[0].score}/100` : "—",
+          lead: "Calculado combinando seguimiento mutuo, antigüedad, likes, comentarios y mensajes directos.",
+          top3: top3.map((x) => ({
+            handle: mostrarHandle(x.username),
+            sub: `${x.likes} likes · ${x.comments} com. · ${x.dms} DMs`,
+            score: x.score
+          })),
+          handleCuenta
+        },
+        {
+          id: "ritmo",
+          kicker: "03 · Tu ritmo en Instagram",
+          theme: "theme-light",
+          palette: { bg: "#FAF9F6", fg: "#111111", muted: "#666666", cardBg: "rgba(17,17,17,0.05)", accent: "#15803D" },
+          title: ritmo.totalEventos > 0
+            ? `Los ${/^(sábado|domingo)$/i.test(ritmo.diaPico) ? ritmo.diaPico.toLowerCase() + "s" : ritmo.diaPico.toLowerCase()} por la ${ritmo.franjaNombre.toLowerCase()}`
+            : "Sin marcas horarias",
+          hero: ritmo.totalEventos > 0 ? `${String(ritmo.horaPico).padStart(2, "0")}:00h` : "—",
+          lead: ritmo.totalEventos > 0
+            ? `Tu pico de actividad se concentra los ${/^(sábado|domingo)$/i.test(ritmo.diaPico) ? ritmo.diaPico.toLowerCase() + "s" : ritmo.diaPico.toLowerCase()} (${ritmo.franjaPico}), sobre ${fmtNum(ritmo.totalEventos)} eventos analizados.`
+            : "Esta exportación no incluye marcas temporales de likes, comentarios o mensajes.",
+          bloques7x4,
+          maxBloque,
+          handleCuenta
+        },
+        {
+          id: "limpieza",
+          kicker: "04 · Diagnóstico de limpieza",
+          theme: "theme-amber",
+          palette: { bg: "#FCF8F2", fg: "#1C150E", muted: "#6F5A45", cardBg: "rgba(28,21,14,0.055)", accent: "#B45309" },
+          title: "Cuentas en silencio hace más de 1 año",
+          hero: fmtNum(limpieza.fantasmaMas1Anio.length),
+          lead: `Sigues a ${fmtNum(limpieza.fantasmaMas1Anio.length)} cuentas desde hace más de un año sin haberles dado nunca un like ni un comentario.`,
+          stats: [
+            { val: fmtNum(a.notFollowingBack.length), lbl: "No te siguen de vuelta" },
+            { val: fmtNum(limpieza.noTeSiguenSinInteraccion.length), lbl: "No te siguen y 0 interacción" },
+            { val: fmtNum(a.pendingRequests.length), lbl: "Solicitudes pendientes" },
+            { val: fmtNum(a.closeFriends.length), lbl: "Mejores amigos" }
+          ],
+          handleCuenta
+        },
+        {
+          id: "ejecutivo",
+          kicker: "05 · Resumen ejecutivo",
+          theme: "theme-ink",
+          palette: { bg: "#111113", fg: "#FAFAFA", muted: "#A1A1AA", cardBg: "rgba(255,255,255,0.08)", accent: "#FFFFFF" },
+          title: handleCuenta,
+          hero: `${fmtNum(a.followers.length)}`,
+          lead: `Seguidores · ${fmtNum(a.following.length)} seguidos · Reciprocidad del ${recPct}.`,
+          stats: [
+            { val: fmtNum(a.mutuals.length), lbl: "Mutuos" },
+            { val: `${limpieza.afinidadMediaSeguidos}/100`, lbl: "Afinidad media" },
+            { val: ritmo.diaPico, lbl: "Día más activo" },
+            { val: fmtNum(a.totalLikes + a.totalComments + a.totalMensajes), lbl: "Interacciones" }
+          ],
+          handleCuenta
+        }
+      ];
+    }
+
+    function renderTarjetaWrappedHTML(card) {
+      const sqClass = wrappedFormato === "11" ? "is-square" : "";
+      let extraHtml = "";
+
+      if (card.top3) {
+        extraHtml = card.top3.length > 0
+          ? `<div class="story-rank-list">
+              ${card.top3
+                .map(
+                  (item, i) => `
+                  <div class="story-rank-item">
+                    <div class="story-rank-left">
+                      <span class="story-rank-pos">${i + 1}</span>
+                      <div style="min-width:0;">
+                        <div class="story-rank-user">${escaparHtml(item.handle)}</div>
+                        <div class="story-rank-sub">${escaparHtml(item.sub)}</div>
+                      </div>
+                    </div>
+                    <span class="story-rank-score">${item.score}/100</span>
+                  </div>
+                `
+                )
+                .join("")}
+            </div>`
+          : `<p class="story-lead">Importa likes, comentarios o mensajes para descubrir tu top 3.</p>`;
+      } else if (card.bloques7x4) {
+        const dias = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+        const colores = ["#E7E5DF", "#C6E6CE", "#7BC993", "#2E9E56", "#15803D"];
+        const cab = `<div class="story-mini-hm" style="margin-bottom:2px;">
+          <span></span>
+          <span class="story-mini-lbl" style="text-align:center;">Mad.</span>
+          <span class="story-mini-lbl" style="text-align:center;">Mañ.</span>
+          <span class="story-mini-lbl" style="text-align:center;">Tar.</span>
+          <span class="story-mini-lbl" style="text-align:center;">Noc.</span>
+        </div>`;
+        const filas = card.bloques7x4
+          .map((row, idx) => {
+            const cells = row
+              .map((v) => {
+                const lvl = v <= 0 ? 0 : Math.min(4, Math.ceil((v / Math.max(1, card.maxBloque)) * 4));
+                return `<div class="story-mini-cell" style="background:${colores[lvl]};"></div>`;
+              })
+              .join("");
+            return `<div class="story-mini-hm"><span class="story-mini-lbl">${dias[idx]}</span>${cells}</div>`;
+          })
+          .join("");
+        extraHtml = `<div style="margin-top:4px;">${cab}${filas}</div>`;
+      } else if (card.stats) {
+        extraHtml = `
+          <div class="story-stat-grid">
+            ${card.stats
+              .map(
+                (s) => `
+                <div class="story-stat-box">
+                  <div class="story-stat-val">${escaparHtml(s.val)}</div>
+                  <div class="story-stat-lbl">${escaparHtml(s.lbl)}</div>
+                </div>
+              `
+              )
+              .join("")}
+          </div>
+        `;
+      }
+
+      return `
+        <article class="story-card ${card.theme} ${sqClass}" id="activeStoryCard">
+          <div class="story-kicker">
+            <span>${escaparHtml(card.kicker)}</span>
+            <span>${escaparHtml(card.handleCuenta)}</span>
+          </div>
+          <div class="story-body">
+            <h3 class="story-title">${escaparHtml(card.title)}</h3>
+            <div class="story-hero-num">${escaparHtml(card.hero)}</div>
+            <p class="story-lead">${escaparHtml(card.lead)}</p>
+            ${extraHtml}
+          </div>
+          <div class="story-foot">
+            <span>Analizado 100 % en local</span>
+            <span>alfonsodfernandez.github.io/igf</span>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderResumenVisual() {
+      if (!analisisActual) return;
+      const tarjetas = construirTarjetasWrapped(analisisActual);
+      wrappedIndex = Math.max(0, Math.min(tarjetas.length - 1, wrappedIndex));
+      const card = tarjetas[wrappedIndex];
+
+      const stepLbl = document.getElementById("wrappedStepLabel");
+      if (stepLbl) stepLbl.textContent = `${wrappedIndex + 1} / ${tarjetas.length}`;
+
+      const prog = document.getElementById("wrappedProgress");
+      if (prog) {
+        prog.innerHTML = tarjetas
+          .map(
+            (t, idx) =>
+              `<button type="button" class="wrapped-seg ${idx < wrappedIndex ? "is-done" : ""} ${idx === wrappedIndex ? "is-active" : ""}" data-widx="${idx}" aria-label="Ir a tarjeta ${idx + 1}: ${escaparHtml(t.kicker)}"></button>`
+          )
+          .join("");
+        prog.querySelectorAll("[data-widx]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            wrappedIndex = Number(btn.dataset.widx);
+            renderResumenVisual();
+          });
+        });
+      }
+
+      const mount = document.getElementById("wrappedCardMount");
+      if (mount) mount.innerHTML = renderTarjetaWrappedHTML(card);
+
+      const btnPrev = document.getElementById("btnWrappedPrev");
+      const btnNext = document.getElementById("btnWrappedNext");
+      if (btnPrev) btnPrev.disabled = wrappedIndex === 0;
+      if (btnNext) btnNext.disabled = wrappedIndex === tarjetas.length - 1;
+
+      document.querySelectorAll("[data-wfmt]").forEach((b) => {
+        b.classList.toggle("is-active", b.dataset.wfmt === wrappedFormato);
+      });
+      actualizarBotonPrivacidad();
+    }
+
+    function abrirResumenVisual() {
+      if (!analisisActual) return;
+      wrappedIndex = 0;
+      renderResumenVisual();
+      document.getElementById("wrappedModal").classList.remove("hidden");
+    }
+
+    function cerrarResumenVisual() {
+      const modal = document.getElementById("wrappedModal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    function canvasRoundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function canvasWrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 3) {
+      const palabras = String(text || "").split(/\s+/);
+      let linea = "";
+      let cy = y;
+      let count = 0;
+      for (let i = 0; i < palabras.length; i++) {
+        const test = linea ? `${linea} ${palabras[i]}` : palabras[i];
+        if (ctx.measureText(test).width > maxWidth && linea) {
+          count++;
+          if (count >= maxLines) {
+            ctx.fillText(linea + "…", x, cy);
+            return cy + lineHeight;
+          }
+          ctx.fillText(linea, x, cy);
+          linea = palabras[i];
+          cy += lineHeight;
+        } else {
+          linea = test;
+        }
+      }
+      if (linea) {
+        ctx.fillText(linea, x, cy);
+        cy += lineHeight;
+      }
+      return cy;
+    }
+
+    /**
+     * Renderiza la tarjeta activa en un <canvas> nativo de alta resolución (1080×1350 o 1080×1080)
+     * y descarga el PNG directamente desde el navegador sin librerías externas.
+     */
+    function descargarTarjetaWrappedPNG() {
+      if (!analisisActual) return;
+      const tarjetas = construirTarjetasWrapped(analisisActual);
+      const card = tarjetas[wrappedIndex] || tarjetas[0];
+      const W = 1080;
+      const H = wrappedFormato === "11" ? 1080 : 1350;
+      const isSq = wrappedFormato === "11";
+
+      const canvas = document.createElement("canvas");
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext("2d");
+      const pal = card.palette;
+      const pad = 84;
+      const fontSans = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", sans-serif';
+
+      // Fondo limpio editorial
+      ctx.fillStyle = pal.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // Marco interior sutil
+      ctx.strokeStyle = card.theme === "theme-ink" ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.08)";
+      ctx.lineWidth = 2;
+      canvasRoundRect(ctx, 28, 28, W - 56, H - 56, 40);
+      ctx.stroke();
+
+      // Kicker superior
+      ctx.fillStyle = pal.muted;
+      ctx.font = `600 24px ${fontSans}`;
+      ctx.textBaseline = "top";
+      ctx.fillText(card.kicker.toUpperCase(), pad, 86);
+      ctx.textAlign = "right";
+      ctx.fillText(card.handleCuenta, W - pad, 86);
+      ctx.textAlign = "left";
+
+      // Título principal
+      let y = isSq ? 168 : 206;
+      ctx.fillStyle = pal.fg;
+      ctx.font = `700 ${isSq ? 52 : 58}px ${fontSans}`;
+      y = canvasWrapText(ctx, card.title, pad, y, W - pad * 2, isSq ? 62 : 70, 2);
+
+      // Cifra hero
+      y += isSq ? 18 : 28;
+      ctx.fillStyle = pal.fg;
+      ctx.font = `800 ${isSq ? 124 : 146}px ${fontSans}`;
+      ctx.fillText(card.hero, pad, y);
+      y += isSq ? 142 : 170;
+
+      // Subtítulo narrativo
+      ctx.fillStyle = pal.muted;
+      ctx.font = `400 ${isSq ? 30 : 33}px ${fontSans}`;
+      y = canvasWrapText(ctx, card.lead, pad, y, W - pad * 2, isSq ? 42 : 46, 3);
+      y += isSq ? 26 : 42;
+
+      // Bloque de contenido específico de la tarjeta
+      if (card.top3 && card.top3.length > 0) {
+        const rowH = isSq ? 112 : 126;
+        const gap = 18;
+        card.top3.forEach((item, idx) => {
+          const ry = y + idx * (rowH + gap);
+          ctx.fillStyle = pal.cardBg;
+          canvasRoundRect(ctx, pad, ry, W - pad * 2, rowH, 24);
+          ctx.fill();
+
+          // Círculo de posición
+          ctx.fillStyle = card.theme === "theme-ink" ? "#FFFFFF" : "#111111";
+          ctx.beginPath();
+          ctx.arc(pad + 54, ry + rowH / 2, 24, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = card.theme === "theme-ink" ? "#111111" : "#FFFFFF";
+          ctx.font = `700 26px ${fontSans}`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(String(idx + 1), pad + 54, ry + rowH / 2 + 1);
+
+          // Handle y subtexto
+          ctx.textAlign = "left";
+          ctx.textBaseline = "top";
+          ctx.fillStyle = pal.fg;
+          ctx.font = `600 32px ${fontSans}`;
+          ctx.fillText(item.handle, pad + 102, ry + 24);
+          ctx.fillStyle = pal.muted;
+          ctx.font = `400 24px ${fontSans}`;
+          ctx.fillText(item.sub, pad + 102, ry + 66);
+
+          // Puntuación
+          ctx.textAlign = "right";
+          ctx.fillStyle = pal.accent;
+          ctx.font = `700 34px ${fontSans}`;
+          ctx.fillText(`${item.score}/100`, W - pad - 30, ry + 38);
+          ctx.textAlign = "left";
+        });
+      } else if (card.bloques7x4) {
+        const dias = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+        const franjas = ["Madrugada", "Mañana", "Tarde", "Noche"];
+        const colores = ["#E7E5DF", "#C6E6CE", "#7BC993", "#2E9E56", "#15803D"];
+        const lblW = 92;
+        const gap = 14;
+        const cellW = (W - pad * 2 - lblW - gap * 3) / 4;
+        const cellH = isSq ? 38 : 48;
+
+        ctx.fillStyle = pal.muted;
+        ctx.font = `600 22px ${fontSans}`;
+        ctx.textAlign = "center";
+        franjas.forEach((f, i) => {
+          ctx.fillText(f, pad + lblW + i * (cellW + gap) + cellW / 2, y);
+        });
+        ctx.textAlign = "left";
+        y += 38;
+
+        card.bloques7x4.forEach((row, d) => {
+          const ry = y + d * (cellH + 12);
+          ctx.fillStyle = pal.muted;
+          ctx.font = `600 24px ${fontSans}`;
+          ctx.textBaseline = "middle";
+          ctx.fillText(dias[d], pad, ry + cellH / 2);
+          row.forEach((v, b) => {
+            const lvl = v <= 0 ? 0 : Math.min(4, Math.ceil((v / Math.max(1, card.maxBloque)) * 4));
+            ctx.fillStyle = colores[lvl];
+            canvasRoundRect(ctx, pad + lblW + b * (cellW + gap), ry, cellW, cellH, 10);
+            ctx.fill();
+          });
+        });
+        ctx.textBaseline = "top";
+      } else if (card.stats) {
+        const gap = 22;
+        const boxW = (W - pad * 2 - gap) / 2;
+        const boxH = isSq ? 148 : 178;
+        card.stats.forEach((st, idx) => {
+          const col = idx % 2;
+          const row = Math.floor(idx / 2);
+          const bx = pad + col * (boxW + gap);
+          const by = y + row * (boxH + gap);
+
+          ctx.fillStyle = pal.cardBg;
+          canvasRoundRect(ctx, bx, by, boxW, boxH, 24);
+          ctx.fill();
+
+          ctx.fillStyle = pal.fg;
+          ctx.font = `700 ${isSq ? 46 : 52}px ${fontSans}`;
+          ctx.fillText(st.val, bx + 32, by + (isSq ? 30 : 38));
+
+          ctx.fillStyle = pal.muted;
+          ctx.font = `500 24px ${fontSans}`;
+          ctx.fillText(st.lbl, bx + 32, by + (isSq ? 92 : 112));
+        });
+      }
+
+      // Pie editorial + sello local
+      const footY = H - 102;
+      ctx.strokeStyle = card.theme === "theme-ink" ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.1)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(pad, footY - 24);
+      ctx.lineTo(W - pad, footY - 24);
+      ctx.stroke();
+
+      ctx.fillStyle = pal.muted;
+      ctx.font = `500 23px ${fontSans}`;
+      ctx.textBaseline = "top";
+      ctx.fillText("Analizado 100 % en local en tu navegador", pad, footY);
+      ctx.textAlign = "right";
+      ctx.fillText("alfonsodfernandez.github.io/igf", W - pad, footY);
+
+      const url = canvas.toDataURL("image/png");
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `igf_resumen_${card.id}_${W}x${H}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    /* =========================================================================
        11. INICIALIZACIÓN, TEMA CLARO POR DEFECTO, ATAJOS DE TECLADO Y EVENTOS
        ========================================================================= */
 
@@ -5200,6 +6852,7 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       iniciarTema();
+      actualizarBotonPrivacidad();
 
       // Cargar vista previa interactiva inmediatamente desde el segundo cero
       cargarResultadosEnUI(generarDatosDeEjemplo(), { esDemo: true });
@@ -5209,6 +6862,7 @@
       const inputPrevFiles = document.getElementById("inputPrevFiles");
       const inputPrevFolder = document.getElementById("inputPrevFolder");
       const guideModal = document.getElementById("guideModal");
+      const wrappedModal = document.getElementById("wrappedModal");
       const inspectorDrawer = document.getElementById("inspectorDrawer");
       const dropOverlay = document.getElementById("dropOverlay");
 
@@ -5227,6 +6881,29 @@
       document.getElementById("btnTheme").addEventListener("click", () => {
         const actual = document.documentElement.getAttribute("data-theme");
         aplicarTema(actual === "dark" ? "light" : "dark");
+      });
+
+      document.getElementById("btnPrivacy").addEventListener("click", alternarPrivacidad);
+      document.getElementById("btnOpenWrapped").addEventListener("click", abrirResumenVisual);
+      document.getElementById("btnCloseWrapped").addEventListener("click", cerrarResumenVisual);
+      document.getElementById("btnWrappedPrev").addEventListener("click", () => {
+        if (wrappedIndex > 0) { wrappedIndex--; renderResumenVisual(); }
+      });
+      document.getElementById("btnWrappedNext").addEventListener("click", () => {
+        if (wrappedIndex < 4) { wrappedIndex++; renderResumenVisual(); }
+      });
+      document.getElementById("btnWrappedFormat45").addEventListener("click", () => {
+        wrappedFormato = "45";
+        renderResumenVisual();
+      });
+      document.getElementById("btnWrappedFormat11").addEventListener("click", () => {
+        wrappedFormato = "11";
+        renderResumenVisual();
+      });
+      document.getElementById("btnWrappedPrivacy").addEventListener("click", alternarPrivacidad);
+      document.getElementById("btnWrappedDownload").addEventListener("click", descargarTarjetaWrappedPNG);
+      wrappedModal.addEventListener("click", (e) => {
+        if (e.target === wrappedModal) cerrarResumenVisual();
       });
 
       document.getElementById("btnImportZip").addEventListener("click", abrirSelectorZip);
@@ -5252,11 +6929,25 @@
         if (e.target === inspectorDrawer) cerrarInspectorCuenta();
       });
 
-      // Atajos de teclado estilo Cron / Linear: "/" buscador, "1"-"7" pestañas, "Esc" cerrar paneles
+      // Atajos de teclado estilo Cron / Linear: "/" buscador, "1"-"7" pestañas, "w" resumen visual, "←"/"→" tarjetas, "Esc" cerrar paneles
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
+          if (!wrappedModal.classList.contains("hidden")) cerrarResumenVisual();
           if (!inspectorDrawer.classList.contains("hidden")) cerrarInspectorCuenta();
           if (!guideModal.classList.contains("hidden")) guideModal.classList.add("hidden");
+          return;
+        }
+
+        if (!wrappedModal.classList.contains("hidden")) {
+          if (e.key === "ArrowLeft" && wrappedIndex > 0) {
+            e.preventDefault();
+            wrappedIndex--;
+            renderResumenVisual();
+          } else if (e.key === "ArrowRight" && wrappedIndex < 4) {
+            e.preventDefault();
+            wrappedIndex++;
+            renderResumenVisual();
+          }
           return;
         }
 
@@ -5270,6 +6961,12 @@
             e.preventDefault();
             searchBox.focus();
           }
+          return;
+        }
+
+        if (e.key === "w" || e.key === "W") {
+          e.preventDefault();
+          abrirResumenVisual();
           return;
         }
 
